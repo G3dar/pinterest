@@ -10,10 +10,12 @@ const HomePage = ({ images }) => {
   useEffect(() => {
     const handleResize = () => {
       const width = window.innerWidth;
-      if (width < 600) setColumns(2);
-      else if (width < 900) setColumns(3);
-      else if (width < 1200) setColumns(4);
-      else setColumns(5);
+      if (width < 500) setColumns(2);
+      else if (width < 800) setColumns(3);
+      else if (width < 1000) setColumns(4);
+      else if (width < 1400) setColumns(5);
+      else if (width < 1800) setColumns(6);
+      else setColumns(7);
     };
 
     handleResize();
