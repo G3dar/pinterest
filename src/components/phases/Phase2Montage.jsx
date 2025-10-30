@@ -69,9 +69,16 @@ const Phase2Montage = ({ images, categories }) => {
             'linear-gradient(135deg, #111111 0%, #111111 100%)'
           ]
         }}
+        exit={{
+          opacity: 0
+        }}
         transition={{
           duration: 2,
-          ease: 'easeInOut'
+          ease: 'easeInOut',
+          exit: {
+            duration: 0.5,
+            ease: 'easeInOut'
+          }
         }}
         style={{
           position: 'absolute',
@@ -109,7 +116,7 @@ const Phase2Montage = ({ images, categories }) => {
         ))}
       </div>
 
-      <AnimatePresence mode="sync">
+      <AnimatePresence mode="wait">
         {subPhase === 'grid' && (
           <>
             {/* Animated gradient backdrop - stays visible throughout */}
