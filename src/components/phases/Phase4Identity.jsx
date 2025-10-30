@@ -12,13 +12,24 @@ const Phase4Identity = ({ identityCard }) => {
 
   const rarityColor = rarityColors[identityCard.rarity] || rarityColors.Epic;
 
-  // Generate floating sparkles
-  const sparkles = Array.from({ length: 8 }, (_, i) => ({
+  // Generate floating sparkles (increased count for more magic)
+  const sparkles = Array.from({ length: 20 }, (_, i) => ({
     id: i,
-    left: 20 + (i * 10),
-    top: 30 + ((i % 3) * 20),
-    moveX: (Math.random() - 0.5) * 200,
-    moveY: (Math.random() - 0.5) * 200
+    left: 10 + (Math.random() * 80),
+    top: 10 + (Math.random() * 80),
+    moveX: (Math.random() - 0.5) * 150,
+    moveY: (Math.random() - 0.5) * 150,
+    delay: Math.random() * 3
+  }));
+
+  // Generate light particles
+  const lightParticles = Array.from({ length: 30 }, (_, i) => ({
+    id: i,
+    left: Math.random() * 100,
+    top: Math.random() * 100,
+    size: 2 + Math.random() * 4,
+    duration: 3 + Math.random() * 4,
+    delay: Math.random() * 5
   }));
 
   return (
@@ -57,19 +68,49 @@ const Phase4Identity = ({ identityCard }) => {
           }}
           initial={{ opacity: 0, scale: 0 }}
           animate={{
-            opacity: [0, 1, 0],
-            scale: [0, 1, 0],
+            opacity: [0, 1, 0.6, 0],
+            scale: [0, 1.2, 0.8, 0],
             x: [0, sparkle.moveX],
-            y: [0, sparkle.moveY]
+            y: [0, sparkle.moveY],
+            rotate: [0, 180]
           }}
           transition={{
-            delay: 2 + (sparkle.id * 0.2),
-            duration: 2,
-            ease: 'easeOut'
+            delay: 2 + sparkle.delay,
+            duration: 3,
+            ease: 'easeOut',
+            repeat: Infinity,
+            repeatDelay: 2
           }}
         >
-          <Sparkles size={20} />
+          <Sparkles size={16} />
         </motion.div>
+      ))}
+
+      {/* Light particles */}
+      {lightParticles.map((particle) => (
+        <motion.div
+          key={`particle-${particle.id}`}
+          className="light-particle"
+          style={{
+            left: `${particle.left}%`,
+            top: `${particle.top}%`,
+            width: `${particle.size}px`,
+            height: `${particle.size}px`,
+            background: `radial-gradient(circle, ${rarityColor}, transparent)`
+          }}
+          initial={{ opacity: 0, scale: 0 }}
+          animate={{
+            opacity: [0, 0.8, 0],
+            scale: [0, 1.5, 0],
+            y: [0, -100]
+          }}
+          transition={{
+            delay: particle.delay,
+            duration: particle.duration,
+            ease: 'easeOut',
+            repeat: Infinity
+          }}
+        />
       ))}
 
       {/* Identity Card */}
@@ -78,15 +119,67 @@ const Phase4Identity = ({ identityCard }) => {
         style={{
           borderColor: rarityColor,
           boxShadow: `
-            0 20px 60px rgba(0,0,0,0.5),
-            0 0 0 1px rgba(255,255,255,0.1),
-            0 0 40px ${rarityColor}66
+            0 30px 90px rgba(0,0,0,0.6),
+            0 0 0 1px rgba(255,255,255,0.2),
+            0 0 60px ${rarityColor}99,
+            0 0 120px ${rarityColor}66,
+            inset 0 0 80px ${rarityColor}22
           `
         }}
         initial={{ opacity: 0, scale: 0.8, rotateY: -180 }}
         animate={{ opacity: 1, scale: 1, rotateY: 0 }}
         transition={{ duration: 1.5, ease: 'easeOut' }}
       >
+        {/* Effects container with overflow clipping */}
+        <div className="card-effects-container">
+          {/* Holographic foil overlay */}
+          <motion.div
+            className="holographic-overlay"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 1.5, duration: 1 }}
+          />
+
+          {/* Light rays */}
+          {Array.from({ length: 8 }).map((_, i) => (
+            <motion.div
+              key={`ray-${i}`}
+              className="light-ray"
+              style={{
+                transform: `rotate(${i * 45}deg)`,
+                background: `linear-gradient(90deg, transparent, ${rarityColor}40, transparent)`
+              }}
+              initial={{ opacity: 0, scale: 0 }}
+              animate={{
+                opacity: [0, 0.6, 0],
+                scale: [0, 1.5, 0],
+                rotate: [`${i * 45}deg`, `${i * 45 + 180}deg`]
+              }}
+              transition={{
+                delay: 2 + (i * 0.1),
+                duration: 3,
+                ease: 'easeOut',
+                repeat: Infinity,
+                repeatDelay: 3
+              }}
+            />
+          ))}
+
+          {/* Shimmer effect */}
+          <motion.div
+            className="shimmer-effect"
+            animate={{
+              x: ['-200%', '200%']
+            }}
+            transition={{
+              delay: 2,
+              duration: 2.5,
+              ease: 'easeInOut',
+              repeat: Infinity,
+              repeatDelay: 4
+            }}
+          />
+        </div>
         {/* Rarity Badge */}
         <motion.div
           className="rarity-badge"
