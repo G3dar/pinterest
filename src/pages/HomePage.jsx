@@ -1,12 +1,14 @@
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
+import WrapTransition from '../components/WrapTransition';
 import './HomePage.css';
 
 const HomePage = ({ images }) => {
   const navigate = useNavigate();
   const [columns, setColumns] = useState(5);
   const [selectedImages, setSelectedImages] = useState([]);
+  const [showTransition, setShowTransition] = useState(false);
 
   useEffect(() => {
     const handleResize = () => {
@@ -72,8 +74,17 @@ const HomePage = ({ images }) => {
 
   const imageColumns = distributeImages();
 
+  const handleWrapClick = () => {
+    setShowTransition(true);
+  };
+
+  const handleTransitionComplete = () => {
+    navigate('/wrapped/prototype');
+  };
+
   return (
     <div className="home-page">
+      <WrapTransition isActive={showTransition} onComplete={handleTransitionComplete} />
       {/* Vertical Sidebar */}
       <aside className="vertical-sidebar">
         <div className="sidebar-content">
@@ -151,7 +162,7 @@ const HomePage = ({ images }) => {
           {/* Animated Wrapped Button */}
           <motion.button
             className="wrapped-button"
-            onClick={() => navigate('/wrapped/prototype')}
+            onClick={handleWrapClick}
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
           >
