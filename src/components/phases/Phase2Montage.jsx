@@ -146,7 +146,7 @@ const Phase2Montage = ({ images, categories }) => {
               }}
               animate={{
                 opacity: [0, 1, 1, 0.3],
-                scale: [0.8, 1.1, 1, 1],
+                scale: [0.8, 1.05, 1, 1],
                 y: [50, -20, 0, 0]
               }}
               exit={{
@@ -163,16 +163,21 @@ const Phase2Montage = ({ images, categories }) => {
                 top: '50%',
                 left: '50%',
                 transform: 'translate(-50%, -50%)',
-                fontSize: 'clamp(8rem, 20vw, 18rem)',
+                fontSize: 'clamp(4rem, 15vw, 12rem)',
                 fontWeight: 900,
                 color: 'rgba(255, 255, 255, 0.08)',
                 textTransform: 'uppercase',
-                letterSpacing: '0.1em',
+                letterSpacing: '0.15em',
                 zIndex: 2,
                 pointerEvents: 'none',
                 whiteSpace: 'nowrap',
                 textShadow: '0 0 80px rgba(193, 53, 132, 0.3)',
-                WebkitTextStroke: '2px rgba(230, 0, 35, 0.1)'
+                WebkitTextStroke: '2px rgba(230, 0, 35, 0.1)',
+                width: '100%',
+                textAlign: 'center',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center'
               }}
             >
               MOOD MAP
@@ -194,7 +199,7 @@ const Phase2Montage = ({ images, categories }) => {
               {gridImages.map((img, index) => {
                 const height = 150 + ((index % 4) * 50);
                 const scattered = getScatteredPosition(index);
-                const isKeyword = index % 5 === 2; // More frequent keywords
+                const isKeyword = index % 3 === 1 || index % 4 === 3; // Plenty of keywords - splash effect
 
                 // Calculate grid position (organized state)
                 const gridColumn = (index % 6) + 1;
@@ -204,27 +209,19 @@ const Phase2Montage = ({ images, categories }) => {
                 const keywordInfo = keywordData[index % keywordData.length];
 
                 return isKeyword ? (
-                  // Floating keyword - enters from right, drifts with varied colors, gets sucked into portal
+                  // Pop-in keywords - splash of intelligence appearing rapidly in place
                   <motion.div
                     key={`keyword-${index}`}
                     className="floating-keyword-chaos"
                     initial={{
                       opacity: 0,
-                      x: window.innerWidth + 200,
-                      y: Math.random() * window.innerHeight,
                       scale: 0,
-                      rotateZ: (Math.random() - 0.5) * 90
+                      rotateZ: (Math.random() - 0.5) * 180
                     }}
                     animate={{
-                      opacity: [0, 1, 1, 0.8],
-                      x: [window.innerWidth + 200, -200],
-                      y: [
-                        Math.random() * window.innerHeight,
-                        Math.random() * window.innerHeight,
-                        Math.random() * window.innerHeight
-                      ],
-                      scale: [0, 1.2, 1, 0.9],
-                      rotateZ: [(Math.random() - 0.5) * 90, 0, (Math.random() - 0.5) * 30]
+                      opacity: [0, 1, 1],
+                      scale: [0, 1.3, 1],
+                      rotateZ: [(Math.random() - 0.5) * 180, 0, (Math.random() - 0.5) * 5]
                     }}
                     exit={{
                       x: window.innerWidth / 2,
@@ -234,10 +231,10 @@ const Phase2Montage = ({ images, categories }) => {
                       rotateZ: 360 * 3
                     }}
                     transition={{
-                      duration: 4,
-                      delay: index * 0.15,
-                      ease: 'easeInOut',
-                      times: [0, 0.2, 0.7, 1],
+                      duration: 0.6,
+                      delay: index * 0.04,
+                      ease: [0.34, 1.56, 0.64, 1],
+                      times: [0, 0.6, 1],
                       exit: {
                         delay: 0.8 + (index * 0.01),
                         duration: 2.2,
