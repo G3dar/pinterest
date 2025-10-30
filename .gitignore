@@ -22,3 +22,9 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Test files and screenshots
+test_*.js
+*_screenshot.png
+phase2_*.png
+wrapped_*.png

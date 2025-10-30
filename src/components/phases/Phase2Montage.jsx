@@ -3,12 +3,10 @@ import { motion, AnimatePresence } from 'framer-motion';
 import './Phase2Montage.css';
 
 const Phase2Montage = ({ images, categories }) => {
-  const [subPhase, setSubPhase] = useState('grid'); // grid, carousel, clusters
+  const [subPhase, setSubPhase] = useState('grid');
 
   useEffect(() => {
-    // Switch to carousel after 5 seconds
     const carouselTimer = setTimeout(() => setSubPhase('carousel'), 5000);
-    // Switch to clusters after 10 seconds
     const clustersTimer = setTimeout(() => setSubPhase('clusters'), 10000);
 
     return () => {
@@ -17,70 +15,330 @@ const Phase2Montage = ({ images, categories }) => {
     };
   }, []);
 
-  const gridImages = images.slice(0, 24);
-  const carouselImages = [...images.slice(0, 15), ...images.slice(0, 15)]; // Duplicate for seamless loop
+  const gridImages = images.slice(0, 35);
+  const carouselImages = [...images.slice(0, 15), ...images.slice(0, 15)];
+
+  // Keywords with color themes
+  const keywordData = [
+    { text: 'minimalist', colors: ['#E8D5C4', '#C4A57B'] },
+    { text: 'dreamy', colors: ['#D8BFD8', '#DDA0DD'] },
+    { text: 'elegant', colors: ['#2C3E50', '#BFA696'] },
+    { text: 'colorful', colors: ['#FFB6C1', '#87CEEB'] },
+    { text: 'organic', colors: ['#98D8C8', '#8FBC8F'] },
+    { text: 'modern', colors: ['#FF6B6B', '#4ECDC4'] },
+    { text: 'cozy', colors: ['#F4A460', '#DEB887'] },
+    { text: 'ethereal', colors: ['#BA55D3', '#9370DB'] },
+    { text: 'vibrant', colors: ['#FF1493', '#FF69B4'] },
+    { text: 'serene', colors: ['#87CEEB', '#B0E0E6'] },
+    { text: 'bold', colors: ['#DC143C', '#FF4500'] },
+    { text: 'soft', colors: ['#FFE4E1', '#FFC0CB'] }
+  ];
+
+  // Generate scattered random starting positions (disorganized chaos)
+  const getScatteredPosition = (index) => {
+    // Create truly random scattered positions across the viewport
+    const angle = (index * 137.5) % 360; // Golden angle for distribution
+    const distance = 200 + (index % 5) * 100;
+    return {
+      x: Math.cos(angle * Math.PI / 180) * distance + (Math.random() - 0.5) * 200,
+      y: Math.sin(angle * Math.PI / 180) * distance + (Math.random() - 0.5) * 200,
+      rotate: (Math.random() - 0.5) * 60, // Random rotation -30 to 30 degrees
+      scale: 0.3 + Math.random() * 0.3 // Start small and varied
+    };
+  };
 
   return (
     <div className="phase2-montage">
-      <AnimatePresence mode="wait">
-        {subPhase === 'grid' && (
+      {/* Continuous floating particles in background */}
+      <div className="floating-particles">
+        {Array.from({ length: 20 }).map((_, i) => (
           <motion.div
-            key="grid"
-            className="grid-view"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.5 }}
-          >
-            {gridImages.map((img, index) => {
-              const height = 150 + ((index % 3) * 50);
-              return (
-                <motion.div
-                  key={index}
-                  className="grid-card"
-                  style={{ height: `${height}px` }}
-                  initial={{ opacity: 0, scale: 0.8 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  transition={{
-                    delay: index * 0.05,
-                    duration: 0.4,
-                    ease: 'easeOut'
-                  }}
-                >
-                  <img src={img.url} alt="" />
+            key={i}
+            className="particle"
+            style={{
+              left: `${(i * 5)}%`,
+              top: `${20 + (i % 4) * 20}%`,
+            }}
+            animate={{
+              y: [0, -30, 0],
+              x: [0, (i % 2 === 0 ? 20 : -20), 0],
+              opacity: [0.2, 0.5, 0.2],
+            }}
+            transition={{
+              duration: 3 + (i % 3),
+              repeat: Infinity,
+              delay: i * 0.2,
+              ease: 'easeInOut'
+            }}
+          />
+        ))}
+      </div>
+
+      <AnimatePresence mode="sync">
+        {subPhase === 'grid' && (
+          <>
+            {/* Animated gradient backdrop */}
+            <motion.div
+              className="flowing-gradient-bg"
+              initial={{ opacity: 0 }}
+              animate={{
+                opacity: 1,
+                backgroundPosition: ['0% 50%', '100% 50%', '0% 50%']
+              }}
+              exit={{
+                opacity: 0,
+                scale: 1.5,
+                filter: 'blur(20px)'
+              }}
+              transition={{
+                opacity: { duration: 1 },
+                backgroundPosition: {
+                  duration: 8,
+                  repeat: Infinity,
+                  ease: 'linear'
+                },
+                exit: { duration: 1.5 }
+              }}
+            />
+
+            {/* Self-organizing images container */}
+            <motion.div
+              key="grid"
+              className="self-organizing-grid"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{
+                opacity: 0
+              }}
+              transition={{
+                exit: { duration: 2.5, ease: 'easeInOut' }
+              }}
+            >
+              {gridImages.map((img, index) => {
+                const height = 150 + ((index % 4) * 50);
+                const scattered = getScatteredPosition(index);
+                const isKeyword = index % 5 === 2; // More frequent keywords
+
+                // Calculate grid position (organized state)
+                const gridColumn = (index % 6) + 1;
+                const gridRow = Math.floor(index / 6) + 1;
+
+                // Get keyword data with colors
+                const keywordInfo = keywordData[index % keywordData.length];
+
+                return isKeyword ? (
+                  // Floating keyword - enters from right, drifts with varied colors, gets sucked into portal
                   <motion.div
-                    className="color-bar"
-                    style={{
-                      background: `linear-gradient(to right, ${img.colors.join(', ')})`,
-                      transformOrigin: 'left'
+                    key={`keyword-${index}`}
+                    className="floating-keyword-chaos"
+                    initial={{
+                      opacity: 0,
+                      x: window.innerWidth + 200,
+                      y: Math.random() * window.innerHeight,
+                      scale: 0,
+                      rotateZ: (Math.random() - 0.5) * 90
                     }}
-                    initial={{ scaleX: 0 }}
-                    animate={{ scaleX: 1 }}
+                    animate={{
+                      opacity: [0, 1, 1, 0.8],
+                      x: [window.innerWidth + 200, -200],
+                      y: [
+                        Math.random() * window.innerHeight,
+                        Math.random() * window.innerHeight,
+                        Math.random() * window.innerHeight
+                      ],
+                      scale: [0, 1.2, 1, 0.9],
+                      rotateZ: [(Math.random() - 0.5) * 90, 0, (Math.random() - 0.5) * 30]
+                    }}
+                    exit={{
+                      x: window.innerWidth / 2,
+                      y: window.innerHeight / 2,
+                      scale: 0,
+                      opacity: 0,
+                      rotateZ: 360 * 2
+                    }}
                     transition={{
-                      delay: index * 0.05 + 0.2,
-                      duration: 0.6
+                      duration: 4,
+                      delay: index * 0.15,
+                      ease: 'easeInOut',
+                      times: [0, 0.2, 0.7, 1],
+                      exit: {
+                        duration: 1.5 + (index * 0.02),
+                        ease: [0.6, 0.05, 0.01, 0.9]
+                      }
                     }}
-                  />
-                </motion.div>
-              );
-            })}
-          </motion.div>
+                    style={{
+                      gridColumn: gridColumn,
+                      gridRow: gridRow,
+                      background: `linear-gradient(135deg, ${keywordInfo.colors[0]}40, ${keywordInfo.colors[1]}40)`,
+                      borderColor: `${keywordInfo.colors[0]}80`,
+                      boxShadow: `0 8px 32px ${keywordInfo.colors[0]}60, 0 0 40px ${keywordInfo.colors[1]}40`
+                    }}
+                  >
+                    <motion.span
+                      animate={{
+                        textShadow: [
+                          `0 0 20px ${keywordInfo.colors[0]}`,
+                          `0 0 40px ${keywordInfo.colors[1]}`,
+                          `0 0 20px ${keywordInfo.colors[0]}`
+                        ]
+                      }}
+                      transition={{
+                        duration: 2,
+                        repeat: Infinity
+                      }}
+                    >
+                      {keywordInfo.text}
+                    </motion.span>
+                  </motion.div>
+                ) : (
+                  // Image - starts scattered, flows from right, organizes into grid, gets sucked into portal
+                  <motion.div
+                    key={index}
+                    className="chaos-to-order-card"
+                    style={{
+                      height: `${height}px`,
+                      gridColumn: gridColumn,
+                      gridRow: gridRow
+                    }}
+                    initial={{
+                      opacity: 0,
+                      x: scattered.x + window.innerWidth,
+                      y: scattered.y,
+                      scale: scattered.scale,
+                      rotateZ: scattered.rotate,
+                      rotateY: 90,
+                      rotateX: 30
+                    }}
+                    animate={{
+                      opacity: [0, 0.5, 1],
+                      x: [scattered.x + window.innerWidth, scattered.x * 0.3, 0],
+                      y: [scattered.y, scattered.y * 0.5, 0],
+                      scale: [scattered.scale, 0.8, 1],
+                      rotateZ: [scattered.rotate, scattered.rotate * 0.5, 0],
+                      rotateY: [90, 45, 0],
+                      rotateX: [30, 15, 0]
+                    }}
+                    exit={{
+                      x: window.innerWidth / 2,
+                      y: window.innerHeight / 2,
+                      scale: 0,
+                      opacity: 0,
+                      rotateZ: 360 * (2 + (index * 0.1)),
+                      rotateY: 180,
+                      filter: 'blur(10px)'
+                    }}
+                    whileHover={{
+                      scale: 1.08,
+                      rotateZ: 2,
+                      zIndex: 20,
+                      transition: { duration: 0.3 }
+                    }}
+                    transition={{
+                      delay: index * 0.08,
+                      duration: 1.5,
+                      ease: [0.25, 0.46, 0.45, 0.94],
+                      times: [0, 0.4, 1],
+                      exit: {
+                        duration: 1.8 + (index * 0.03),
+                        ease: [0.6, 0.05, 0.01, 0.9]
+                      }
+                    }}
+                  >
+                    {/* Magnetic field effect as they organize */}
+                    <motion.div
+                      className="organization-aura"
+                      style={{
+                        background: `radial-gradient(circle, ${img.colors[0]}60, ${img.colors[1] || img.colors[0]}30, transparent)`
+                      }}
+                      animate={{
+                        opacity: [0, 0.8, 0.4, 0],
+                        scale: [0.5, 2, 1.5, 0.8]
+                      }}
+                      transition={{
+                        duration: 1.5,
+                        delay: index * 0.08,
+                        times: [0, 0.3, 0.6, 1]
+                      }}
+                    />
+
+                    {/* Card glow */}
+                    <motion.div
+                      className="card-glow"
+                      style={{
+                        background: `radial-gradient(circle, ${img.colors[0]}40, transparent)`
+                      }}
+                      animate={{
+                        opacity: [0, 0.6, 0.3],
+                        scale: [1, 1.3, 1.1]
+                      }}
+                      transition={{
+                        duration: 3,
+                        repeat: Infinity,
+                        delay: index * 0.1 + 1
+                      }}
+                    />
+
+                    <img src={img.url} alt="" />
+
+                    {/* Color bar */}
+                    <motion.div
+                      className="color-bar"
+                      style={{
+                        background: `linear-gradient(to right, ${img.colors.join(', ')})`,
+                      }}
+                      initial={{ scaleX: 0, opacity: 0 }}
+                      animate={{ scaleX: 1, opacity: 1 }}
+                      transition={{
+                        delay: index * 0.08 + 1.2,
+                        duration: 0.6,
+                        ease: 'easeOut'
+                      }}
+                    />
+                  </motion.div>
+                );
+              })}
+            </motion.div>
+
+            {/* Portal effect overlay at exit - slower and more organic growth */}
+            <motion.div
+              className="portal-transition"
+              initial={{ opacity: 0, scale: 0 }}
+              animate={{ opacity: 0, scale: 0 }}
+              exit={{
+                opacity: [0, 0.3, 0.6, 0.8, 1],
+                scale: [0, 0.2, 0.8, 3, 15],
+                rotateZ: [0, 90, 180, 270, 360]
+              }}
+              transition={{
+                duration: 2.5,
+                ease: [0.25, 0.1, 0.25, 1],
+                times: [0, 0.2, 0.4, 0.6, 1]
+              }}
+            />
+          </>
         )}
 
         {subPhase === 'carousel' && (
           <motion.div
             key="carousel"
-            className="carousel-view"
+            className="carousel-view-enhanced"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.5 }}
+            exit={{ opacity: 0, scale: 0.98 }}
+            transition={{ duration: 1.2, ease: 'easeInOut' }}
           >
+            {/* Parallax layers for depth */}
             <motion.div
-              className="carousel-track"
+              className="parallax-bg"
+              animate={{ x: ['0%', '-15%'] }}
+              transition={{ duration: 20, ease: 'linear', repeat: Infinity }}
+            />
+
+            <motion.div
+              className="carousel-track-enhanced"
               animate={{ x: ['0%', '-50%'] }}
               transition={{
-                duration: 5,
+                duration: 8,
                 ease: 'linear',
                 repeat: 0
               }}
@@ -88,25 +346,77 @@ const Phase2Montage = ({ images, categories }) => {
               {carouselImages.map((img, index) => (
                 <motion.div
                   key={index}
-                  className="carousel-card"
-                  initial={{ opacity: 0, scale: 0.8 }}
-                  animate={{ opacity: 1, scale: 1 }}
+                  className="carousel-card-enhanced"
+                  initial={{
+                    opacity: 0,
+                    scale: 0.7,
+                    rotateY: 60,
+                    z: -200
+                  }}
+                  animate={{
+                    opacity: 1,
+                    scale: 1,
+                    rotateY: 0,
+                    z: 0,
+                    y: [0, -15, 0]
+                  }}
                   transition={{
-                    delay: Math.min(index * 0.1, 2),
-                    duration: 0.5
+                    delay: Math.min(index * 0.08, 1.5),
+                    duration: 0.8,
+                    type: 'spring',
+                    stiffness: 100,
+                    y: {
+                      duration: 3,
+                      repeat: Infinity,
+                      delay: index * 0.2,
+                      ease: 'easeInOut'
+                    }
+                  }}
+                  style={{
+                    transformStyle: 'preserve-3d',
+                    perspective: 1000
                   }}
                 >
+                  <motion.div
+                    className="card-shimmer"
+                    animate={{
+                      x: ['-100%', '100%']
+                    }}
+                    transition={{
+                      duration: 2,
+                      delay: index * 0.3,
+                      repeat: Infinity,
+                      repeatDelay: 3
+                    }}
+                  />
                   <img src={img.url} alt="" />
                   <motion.div
-                    className="category-label"
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
+                    className="category-label-enhanced"
+                    initial={{ opacity: 0, y: 30, scale: 0.8 }}
+                    animate={{ opacity: 1, y: 0, scale: 1 }}
                     transition={{
-                      delay: Math.min(index * 0.1 + 0.3, 2.3),
-                      duration: 0.5
+                      delay: Math.min(index * 0.08 + 0.4, 2),
+                      duration: 0.6,
+                      type: 'spring',
+                      stiffness: 150
                     }}
                   >
-                    {img.categoryName}
+                    <motion.span
+                      animate={{
+                        textShadow: [
+                          '0 0 10px rgba(230,0,35,0.5)',
+                          '0 0 20px rgba(230,0,35,0.8)',
+                          '0 0 10px rgba(230,0,35,0.5)'
+                        ]
+                      }}
+                      transition={{
+                        duration: 2,
+                        repeat: Infinity,
+                        ease: 'easeInOut'
+                      }}
+                    >
+                      {img.categoryName}
+                    </motion.span>
                   </motion.div>
                 </motion.div>
               ))}
@@ -117,63 +427,177 @@ const Phase2Montage = ({ images, categories }) => {
         {subPhase === 'clusters' && (
           <motion.div
             key="clusters"
-            className="clusters-view"
+            className="clusters-view-enhanced"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.5 }}
+            exit={{ opacity: 0, scale: 0.95 }}
+            transition={{ duration: 1, ease: 'easeInOut' }}
           >
             {categories.slice(0, 4).map((category, catIndex) => (
               <motion.div
                 key={catIndex}
-                className="category-cluster"
-                initial={{ opacity: 0, y: 40 }}
-                animate={{ opacity: 1, y: 0 }}
+                className="category-cluster-enhanced"
+                initial={{
+                  opacity: 0,
+                  y: 80,
+                  rotateX: 45,
+                  scale: 0.8
+                }}
+                animate={{
+                  opacity: 1,
+                  y: 0,
+                  rotateX: 0,
+                  scale: 1
+                }}
+                whileHover={{
+                  scale: 1.02,
+                  y: -5,
+                  transition: { duration: 0.3 }
+                }}
                 transition={{
-                  delay: catIndex * 0.2,
-                  duration: 0.6,
-                  ease: 'easeOut'
+                  delay: catIndex * 0.15,
+                  duration: 0.8,
+                  type: 'spring',
+                  stiffness: 100,
+                  damping: 12
+                }}
+                style={{
+                  transformStyle: 'preserve-3d'
                 }}
               >
+                <motion.div
+                  className="cluster-bg-glow"
+                  style={{
+                    background: `radial-gradient(circle, ${category.colors[0]}30, transparent)`
+                  }}
+                  animate={{
+                    scale: [1, 1.2, 1],
+                    opacity: [0.3, 0.6, 0.3]
+                  }}
+                  transition={{
+                    duration: 4,
+                    repeat: Infinity,
+                    delay: catIndex * 0.5
+                  }}
+                />
+
                 <motion.h3
-                  className="cluster-title"
-                  initial={{ opacity: 0, x: -20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: catIndex * 0.2 + 0.2, duration: 0.5 }}
+                  className="cluster-title-enhanced"
+                  initial={{ opacity: 0, x: -30, rotateY: -20 }}
+                  animate={{
+                    opacity: 1,
+                    x: 0,
+                    rotateY: 0
+                  }}
+                  transition={{
+                    delay: catIndex * 0.15 + 0.2,
+                    duration: 0.6,
+                    type: 'spring',
+                    stiffness: 120
+                  }}
                 >
-                  {category.name}
+                  <motion.span
+                    animate={{
+                      backgroundPosition: ['0% 50%', '100% 50%', '0% 50%']
+                    }}
+                    transition={{
+                      duration: 3,
+                      repeat: Infinity,
+                      ease: 'linear'
+                    }}
+                    style={{
+                      backgroundImage: `linear-gradient(90deg, ${category.colors.join(', ')}, ${category.colors[0]})`,
+                      backgroundSize: '200% 100%',
+                      WebkitBackgroundClip: 'text',
+                      WebkitTextFillColor: 'transparent',
+                      backgroundClip: 'text'
+                    }}
+                  >
+                    {category.name}
+                  </motion.span>
                 </motion.h3>
 
-                <div className="cluster-grid">
+                <div className="cluster-grid-enhanced">
                   {category.images.map((img, imgIndex) => (
                     <motion.div
                       key={imgIndex}
-                      className="cluster-image"
-                      initial={{ scale: 0, rotate: -10 }}
-                      animate={{ scale: 1, rotate: 0 }}
+                      className="cluster-image-enhanced"
+                      initial={{
+                        scale: 0,
+                        rotate: -20,
+                        opacity: 0,
+                        z: -100
+                      }}
+                      animate={{
+                        scale: 1,
+                        rotate: 0,
+                        opacity: 1,
+                        z: 0
+                      }}
+                      whileHover={{
+                        scale: 1.1,
+                        rotate: 5,
+                        zIndex: 10,
+                        transition: { duration: 0.2 }
+                      }}
                       transition={{
-                        delay: catIndex * 0.2 + imgIndex * 0.1 + 0.3,
-                        duration: 0.4,
+                        delay: catIndex * 0.15 + imgIndex * 0.08 + 0.3,
+                        duration: 0.5,
                         type: 'spring',
-                        stiffness: 200
+                        stiffness: 180,
+                        damping: 12
                       }}
                     >
+                      <motion.div
+                        className="image-glow-ring"
+                        style={{
+                          borderColor: category.colors[imgIndex % category.colors.length]
+                        }}
+                        animate={{
+                          opacity: [0.3, 0.8, 0.3],
+                          scale: [1, 1.05, 1]
+                        }}
+                        transition={{
+                          duration: 2,
+                          repeat: Infinity,
+                          delay: imgIndex * 0.3
+                        }}
+                      />
                       <img src={img.url} alt="" />
                     </motion.div>
                   ))}
                 </div>
 
                 <motion.div
-                  className="weight-badge"
-                  initial={{ scale: 0 }}
-                  animate={{ scale: 1 }}
+                  className="weight-badge-enhanced"
+                  initial={{ scale: 0, rotateZ: -180 }}
+                  animate={{ scale: 1, rotateZ: 0 }}
+                  whileHover={{
+                    scale: 1.1,
+                    transition: { duration: 0.2 }
+                  }}
                   transition={{
-                    delay: catIndex * 0.2 + 0.6,
+                    delay: catIndex * 0.15 + 0.7,
+                    duration: 0.6,
                     type: 'spring',
                     stiffness: 200
                   }}
                 >
-                  {category.percentage}% of your year
+                  <motion.span
+                    animate={{
+                      textShadow: [
+                        '0 0 10px rgba(255,255,255,0.5)',
+                        '0 0 20px rgba(255,255,255,0.8)',
+                        '0 0 10px rgba(255,255,255,0.5)'
+                      ]
+                    }}
+                    transition={{
+                      duration: 2,
+                      repeat: Infinity
+                    }}
+                  >
+                    {category.percentage}% of your year
+                  </motion.span>
                 </motion.div>
               </motion.div>
             ))}
