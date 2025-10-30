@@ -289,26 +289,8 @@
   object-fit: cover;
   display: block;
   transition: transform 0.3s ease;
+  /* Heights are set via inline styles for true Pinterest randomization */
 }
-
-/* Dramatic height variations like real Pinterest - wide range for organic staggered look */
-.masonry-item:nth-child(17n+1) img { height: 280px; }
-.masonry-item:nth-child(17n+2) img { height: 520px; }
-.masonry-item:nth-child(17n+3) img { height: 350px; }
-.masonry-item:nth-child(17n+4) img { height: 680px; }
-.masonry-item:nth-child(17n+5) img { height: 240px; }
-.masonry-item:nth-child(17n+6) img { height: 450px; }
-.masonry-item:nth-child(17n+7) img { height: 590px; }
-.masonry-item:nth-child(17n+8) img { height: 310px; }
-.masonry-item:nth-child(17n+9) img { height: 720px; }
-.masonry-item:nth-child(17n+10) img { height: 380px; }
-.masonry-item:nth-child(17n+11) img { height: 490px; }
-.masonry-item:nth-child(17n+12) img { height: 260px; }
-.masonry-item:nth-child(17n+13) img { height: 620px; }
-.masonry-item:nth-child(17n+14) img { height: 340px; }
-.masonry-item:nth-child(17n+15) img { height: 550px; }
-.masonry-item:nth-child(17n+16) img { height: 420px; }
-.masonry-item:nth-child(17n) img { height: 760px; }
 
 .masonry-item:hover img {
   transform: scale(1.05);
@@ -355,25 +337,6 @@
   .masonry-column {
     max-width: 250px;
   }
-
-  /* Scale down heights proportionally for tablet (85%) */
-  .masonry-item:nth-child(17n+1) img { height: 238px; }
-  .masonry-item:nth-child(17n+2) img { height: 442px; }
-  .masonry-item:nth-child(17n+3) img { height: 297px; }
-  .masonry-item:nth-child(17n+4) img { height: 578px; }
-  .masonry-item:nth-child(17n+5) img { height: 204px; }
-  .masonry-item:nth-child(17n+6) img { height: 382px; }
-  .masonry-item:nth-child(17n+7) img { height: 501px; }
-  .masonry-item:nth-child(17n+8) img { height: 263px; }
-  .masonry-item:nth-child(17n+9) img { height: 612px; }
-  .masonry-item:nth-child(17n+10) img { height: 323px; }
-  .masonry-item:nth-child(17n+11) img { height: 416px; }
-  .masonry-item:nth-child(17n+12) img { height: 221px; }
-  .masonry-item:nth-child(17n+13) img { height: 527px; }
-  .masonry-item:nth-child(17n+14) img { height: 289px; }
-  .masonry-item:nth-child(17n+15) img { height: 467px; }
-  .masonry-item:nth-child(17n+16) img { height: 357px; }
-  .masonry-item:nth-child(17n) img { height: 646px; }
 }
 
 @media (max-width: 900px) {
@@ -397,25 +360,6 @@
     margin-left: 0;
     width: 100%;
   }
-
-  /* Scale down heights for small tablet (70%) */
-  .masonry-item:nth-child(17n+1) img { height: 196px; }
-  .masonry-item:nth-child(17n+2) img { height: 364px; }
-  .masonry-item:nth-child(17n+3) img { height: 245px; }
-  .masonry-item:nth-child(17n+4) img { height: 476px; }
-  .masonry-item:nth-child(17n+5) img { height: 168px; }
-  .masonry-item:nth-child(17n+6) img { height: 315px; }
-  .masonry-item:nth-child(17n+7) img { height: 413px; }
-  .masonry-item:nth-child(17n+8) img { height: 217px; }
-  .masonry-item:nth-child(17n+9) img { height: 504px; }
-  .masonry-item:nth-child(17n+10) img { height: 266px; }
-  .masonry-item:nth-child(17n+11) img { height: 343px; }
-  .masonry-item:nth-child(17n+12) img { height: 182px; }
-  .masonry-item:nth-child(17n+13) img { height: 434px; }
-  .masonry-item:nth-child(17n+14) img { height: 238px; }
-  .masonry-item:nth-child(17n+15) img { height: 385px; }
-  .masonry-item:nth-child(17n+16) img { height: 294px; }
-  .masonry-item:nth-child(17n) img { height: 532px; }
 }
 
 @media (max-width: 600px) {
@@ -431,23 +375,4 @@
   .search-container {
     display: none;
   }
-
-  /* Scale down heights for mobile (60%) */
-  .masonry-item:nth-child(17n+1) img { height: 168px; }
-  .masonry-item:nth-child(17n+2) img { height: 312px; }
-  .masonry-item:nth-child(17n+3) img { height: 210px; }
-  .masonry-item:nth-child(17n+4) img { height: 408px; }
-  .masonry-item:nth-child(17n+5) img { height: 144px; }
-  .masonry-item:nth-child(17n+6) img { height: 270px; }
-  .masonry-item:nth-child(17n+7) img { height: 354px; }
-  .masonry-item:nth-child(17n+8) img { height: 186px; }
-  .masonry-item:nth-child(17n+9) img { height: 432px; }
-  .masonry-item:nth-child(17n+10) img { height: 228px; }
-  .masonry-item:nth-child(17n+11) img { height: 294px; }
-  .masonry-item:nth-child(17n+12) img { height: 156px; }
-  .masonry-item:nth-child(17n+13) img { height: 372px; }
-  .masonry-item:nth-child(17n+14) img { height: 204px; }
-  .masonry-item:nth-child(17n+15) img { height: 330px; }
-  .masonry-item:nth-child(17n+16) img { height: 252px; }
-  .masonry-item:nth-child(17n) img { height: 456px; }
 }

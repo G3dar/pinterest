@@ -30,10 +30,27 @@ const HomePage = ({ images }) => {
       const unique = [];
       const seenUrls = new Set();
 
+      // Height ranges for variety (in pixels)
+      const heightRanges = [
+        [220, 280],   // Short
+        [300, 380],   // Medium-short
+        [400, 480],   // Medium
+        [500, 600],   // Medium-tall
+        [620, 750]    // Tall
+      ];
+
       for (const img of shuffled) {
         if (!seenUrls.has(img.url) && unique.length < 60) {
           seenUrls.add(img.url);
-          unique.push(img);
+
+          // Assign random height from random range
+          const range = heightRanges[Math.floor(Math.random() * heightRanges.length)];
+          const height = Math.floor(Math.random() * (range[1] - range[0] + 1)) + range[0];
+
+          unique.push({
+            ...img,
+            randomHeight: height
+          });
         }
       }
 
@@ -172,7 +189,12 @@ const HomePage = ({ images }) => {
                 transition={{ delay: imgIndex * 0.05 }}
                 whileHover={{ scale: 1.02 }}
               >
-                <img src={image.url} alt="" loading="lazy" />
+                <img
+                  src={image.url}
+                  alt=""
+                  loading="lazy"
+                  style={{ height: `${image.randomHeight}px` }}
+                />
                 <div className="item-overlay">
                   <button className="save-button">Save</button>
                 </div>
