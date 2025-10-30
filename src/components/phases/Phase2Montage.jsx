@@ -52,7 +52,7 @@ const Phase2Montage = ({ images, categories }) => {
       className="phase2-montage"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
-      exit={{ opacity: 0 }}
+      exit={{ opacity: 1 }}
       transition={{ duration: 0.8, ease: 'easeInOut' }}
     >
       {/* Background color transition from Phase1 */}
@@ -70,14 +70,13 @@ const Phase2Montage = ({ images, categories }) => {
           ]
         }}
         exit={{
-          opacity: 0
+          opacity: 1
         }}
         transition={{
           duration: 2,
           ease: 'easeInOut',
           exit: {
-            duration: 0.5,
-            ease: 'easeInOut'
+            duration: 0
           }
         }}
         style={{
@@ -92,7 +91,11 @@ const Phase2Montage = ({ images, categories }) => {
       />
 
       {/* Continuous floating particles in background */}
-      <div className="floating-particles">
+      <motion.div
+        className="floating-particles"
+        exit={{ opacity: 1 }}
+        transition={{ exit: { duration: 0 } }}
+      >
         {Array.from({ length: 20 }).map((_, i) => (
           <motion.div
             key={i}
@@ -106,15 +109,17 @@ const Phase2Montage = ({ images, categories }) => {
               x: [0, (i % 2 === 0 ? 20 : -20), 0],
               opacity: [0.2, 0.5, 0.2],
             }}
+            exit={{ opacity: 0.2 }}
             transition={{
               duration: 3 + (i % 3),
               repeat: Infinity,
               delay: i * 0.2,
-              ease: 'easeInOut'
+              ease: 'easeInOut',
+              exit: { duration: 0 }
             }}
           />
         ))}
-      </div>
+      </motion.div>
 
       <AnimatePresence mode="wait">
         {subPhase === 'grid' && (
@@ -128,9 +133,7 @@ const Phase2Montage = ({ images, categories }) => {
                 backgroundPosition: ['0% 50%', '100% 50%', '0% 50%']
               }}
               exit={{
-                opacity: 1,
-                scale: 1,
-                filter: 'blur(0px)'
+                opacity: 1
               }}
               transition={{
                 opacity: { duration: 1 },
@@ -139,7 +142,7 @@ const Phase2Montage = ({ images, categories }) => {
                   repeat: Infinity,
                   ease: 'linear'
                 },
-                exit: { duration: 3 }
+                exit: { duration: 0 }
               }}
             />
 
@@ -157,13 +160,16 @@ const Phase2Montage = ({ images, categories }) => {
                 y: [50, -20, 0, 0]
               }}
               exit={{
-                opacity: 0,
-                scale: 1.2
+                opacity: 0
               }}
               transition={{
                 duration: 4,
                 times: [0, 0.3, 0.5, 1],
-                ease: [0.16, 1, 0.3, 1]
+                ease: [0.16, 1, 0.3, 1],
+                exit: {
+                  duration: 0.3,
+                  ease: 'easeOut'
+                }
               }}
               style={{
                 position: 'absolute',
