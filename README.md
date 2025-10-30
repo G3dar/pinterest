@@ -194,6 +194,29 @@ To customize the experience:
 - Optimized for 60fps throughout the experience
 - Responsive design works on mobile and desktop
 
+## Deployment
+
+### Deploying to Render
+
+For detailed deployment instructions to Render, see **[RENDER_DEPLOYMENT.md](./RENDER_DEPLOYMENT.md)**.
+
+Quick start:
+1. Push your code to GitHub
+2. Create a new Web Service on Render
+3. Connect your GitHub repository
+4. Use build command: `npm install && npm run build`
+5. Use start command: `npx serve -s dist -l 10000`
+
+The `public/_redirects` file is included to ensure proper SPA routing on Render.
+
+### Other Hosting Options
+
+This is a standard Vite + React app and can be deployed to:
+- **Vercel**: Zero-config deployment
+- **Netlify**: Automatic builds from GitHub
+- **GitHub Pages**: Static hosting with Actions
+- **AWS S3 + CloudFront**: Enterprise hosting
+
 ## Credits
 
 Inspired by Spotify Wrapped and designed following the Pinterest Wrapped specification and Pinterest Rewind creative brief.
