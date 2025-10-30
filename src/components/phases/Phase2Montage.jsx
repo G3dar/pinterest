@@ -6,8 +6,8 @@ const Phase2Montage = ({ images, categories, colorPalette }) => {
   const [subPhase, setSubPhase] = useState('grid');
 
   useEffect(() => {
-    const carouselTimer = setTimeout(() => setSubPhase('carousel'), 9000);
-    const clustersTimer = setTimeout(() => setSubPhase('clusters'), 14000);
+    const carouselTimer = setTimeout(() => setSubPhase('carousel'), 8000);
+    const clustersTimer = setTimeout(() => setSubPhase('clusters'), 13000);
 
     return () => {
       clearTimeout(carouselTimer);
