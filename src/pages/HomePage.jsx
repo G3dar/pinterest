@@ -6,6 +6,7 @@ import './HomePage.css';
 const HomePage = ({ images }) => {
   const navigate = useNavigate();
   const [columns, setColumns] = useState(5);
+  const [selectedImages, setSelectedImages] = useState([]);
 
   useEffect(() => {
     const handleResize = () => {
@@ -21,13 +22,32 @@ const HomePage = ({ images }) => {
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
+  // Select unique images on mount - limit to 60 for variety
+  useEffect(() => {
+    if (images && Array.isArray(images)) {
+      // Shuffle and take unique subset
+      const shuffled = [...images].sort(() => Math.random() - 0.5);
+      const unique = [];
+      const seenUrls = new Set();
+
+      for (const img of shuffled) {
+        if (!seenUrls.has(img.url) && unique.length < 60) {
+          seenUrls.add(img.url);
+          unique.push(img);
+        }
+      }
+
+      setSelectedImages(unique);
+    }
+  }, [images]);
+
   // Distribute images into columns for masonry layout
   const distributeImages = () => {
     const cols = Array.from({ length: columns }, () => []);
-    if (!images || !Array.isArray(images)) {
+    if (!selectedImages || !Array.isArray(selectedImages)) {
       return cols;
     }
-    images.forEach((img, idx) => {
+    selectedImages.forEach((img, idx) => {
       cols[idx % columns].push(img);
     });
     return cols;
