@@ -24,6 +24,9 @@ const HomePage = ({ images }) => {
   // Distribute images into columns for masonry layout
   const distributeImages = () => {
     const cols = Array.from({ length: columns }, () => []);
+    if (!images || !Array.isArray(images)) {
+      return cols;
+    }
     images.forEach((img, idx) => {
       cols[idx % columns].push(img);
     });

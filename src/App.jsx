@@ -20,7 +20,7 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<HomePage images={wrappedData.images} />} />
+        <Route path="/" element={<HomePage images={wrappedData.allImages} />} />
         <Route path="/wrapped/concept" element={<ConceptPage />} />
         <Route path="/wrapped/prototype" element={<PrototypePage />} />
       </Routes>
