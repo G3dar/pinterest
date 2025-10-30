@@ -5,25 +5,25 @@ const categories = {
     name: 'Art & Design',
     colors: ['#E8D5C4', '#C4A57B', '#8B7355'],
     keywords: ['minimalist', 'geometric', 'abstract', 'modern'],
-    weight: 0.25
+    weight: 0.22
   },
   'characters-animated': {
     name: 'Animated Characters',
     colors: ['#FFB6C1', '#87CEEB', '#98D8C8'],
     keywords: ['playful', 'whimsical', 'colorful', 'imaginative'],
-    weight: 0.20
+    weight: 0.18
   },
   'fantasy-play': {
     name: 'Fantasy & Play',
     colors: ['#D8BFD8', '#DDA0DD', '#BA55D3'],
     keywords: ['magical', 'dreamy', 'ethereal', 'mystical'],
-    weight: 0.18
+    weight: 0.16
   },
   'fashion-style': {
     name: 'Fashion & Style',
     colors: ['#2C3E50', '#E8D5C4', '#BFA696'],
     keywords: ['elegant', 'chic', 'sophisticated', 'trendy'],
-    weight: 0.15
+    weight: 0.14
   },
   'food-lifestyle': {
     name: 'Food & Lifestyle',
@@ -31,11 +31,23 @@ const categories = {
     keywords: ['cozy', 'warm', 'inviting', 'organic'],
     weight: 0.12
   },
-  'interior-design': {
-    name: 'Interior Design',
+  'futuristic-tech': {
+    name: 'Futuristic & Tech',
+    colors: ['#00D9FF', '#7B68EE', '#4B0082'],
+    keywords: ['futuristic', 'sleek', 'innovative', 'tech'],
+    weight: 0.10
+  },
+  'home-decor': {
+    name: 'Home Decor',
     colors: ['#F5F5DC', '#D3D3D3', '#A9A9A9'],
     keywords: ['serene', 'minimal', 'cozy', 'intentional'],
-    weight: 0.10
+    weight: 0.05
+  },
+  'nature-travel': {
+    name: 'Nature & Travel',
+    colors: ['#228B22', '#87CEEB', '#8B4513'],
+    keywords: ['natural', 'adventurous', 'scenic', 'wanderlust'],
+    weight: 0.03
   }
 };
 
