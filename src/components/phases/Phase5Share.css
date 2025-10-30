@@ -211,6 +211,38 @@
   border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
+/* PinWrap Proposal Section */
+.proposal-section {
+  text-align: center;
+  margin-top: 1rem;
+}
+
+.proposal-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 1rem 2rem;
+  background: linear-gradient(135deg, #e60023 0%, #ff6b6b 100%);
+  color: white;
+  border: none;
+  border-radius: 0.75rem;
+  font-size: 1rem;
+  font-weight: 700;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(230, 0, 35, 0.3);
+}
+
+.proposal-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(230, 0, 35, 0.4);
+}
+
+.proposal-button:active {
+  transform: translateY(0);
+}
+
 /* Restart Section */
 .restart-section {
   text-align: center;

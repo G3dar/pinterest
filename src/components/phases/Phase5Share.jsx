@@ -1,6 +1,7 @@
 import { useState, useRef } from 'react';
 import { motion } from 'framer-motion';
-import { Download, Link2, Check, RotateCcw } from 'lucide-react';
+import { Download, Link2, Check, RotateCcw, FileText } from 'lucide-react';
+import { Link } from 'react-router-dom';
 import html2canvas from 'html2canvas';
 import './Phase5Share.css';
 
@@ -42,7 +43,7 @@ const Phase5Share = ({ identityCard, onRestart }) => {
 
   const handleSocialShare = (platform) => {
     const url = window.location.href;
-    const text = `I'm a ${identityCard.title}! Check out my Pinterest Wrapped ${identityCard.year}`;
+    const text = `I'm a ${identityCard.title}! Check out my PinWrap ${identityCard.year} 📌`;
 
     let shareUrl = '';
     if (platform === 'twitter') {
@@ -182,8 +183,8 @@ const Phase5Share = ({ identityCard, onRestart }) => {
               onClick={() => {
                 if (navigator.share) {
                   navigator.share({
-                    title: 'Pinterest Wrapped',
-                    text: `I'm a ${identityCard.title}!`,
+                    title: 'PinWrap 2024',
+                    text: `I'm a ${identityCard.title}! Check out my PinWrap 2024 📌`,
                     url: window.location.href
                   });
                 }
@@ -201,12 +202,25 @@ const Phase5Share = ({ identityCard, onRestart }) => {
           </div>
         </motion.div>
 
+        {/* PinWrap Proposal Button */}
+        <motion.div
+          className="proposal-section"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 1.0, duration: 0.6 }}
+        >
+          <Link to="/wrapped/concept" className="proposal-button">
+            <FileText size={20} />
+            <span>Read the PinWrap Proposal</span>
+          </Link>
+        </motion.div>
+
         {/* Restart Button */}
         <motion.div
           className="restart-section"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ delay: 0.8, duration: 0.6 }}
+          transition={{ delay: 1.2, duration: 0.6 }}
         >
           <button className="restart-button" onClick={onRestart}>
             <RotateCcw size={16} />
