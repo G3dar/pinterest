@@ -114,7 +114,7 @@ const HomePage = ({ images }) => {
           {/* Animated Wrapped Button */}
           <motion.button
             className="wrapped-button"
-            onClick={() => navigate('/wrapped/concept')}
+            onClick={() => navigate('/wrapped/prototype')}
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
           >
