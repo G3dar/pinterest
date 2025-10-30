@@ -52,8 +52,12 @@ const Phase2Montage = ({ images, categories, colorPalette }) => {
       className="phase2-montage"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
-      exit={{ opacity: 1 }}
-      transition={{ duration: 0.8, ease: 'easeInOut' }}
+      exit={{ opacity: 0 }}
+      transition={{
+        duration: 0.8,
+        ease: 'easeInOut',
+        exit: { duration: 0.4, ease: 'easeOut' }
+      }}
     >
       {/* Background color transition from Phase1 */}
       <motion.div
