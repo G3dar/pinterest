@@ -1,0 +1,76 @@
+.phase1-intro {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: linear-gradient(135deg, #E60023 0%, #C13584 100%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  color: white;
+}
+
+.dot-pattern {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image:
+    radial-gradient(circle, rgba(255, 255, 255, 0.1) 1px, transparent 1px);
+  background-size: 50px 50px;
+  pointer-events: none;
+}
+
+.logo-container {
+  position: absolute;
+  top: 20%;
+  color: white;
+}
+
+.main-heading {
+  font-size: clamp(2rem, 6vw, 4rem);
+  font-weight: 800;
+  color: white;
+  letter-spacing: -0.02em;
+  text-align: center;
+  margin-bottom: 1rem;
+  z-index: 1;
+}
+
+.year-number {
+  font-size: clamp(3rem, 10vw, 6rem);
+  font-weight: 900;
+  color: white;
+  text-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+  z-index: 1;
+}
+
+.sparkle {
+  position: absolute;
+  color: white;
+}
+
+.sparkle-bottom-left {
+  bottom: 15%;
+  left: 10%;
+}
+
+.sparkle-bottom-right {
+  bottom: 20%;
+  right: 15%;
+}
+
+.sparkle-top-right {
+  top: 25%;
+  right: 20%;
+}
+
+@media (max-width: 640px) {
+  .sparkle {
+    display: none;
+  }
+}

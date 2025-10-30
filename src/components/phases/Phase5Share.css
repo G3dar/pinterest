@@ -1,0 +1,257 @@
+.phase5-share {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #1a1a1a 0%, #2d1b3d 100%);
+  padding: 2rem;
+  overflow-y: auto;
+}
+
+.share-container {
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.share-header {
+  text-align: center;
+}
+
+.share-header h1 {
+  font-size: 2rem;
+  font-weight: 800;
+  color: white;
+  margin-bottom: 0.5rem;
+}
+
+.share-header p {
+  font-size: 1rem;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+/* Card Preview */
+.card-preview {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(20px);
+  border-radius: 1.5rem;
+  padding: 2rem;
+  border: 2px solid;
+}
+
+.preview-content {
+  display: flex;
+  gap: 2rem;
+  align-items: center;
+}
+
+.preview-avatar {
+  flex-shrink: 0;
+}
+
+.preview-avatar img {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  border: 3px solid;
+  object-fit: cover;
+}
+
+.preview-info {
+  flex: 1;
+}
+
+.preview-rarity-badge {
+  display: inline-block;
+  padding: 0.25rem 0.75rem;
+  border-radius: 1rem;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: white;
+  margin-bottom: 0.75rem;
+}
+
+.preview-title {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: white;
+  margin-bottom: 0.5rem;
+}
+
+.preview-description {
+  font-size: 0.875rem;
+  color: rgba(255, 255, 255, 0.7);
+  line-height: 1.6;
+  margin-bottom: 1rem;
+}
+
+.preview-colors {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.preview-color-dot {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  border: 2px solid rgba(255, 255, 255, 0.2);
+}
+
+/* Action Buttons */
+.action-buttons {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+}
+
+.primary-button,
+.secondary-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  padding: 1rem 1.5rem;
+  border: none;
+  border-radius: 0.75rem;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.primary-button {
+  background: #E60023;
+  color: white;
+  box-shadow: 0 4px 12px rgba(230, 0, 35, 0.4);
+}
+
+.primary-button:hover {
+  transform: scale(1.05);
+}
+
+.primary-button:active {
+  transform: scale(0.95);
+}
+
+.secondary-button {
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: white;
+}
+
+.secondary-button.copied {
+  background: #10B981;
+  border-color: #10B981;
+}
+
+.secondary-button:hover {
+  transform: scale(1.05);
+}
+
+.secondary-button:active {
+  transform: scale(0.95);
+}
+
+/* Social Share */
+.social-share {
+  text-align: center;
+}
+
+.social-label {
+  font-size: 0.875rem;
+  color: rgba(255, 255, 255, 0.6);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-bottom: 1rem;
+}
+
+.social-buttons {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+}
+
+.social-button {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.2s;
+  color: white;
+}
+
+.social-button:hover {
+  transform: scale(1.1);
+}
+
+.social-button:active {
+  transform: scale(0.9);
+}
+
+.social-button.twitter {
+  background: #1DA1F2;
+  box-shadow: 0 4px 12px rgba(29, 161, 242, 0.4);
+}
+
+.social-button.facebook {
+  background: #4267B2;
+  box-shadow: 0 4px 12px rgba(66, 103, 178, 0.4);
+}
+
+.social-button.more {
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/* Restart Section */
+.restart-section {
+  text-align: center;
+}
+
+.restart-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  background: transparent;
+  color: rgba(255, 255, 255, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 0.75rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.restart-button:hover {
+  transform: scale(1.05);
+  color: white;
+  border-color: rgba(255, 255, 255, 0.4);
+}
+
+.restart-button:active {
+  transform: scale(0.95);
+}
+
+@media (max-width: 640px) {
+  .preview-content {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .action-buttons {
+    grid-template-columns: 1fr;
+  }
+
+  .social-buttons {
+    flex-wrap: wrap;
+  }
+}

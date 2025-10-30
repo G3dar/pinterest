@@ -1,0 +1,211 @@
+﻿Pinterest Rewind
+Creative Direction & Production Brief
+________________
+
+
+Core Concept
+A 45-second cinematic digital experience inspired by Spotify Wrapped, but reimagined for Pinterest  the platform of imagination and creativity.
+Pinterest Rewind doesn’t showcase what you consumed; it unveils what inspired you, what you dreamed, and what you’re becoming.
+It’s not a recap  it’s a reflection. A self-portrait of your creative energy through the year.
+
+
+________________
+
+
+Look & Feel
+Overall Aesthetic
+* Mood: dreamlike, elegant, emotionally resonant  reminiscent of Sayonara Tarot’s ethereal tone.
+
+* Color Palette: soft gradients, creamy whites, pale golds, and pastel hues that evolve depending on the user’s visual identity.
+
+* Lighting: diffused, nostalgic light  as if seen through morning fog or golden dusk.
+
+* Textures: paper grain, subtle film bloom, and faint dust particles, giving a handcrafted, tangible quality to the motion design.
+
+* Composition: balanced minimalism  wide breathing space with layered visual depth. Focus on motion and emotion rather than data density.
+
+Typography
+   * Serif type with a touch of romance (e.g., Canela, Rebond Grotesque, or Editorial New).
+
+   * Minimal use of text phrases appear like whispered insights rather than analytics.
+
+   * Lowercase, and brief phrases like:
+
+      * “you imagined new worlds.”
+
+      * “you followed color where it led.”
+
+      * “you grew softer, bolder, freer.”
+
+Animation Style
+         * Slow, fluid transitions  everything feels alive and organic.
+
+         * Morphing forms: boards transforming into constellations, pins blooming like petals, color palettes melting into one another.
+
+         * Camera movement: gentle glides, slow zooms, weightless floating.
+
+         * Motion metaphors: portals, spirals, waves, constellations  symbolizing reflection, growth, and transformation.
+
+Sound Design & Music
+            * Original AI-generated ambient score, customized to match the user’s visual profile.
+
+            * Each Rewind has its own “sound world”: dreamy piano, organic textures, choral hums, or vaporous synths.
+
+            * The audio breathes  evolving alongside the visual tone of the user’s year.
+
+________________
+
+
+Structure / Chapters (45s Flow)
+[0:00 – 0:05]  Opening Portal
+ Soft bloom animation with Pinterest logo subtly blending into a celestial motif.
+[0:06 – 0:15]  The Mood Map
+ User’s thematic constellations  clusters of color and light forming categories of inspiration (e.g. interiors, travel, self-care).
+Text: “your worlds took shape.”
+[0:16 – 0:23]  Creative Patterns
+ Animated timelines pulse with rhythm  temporal arcs of creativity (spring greens, autumn golds).
+Text: “rhythm changed with the seasons.”
+[0:24 – 0:30]  Visual Signatures
+ Transition into the user’s unique aesthetic identity  their color palette blooms, design motifs appear like moving brushstrokes.
+Text: “your signature.”
+[0:31 – 0:38]  Inspiration Compass
+ Motion shifts upward  evolution, transformation, direction.
+Pins orbit like planets  suggesting growth and expansion.
+
+[0:39 – 0:45]  Rewind Portal / Closing Card
+ A visual letter fades in  a short poetic phrase personalized for the user.
+E.g. “you imagined beauty into being.”
+ Music swells. Pinterest logo emerges softly.
+Call to action: “Share your Rewind.”
+________________
+
+
+Deliverables
+Main Experience (45s)
+               * Personalized video generated dynamically from user data.
+
+               * Designed for playback within Pinterest or as a standalone microsite experience.
+
+               * Each segment reflects the user’s “creative fingerprint” through color, themes, and emotional rhythm.
+
+Shareable Card (10s)
+                  * Compact, elegant loop  a distilled highlight of the year.
+
+                  * Includes user name or handle, year tag, and a poetic summary line.
+
+                  * Designed for Instagram Stories, TikTok, and Pinterest video pins.
+
+________________
+
+
+AI Integration
+                     * Data-Driven Visualization:
+ Extracts top themes, color palettes, and search trends to drive visual content generation.
+
+                     * AI Art Direction:
+ Style and layout are automatically tuned to match the user’s dominant aesthetic (minimalist, boho, cyber, vintage, etc.).
+
+                     * AI Music:
+ Custom ambient soundtrack generated via AI models, harmonized with the user’s mood and palette.
+
+                     * AI Phrases:
+ Text generated based on user activity and keywords, filtered through poetic templates (e.g., “This year you…” / “You turned ideas into…”).
+
+________________
+
+
+Tone of Voice
+Softly reflective, emotionally intelligent, and artful.
+Not analytical or “data-driven,” but evocative  more like a digital memory than a report.
+Each phrase feels like it could belong in a modern poem or aesthetic journal.
+“Pinterest Rewind isn’t what you did. It’s what you dreamed.”
+ “Your imagination, your colors, your year  revealed.”
+
+
+
+
+
+
+
+
+// Creates an instragram 10 second shareable card
+
+
+DIFFERENTIATION: Pinterest Rewind vs. Spotify Wrapped
+Spotify Wrapped
+	Pinterest Rewind
+	Consumption
+	Creation
+	"You listened to..."
+	"You imagined..."
+	Passive entertainment
+	Active inspiration
+	What you loved
+	Who you're becoming
+	Looking back
+	Looking forward
+	Audio-focused
+	Visual-tactile
+	One linear story
+	Explorable experience
+	Fun facts
+	Creative insights
+	"Your top songs"
+	"Your creative constellation"
+	
+
+
+
+Pinterest Rewind
+Core Concept: "Your Year of Inspiration"
+An interactive annual experience inspired by Spotify Wrapped, but adapted to Pinterest's DNA: introspective, aesthetic, emotional, and above allcreative.
+Rather than showing what you consumed, Pinterest Rewind reveals what you dreamed, searched for, imagined, and created throughout the year.
+________________
+
+
+💡 The Big Idea
+Pinterest isn't about consumptionit's about projection. Every search, saved pin, and board created is a manifestation of your inner world: your goals, your obsessions, your transformations.
+The central concept:
+"Pinterest Rewind: A visual journey reflecting who you were this year and who you're becoming."
+The project combines:
+                        * Emotional + Visual Data (colors, categories, themes, search rhythms)
+                        * Personalized Design (dynamic palettes, layouts, subtle mystical touches)
+                        * Music & Motion (AI-generated ambient soundtracks matching your aesthetic)
+                        * A Poetic Closure: A visual letter or "emotional portrait" of your year, with phrases generated from your interests and searches
+
+
+
+
+
+
+
+
+SECTIONS: ONE OR TWO WORDS ONLY
+
+
+The Mood Map
+
+
+Panorama
+
+
+Inspiration Compass
+
+
+Visual Signatures
+
+
+Creative Patterns
+
+
+Beat / pulse
+
+
+Rewind → portal
+Pulse → que fue lo que te movio este año
+Panorama → vista completa
+Creative Patterns → ritmos temporales
+The Mood Map → constelaciones temáticas
+Visual Signatures → identidad estética
+Inspiration Compass → evolución direccional (tendencia)
+You → rewind card

@@ -1,0 +1,180 @@
+.phase3-analysis {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: #111111;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  overflow: hidden;
+}
+
+.analysis-header {
+  position: absolute;
+  top: 3rem;
+  font-size: 0.875rem;
+  color: #767676;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+/* Colors Sub-phase */
+.colors-subphase,
+.keywords-subphase,
+.categories-subphase {
+  width: 100%;
+  max-width: 900px;
+  text-align: center;
+}
+
+.subphase-title {
+  font-size: 2.5rem;
+  font-weight: 800;
+  color: white;
+  margin-bottom: 3rem;
+}
+
+.color-circles {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: center;
+  align-items: center;
+}
+
+.color-circle-container {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.color-circle {
+  border-radius: 50%;
+  transition: transform 0.3s;
+}
+
+.color-percentage {
+  position: absolute;
+  bottom: -2rem;
+  font-size: 0.75rem;
+  color: #767676;
+  white-space: nowrap;
+}
+
+/* Keywords Sub-phase */
+.keywords-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: center;
+  align-items: center;
+}
+
+.keyword-pill {
+  padding: 0.75rem 1.5rem;
+  background: rgba(230, 0, 35, 0.1);
+  border: 2px solid rgba(230, 0, 35, 0.3);
+  border-radius: 2rem;
+  color: white;
+  text-transform: lowercase;
+  white-space: nowrap;
+  transition: transform 0.3s;
+}
+
+.keyword-pill:hover {
+  transform: scale(1.05);
+}
+
+/* Categories Sub-phase */
+.categories-list {
+  width: 100%;
+  max-width: 700px;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.category-item {
+  width: 100%;
+}
+
+.category-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.75rem;
+}
+
+.category-name {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: white;
+}
+
+.category-percentage {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: #E60023;
+}
+
+.progress-bar-container {
+  width: 100%;
+  height: 12px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 1rem;
+  overflow: hidden;
+  margin-bottom: 0.75rem;
+}
+
+.progress-bar-fill {
+  height: 100%;
+  border-radius: 1rem;
+}
+
+.category-thumbnails {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.thumbnail {
+  width: 50px;
+  height: 50px;
+  border-radius: 0.5rem;
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  overflow: hidden;
+}
+
+.thumbnail img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+@media (max-width: 640px) {
+  .subphase-title {
+    font-size: 2rem;
+    margin-bottom: 2rem;
+  }
+
+  .color-circle-container {
+    transform: scale(0.8);
+  }
+
+  .keyword-pill {
+    font-size: 0.875rem !important;
+    padding: 0.5rem 1rem;
+  }
+
+  .category-name {
+    font-size: 1rem;
+  }
+
+  .category-percentage {
+    font-size: 1.25rem;
+  }
+}
