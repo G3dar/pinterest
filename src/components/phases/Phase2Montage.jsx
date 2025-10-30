@@ -48,7 +48,42 @@ const Phase2Montage = ({ images, categories }) => {
   };
 
   return (
-    <div className="phase2-montage">
+    <motion.div
+      className="phase2-montage"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 0.8, ease: 'easeInOut' }}
+    >
+      {/* Background color transition from Phase1 */}
+      <motion.div
+        initial={{
+          opacity: 1,
+          background: 'linear-gradient(135deg, #2d0a3a 0%, #1a0a1f 100%)'
+        }}
+        animate={{
+          opacity: [1, 0],
+          background: [
+            'linear-gradient(135deg, #2d0a3a 0%, #1a0a1f 100%)',
+            'linear-gradient(135deg, #1a0a1f 0%, #0a0a1a 100%)',
+            'linear-gradient(135deg, #111111 0%, #111111 100%)'
+          ]
+        }}
+        transition={{
+          duration: 2,
+          ease: 'easeInOut'
+        }}
+        style={{
+          position: 'absolute',
+          top: 0,
+          left: 0,
+          width: '100%',
+          height: '100%',
+          zIndex: 1,
+          pointerEvents: 'none'
+        }}
+      />
+
       {/* Continuous floating particles in background */}
       <div className="floating-particles">
         {Array.from({ length: 20 }).map((_, i) => (
@@ -631,7 +666,7 @@ const Phase2Montage = ({ images, categories }) => {
           </motion.div>
         )}
       </AnimatePresence>
-    </div>
+    </motion.div>
   );
 };
 
