@@ -6,8 +6,8 @@ const Phase2Montage = ({ images, categories }) => {
   const [subPhase, setSubPhase] = useState('grid');
 
   useEffect(() => {
-    const carouselTimer = setTimeout(() => setSubPhase('carousel'), 5000);
-    const clustersTimer = setTimeout(() => setSubPhase('clusters'), 10000);
+    const carouselTimer = setTimeout(() => setSubPhase('carousel'), 9000);
+    const clustersTimer = setTimeout(() => setSubPhase('clusters'), 14000);
 
     return () => {
       clearTimeout(carouselTimer);
@@ -77,7 +77,7 @@ const Phase2Montage = ({ images, categories }) => {
       <AnimatePresence mode="sync">
         {subPhase === 'grid' && (
           <>
-            {/* Animated gradient backdrop */}
+            {/* Animated gradient backdrop - stays visible throughout */}
             <motion.div
               className="flowing-gradient-bg"
               initial={{ opacity: 0 }}
@@ -86,9 +86,9 @@ const Phase2Montage = ({ images, categories }) => {
                 backgroundPosition: ['0% 50%', '100% 50%', '0% 50%']
               }}
               exit={{
-                opacity: 0,
-                scale: 1.5,
-                filter: 'blur(20px)'
+                opacity: 1,
+                scale: 1,
+                filter: 'blur(0px)'
               }}
               transition={{
                 opacity: { duration: 1 },
@@ -97,21 +97,21 @@ const Phase2Montage = ({ images, categories }) => {
                   repeat: Infinity,
                   ease: 'linear'
                 },
-                exit: { duration: 1.5 }
+                exit: { duration: 3 }
               }}
             />
 
-            {/* Self-organizing images container */}
+            {/* Self-organizing images container - stays visible during portal transition */}
             <motion.div
               key="grid"
               className="self-organizing-grid"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{
-                opacity: 0
+                opacity: 1
               }}
               transition={{
-                exit: { duration: 2.5, ease: 'easeInOut' }
+                exit: { duration: 0 }
               }}
             >
               {gridImages.map((img, index) => {
@@ -154,7 +154,7 @@ const Phase2Montage = ({ images, categories }) => {
                       y: window.innerHeight / 2,
                       scale: 0,
                       opacity: 0,
-                      rotateZ: 360 * 2
+                      rotateZ: 360 * 3
                     }}
                     transition={{
                       duration: 4,
@@ -162,8 +162,9 @@ const Phase2Montage = ({ images, categories }) => {
                       ease: 'easeInOut',
                       times: [0, 0.2, 0.7, 1],
                       exit: {
-                        duration: 1.5 + (index * 0.02),
-                        ease: [0.6, 0.05, 0.01, 0.9]
+                        delay: 0.8 + (index * 0.01),
+                        duration: 2.2,
+                        ease: [0.32, 0.72, 0, 1]
                       }
                     }}
                     style={{
@@ -210,13 +211,27 @@ const Phase2Montage = ({ images, categories }) => {
                       rotateX: 30
                     }}
                     animate={{
-                      opacity: [0, 0.5, 1],
-                      x: [scattered.x + window.innerWidth, scattered.x * 0.3, 0],
-                      y: [scattered.y, scattered.y * 0.5, 0],
-                      scale: [scattered.scale, 0.8, 1],
-                      rotateZ: [scattered.rotate, scattered.rotate * 0.5, 0],
-                      rotateY: [90, 45, 0],
-                      rotateX: [30, 15, 0]
+                      opacity: [0, 0.5, 1, 1, 1, 1],
+                      x: [
+                        scattered.x + window.innerWidth,
+                        scattered.x * 0.3,
+                        0,
+                        (Math.sin(index) * 3),
+                        (-Math.sin(index) * 3),
+                        (Math.sin(index) * 3)
+                      ],
+                      y: [
+                        scattered.y,
+                        scattered.y * 0.5,
+                        0,
+                        (Math.cos(index) * 2),
+                        (-Math.cos(index) * 2),
+                        (Math.cos(index) * 2)
+                      ],
+                      scale: [scattered.scale, 0.8, 1, 1.01, 0.99, 1],
+                      rotateZ: [scattered.rotate, scattered.rotate * 0.5, 0, 1, -1, 0],
+                      rotateY: [90, 45, 0, 2, -2, 0],
+                      rotateX: [30, 15, 0, 1, -1, 0]
                     }}
                     exit={{
                       x: window.innerWidth / 2,
@@ -235,12 +250,14 @@ const Phase2Montage = ({ images, categories }) => {
                     }}
                     transition={{
                       delay: index * 0.08,
-                      duration: 1.5,
-                      ease: [0.25, 0.46, 0.45, 0.94],
-                      times: [0, 0.4, 1],
+                      duration: 7,
+                      ease: 'easeInOut',
+                      times: [0, 0.15, 0.3, 0.5, 0.7, 1],
+                      repeat: 0,
                       exit: {
-                        duration: 1.8 + (index * 0.03),
-                        ease: [0.6, 0.05, 0.01, 0.9]
+                        delay: 0.8 + (index * 0.015),
+                        duration: 2.5,
+                        ease: [0.32, 0.72, 0, 1]
                       }
                     }}
                   >
@@ -299,20 +316,30 @@ const Phase2Montage = ({ images, categories }) => {
               })}
             </motion.div>
 
-            {/* Portal effect overlay at exit - slower and more organic growth */}
+            {/* Portal effect overlay - very gradual organic opening */}
             <motion.div
               className="portal-transition"
               initial={{ opacity: 0, scale: 0 }}
               animate={{ opacity: 0, scale: 0 }}
               exit={{
-                opacity: [0, 0.3, 0.6, 0.8, 1],
-                scale: [0, 0.2, 0.8, 3, 15],
-                rotateZ: [0, 90, 180, 270, 360]
+                opacity: 1,
+                scale: 20,
+                rotateZ: 540
               }}
               transition={{
-                duration: 2.5,
-                ease: [0.25, 0.1, 0.25, 1],
-                times: [0, 0.2, 0.4, 0.6, 1]
+                opacity: {
+                  duration: 4.5,
+                  ease: [0.19, 1, 0.22, 1]
+                },
+                scale: {
+                  duration: 4.5,
+                  ease: [0.19, 1, 0.22, 1]
+                },
+                rotateZ: {
+                  duration: 4.5,
+                  ease: 'linear'
+                },
+                delay: 0.3
               }}
             />
           </>

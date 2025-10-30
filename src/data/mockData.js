@@ -115,7 +115,7 @@ export const generateWrappedData = () => {
     topCategories: topCategories.slice(0, 3).map(c => c.name),
     colorPalette: colorPalette.slice(0, 5),
     avatar: allImages[0].url,
-    year: 2024
+    year: 2025
   };
 
   return {
@@ -124,7 +124,7 @@ export const generateWrappedData = () => {
     keywords,
     topCategories,
     identityCard,
-    year: 2024
+    year: 2025
   };
 };
 

@@ -2,7 +2,7 @@ import { motion } from 'framer-motion';
 import { Sparkles } from 'lucide-react';
 import './Phase1Intro.css';
 
-const Phase1Intro = ({ year = 2024 }) => {
+const Phase1Intro = ({ year = 2025 }) => {
   return (
     <div className="phase1-intro">
       {/* Dot pattern background */}
