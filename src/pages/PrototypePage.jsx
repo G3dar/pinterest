@@ -19,7 +19,7 @@ const PrototypePage = () => {
     0: 0,      // Loading (variable)
     1: 5000,   // Intro (5s)
     2: 15000,  // Montage (15s)
-    3: 10000,  // Analysis (10s)
+    3: 16000,  // Analysis (16s) - includes constellation phase
     4: 10000,  // Identity (10s)
     5: Infinity // Share (user controlled)
   };

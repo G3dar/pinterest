@@ -103,7 +103,7 @@ export const generateWrappedData = () => {
       percentage: Math.round(data.weight * 100),
       weight: data.weight,
       colors: data.colors,
-      images: allImages.filter(img => img.category === key).slice(0, 4)
+      images: allImages.filter(img => img.category === key)
     }));
 
   // Identity card data

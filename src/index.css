@@ -4,11 +4,18 @@
   box-sizing: border-box;
 }
 
+html {
+  background: linear-gradient(135deg, #E60023 0%, #C13584 100%);
+  min-height: 100vh;
+}
+
 body {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   overflow-x: hidden;
+  background: linear-gradient(135deg, #E60023 0%, #C13584 100%);
+  min-height: 100vh;
 }
 
 #root {
