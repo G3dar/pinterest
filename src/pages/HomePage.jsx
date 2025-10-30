@@ -165,12 +165,22 @@ const HomePage = ({ images }) => {
             onClick={handleWrapClick}
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
+            animate={{
+              rotateZ: [0, -1, 1, -1, 0],
+              y: [0, -2, 0, -2, 0]
+            }}
+            transition={{
+              duration: 3,
+              repeat: Infinity,
+              ease: "easeInOut",
+              repeatDelay: 0.5
+            }}
           >
             <motion.div
               className="button-glow"
               animate={{
-                opacity: [0.5, 1, 0.5],
-                scale: [1, 1.1, 1]
+                opacity: [0.3, 0.8, 0.3],
+                scale: [1, 1.2, 1]
               }}
               transition={{
                 duration: 2,
