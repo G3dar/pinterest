@@ -418,18 +418,55 @@ const Phase2Montage = ({ images, categories, colorPalette }) => {
                 );
               })}
 
-              {/* Keyword Tags - Splash of intelligence AFTER images fill */}
-              {[...keywordData, ...keywordData, ...keywordData].map((keywordInfo, keyIndex) => {
-                // Create more keywords by repeating the array 3 times
-                if (keyIndex >= 35) return null; // Limit to 35 keywords
+              {/* Keyword Tags - Positioned in lower-right of images */}
+              {[...keywordData, ...keywordData].map((keywordInfo, keyIndex) => {
+                // Map keywords to images non-uniformly - skip some, double up on others
+                const imageMapping = [
+                  0, 2, 2, 5, 7, 9, 9, 12, 14, 17, 19, 20,
+                  22, 25, 25, 28, 30, 31, 33, 34, 34, 1, 4, 16
+                ]; // Some images get 2 tags, some get none
 
-                // Random organic positioning
-                const randomX = 10 + Math.random() * 80; // 10-90% across width
-                const randomY = 10 + Math.random() * 80; // 10-90% across height
+                if (keyIndex >= imageMapping.length) return null;
+
+                const imageIndex = imageMapping[keyIndex];
+
+                // Calculate grid position for associated image
+                const gridColumn = (imageIndex % 6) + 1;
+                const gridRow = Math.floor(imageIndex / 6) + 1;
+
+                // Organic position offsets from image positioning (matching image offsets)
+                const organicOffsetX = (Math.sin(imageIndex * 1.7) * 25) + (Math.cos(imageIndex * 0.9) * 15);
+                const organicOffsetY = (Math.cos(imageIndex * 1.3) * 20) + (Math.sin(imageIndex * 1.1) * 12);
+
+                // Grid cell dimensions
+                const gridCellWidth = window.innerWidth / 6;
+                const gridCellHeight = 200;
+
+                // Image center position
+                const imageX = (gridColumn - 1) * gridCellWidth + organicOffsetX;
+                const imageY = (gridRow - 1) * gridCellHeight + organicOffsetY;
+
+                // Image dimensions (approximate)
+                const imageWidth = 180;
+                const imageHeight = 180;
+
+                // Position tag at lower-right corner of image with small padding
+                // Check how many times this image appears in the mapping before current index
+                const previousOccurrences = imageMapping.slice(0, keyIndex).filter(idx => idx === imageIndex).length;
+
+                // Use stacking offset to prevent overlaps when multiple tags on same image
+                const stackOffsetX = previousOccurrences * 12; // Horizontal offset for multiple tags
+                const stackOffsetY = previousOccurrences * -8; // Slight vertical offset upward
+
+                const tagX = imageX + (imageWidth / 2) - 10 + stackOffsetX;
+                const tagY = imageY + (imageHeight / 2) - 25 + stackOffsetY;
+
+                const randomX = (tagX / window.innerWidth) * 100;
+                const randomY = (tagY / window.innerHeight) * 100;
 
                 // Calculate center position for portal suction
-                const keywordCurrentX = (randomX / 100) * window.innerWidth;
-                const keywordCurrentY = (randomY / 100) * window.innerHeight;
+                const keywordCurrentX = tagX;
+                const keywordCurrentY = tagY;
                 const keywordCenterX = window.innerWidth / 2;
                 const keywordCenterY = window.innerHeight / 2;
                 const keywordExitX = keywordCenterX - keywordCurrentX;
@@ -471,7 +508,7 @@ const Phase2Montage = ({ images, categories, colorPalette }) => {
                       position: 'absolute',
                       left: `${randomX}%`,
                       top: `${randomY}%`,
-                      transform: 'translate(-50%, -50%)',
+                      transform: 'translate(0, 0)', // No centering - anchor to position
                       background: `linear-gradient(135deg, ${keywordInfo.colors[0]}E6, ${keywordInfo.colors[1]}CC)`,
                       borderColor: `${keywordInfo.colors[0]}`,
                       boxShadow: `
