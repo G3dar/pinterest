@@ -107,6 +107,7 @@ const PrototypePage = () => {
                 key="montage"
                 images={wrappedData.allImages}
                 categories={wrappedData.topCategories}
+                colorPalette={wrappedData.colorPalette}
               />
             )}
 

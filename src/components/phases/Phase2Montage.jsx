@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import './Phase2Montage.css';
 
-const Phase2Montage = ({ images, categories }) => {
+const Phase2Montage = ({ images, categories, colorPalette }) => {
   const [subPhase, setSubPhase] = useState('grid');
 
   useEffect(() => {
@@ -121,6 +121,77 @@ const Phase2Montage = ({ images, categories }) => {
         ))}
       </motion.div>
 
+      {/* Color palette morphing transition - purple to user colors */}
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 0 }}
+        exit={{ opacity: 1 }}
+        transition={{
+          exit: { duration: 1.5, ease: 'easeInOut' }
+        }}
+        style={{
+          position: 'absolute',
+          top: 0,
+          left: 0,
+          width: '100%',
+          height: '100%',
+          zIndex: 100,
+          pointerEvents: 'none'
+        }}
+      >
+        {/* Morphing gradient background */}
+        <motion.div
+          exit={{
+            background: [
+              'radial-gradient(circle at 50% 50%, #2d0a3a 0%, #1a0a1f 100%)',
+              `radial-gradient(circle at 50% 50%, ${colorPalette[0]?.hex || '#E60023'} 0%, ${colorPalette[1]?.hex || '#C13584'} 50%, ${colorPalette[2]?.hex || '#8B43DA'} 100%)`,
+            ],
+            scale: [1, 1.5]
+          }}
+          transition={{
+            exit: { duration: 1.5, ease: [0.43, 0.13, 0.23, 0.96] }
+          }}
+          style={{
+            position: 'absolute',
+            top: 0,
+            left: 0,
+            width: '100%',
+            height: '100%',
+            background: 'radial-gradient(circle at 50% 50%, #2d0a3a 0%, #1a0a1f 100%)',
+          }}
+        />
+
+        {/* Color ripple VFX */}
+        {colorPalette?.slice(0, 5).map((color, i) => (
+          <motion.div
+            key={i}
+            exit={{
+              scale: [0, 3, 5],
+              opacity: [0, 0.6, 0]
+            }}
+            transition={{
+              exit: {
+                duration: 1.5,
+                delay: i * 0.15,
+                ease: 'easeOut'
+              }
+            }}
+            style={{
+              position: 'absolute',
+              top: '50%',
+              left: '50%',
+              width: '200px',
+              height: '200px',
+              marginLeft: '-100px',
+              marginTop: '-100px',
+              borderRadius: '50%',
+              background: `radial-gradient(circle, ${color.hex}40, transparent 70%)`,
+              border: `2px solid ${color.hex}80`,
+            }}
+          />
+        ))}
+      </motion.div>
+
       <AnimatePresence mode="wait">
         {subPhase === 'grid' && (
           <>
@@ -149,21 +220,25 @@ const Phase2Montage = ({ images, categories }) => {
               }}
             />
 
-            {/* MOOD MAP - Large background text */}
+            {/* MOOD MAP - Large centered text in front */}
             <motion.div
               className="mood-map-text"
               initial={{
                 opacity: 0,
                 scale: 0.8,
+                x: '-50%',
                 y: 50
               }}
               animate={{
-                opacity: [0, 1, 1, 0.3],
+                opacity: [0, 1, 1, 0],
                 scale: [0.8, 1.05, 1, 1],
+                x: '-50%',
                 y: [50, -20, 0, 0]
               }}
               exit={{
-                opacity: 0
+                opacity: 0,
+                x: '-50%',
+                y: 0
               }}
               transition={{
                 duration: 4,
@@ -178,22 +253,16 @@ const Phase2Montage = ({ images, categories }) => {
                 position: 'absolute',
                 top: '50%',
                 left: '50%',
-                transform: 'translate(-50%, -50%)',
+                translateY: '-50%',
                 fontSize: 'clamp(4rem, 15vw, 12rem)',
                 fontWeight: 900,
-                color: 'rgba(255, 255, 255, 0.08)',
+                color: 'rgba(255, 255, 255, 0.2)',
                 textTransform: 'uppercase',
                 letterSpacing: '0.15em',
-                zIndex: 2,
+                zIndex: 50,
                 pointerEvents: 'none',
                 whiteSpace: 'nowrap',
-                textShadow: '0 0 80px rgba(193, 53, 132, 0.3)',
-                WebkitTextStroke: '2px rgba(230, 0, 35, 0.1)',
-                width: '100%',
-                textAlign: 'center',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center'
+                marginLeft: '-0.075em'
               }}
             >
               MOOD MAP
