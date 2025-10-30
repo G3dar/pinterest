@@ -3,7 +3,6 @@ import { useState, useEffect } from 'react';
 import HomePage from './pages/HomePage';
 import ConceptPage from './pages/ConceptPage';
 import PrototypePage from './pages/PrototypePage';
-import CenteringTestPage from './pages/CenteringTestPage';
 import generateWrappedData from './data/mockData';
 
 function App() {
@@ -24,7 +23,6 @@ function App() {
         <Route path="/" element={<HomePage images={wrappedData.images} />} />
         <Route path="/wrapped/concept" element={<ConceptPage />} />
         <Route path="/wrapped/prototype" element={<PrototypePage />} />
-        <Route path="/test/centering" element={<CenteringTestPage />} />
       </Routes>
     </BrowserRouter>
   );
