@@ -37,9 +37,9 @@ const WrapTransition = ({ isActive, onComplete }) => {
             <div className="wrap-pattern"></div>
           </motion.div>
 
-          {/* Center ribbon that appears after panels meet */}
+          {/* Vertical ribbon */}
           <motion.div
-            className="wrap-ribbon"
+            className="wrap-ribbon wrap-ribbon-vertical"
             initial={{ scaleY: 0, opacity: 0 }}
             animate={{ scaleY: 1, opacity: 1 }}
             transition={{ delay: 0.5, duration: 0.5, ease: 'easeOut' }}
@@ -47,16 +47,14 @@ const WrapTransition = ({ isActive, onComplete }) => {
             <div className="ribbon-shine"></div>
           </motion.div>
 
-          {/* Bow at center */}
+          {/* Horizontal ribbon */}
           <motion.div
-            className="wrap-bow"
-            initial={{ scale: 0, rotate: -180 }}
-            animate={{ scale: 1, rotate: 0 }}
-            transition={{ delay: 0.9, duration: 0.6, ease: [0.68, -0.55, 0.265, 1.55] }}
+            className="wrap-ribbon wrap-ribbon-horizontal"
+            initial={{ scaleX: 0, opacity: 0 }}
+            animate={{ scaleX: 1, opacity: 1 }}
+            transition={{ delay: 0.5, duration: 0.5, ease: 'easeOut' }}
           >
-            <div className="bow-left"></div>
-            <div className="bow-right"></div>
-            <div className="bow-center"></div>
+            <div className="ribbon-shine ribbon-shine-horizontal"></div>
           </motion.div>
 
           {/* Fade overlay for smooth transition to next page */}
