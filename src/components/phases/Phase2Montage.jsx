@@ -199,73 +199,12 @@ const Phase2Montage = ({ images, categories }) => {
               {gridImages.map((img, index) => {
                 const height = 150 + ((index % 4) * 50);
                 const scattered = getScatteredPosition(index);
-                const isKeyword = index % 3 === 1 || index % 4 === 3; // Plenty of keywords - splash effect
 
                 // Calculate grid position (organized state)
                 const gridColumn = (index % 6) + 1;
                 const gridRow = Math.floor(index / 6) + 1;
 
-                // Get keyword data with colors
-                const keywordInfo = keywordData[index % keywordData.length];
-
-                return isKeyword ? (
-                  // Pop-in keywords - splash of intelligence appearing rapidly in place
-                  <motion.div
-                    key={`keyword-${index}`}
-                    className="floating-keyword-chaos"
-                    initial={{
-                      opacity: 0,
-                      scale: 0,
-                      rotateZ: (Math.random() - 0.5) * 180
-                    }}
-                    animate={{
-                      opacity: [0, 1, 1],
-                      scale: [0, 1.3, 1],
-                      rotateZ: [(Math.random() - 0.5) * 180, 0, (Math.random() - 0.5) * 5]
-                    }}
-                    exit={{
-                      x: window.innerWidth / 2,
-                      y: window.innerHeight / 2,
-                      scale: 0,
-                      opacity: 0,
-                      rotateZ: 360 * 3
-                    }}
-                    transition={{
-                      duration: 0.6,
-                      delay: index * 0.04,
-                      ease: [0.34, 1.56, 0.64, 1],
-                      times: [0, 0.6, 1],
-                      exit: {
-                        delay: 0.8 + (index * 0.01),
-                        duration: 2.2,
-                        ease: [0.32, 0.72, 0, 1]
-                      }
-                    }}
-                    style={{
-                      gridColumn: gridColumn,
-                      gridRow: gridRow,
-                      background: `linear-gradient(135deg, ${keywordInfo.colors[0]}40, ${keywordInfo.colors[1]}40)`,
-                      borderColor: `${keywordInfo.colors[0]}80`,
-                      boxShadow: `0 8px 32px ${keywordInfo.colors[0]}60, 0 0 40px ${keywordInfo.colors[1]}40`
-                    }}
-                  >
-                    <motion.span
-                      animate={{
-                        textShadow: [
-                          `0 0 20px ${keywordInfo.colors[0]}`,
-                          `0 0 40px ${keywordInfo.colors[1]}`,
-                          `0 0 20px ${keywordInfo.colors[0]}`
-                        ]
-                      }}
-                      transition={{
-                        duration: 2,
-                        repeat: Infinity
-                      }}
-                    >
-                      {keywordInfo.text}
-                    </motion.span>
-                  </motion.div>
-                ) : (
+                return (
                   // Image - starts scattered, flows from right, organizes into grid, gets sucked into portal
                   <motion.div
                     key={index}
@@ -385,6 +324,88 @@ const Phase2Montage = ({ images, categories }) => {
                         ease: 'easeOut'
                       }}
                     />
+                  </motion.div>
+                );
+              })}
+
+              {/* Keyword Tags - Splash of intelligence AFTER images fill */}
+              {keywordData.map((keywordInfo, keyIndex) => {
+                // Create more keywords by duplicating the array
+                if (keyIndex >= 18) return null; // Limit to 18 keywords
+
+                // Random organic positioning
+                const randomX = 10 + Math.random() * 80; // 10-90% across width
+                const randomY = 10 + Math.random() * 80; // 10-90% across height
+
+                return (
+                  <motion.div
+                    key={`keyword-splash-${keyIndex}`}
+                    className="floating-keyword-chaos"
+                    initial={{
+                      opacity: 0,
+                      scale: 0,
+                      rotateZ: (Math.random() - 0.5) * 180
+                    }}
+                    animate={{
+                      opacity: [0, 1, 1],
+                      scale: [0, 1.3, 1],
+                      rotateZ: [(Math.random() - 0.5) * 180, 0, (Math.random() - 0.5) * 5]
+                    }}
+                    exit={{
+                      x: window.innerWidth / 2,
+                      y: window.innerHeight / 2,
+                      scale: 0,
+                      opacity: 0,
+                      rotateZ: 360 * 3
+                    }}
+                    transition={{
+                      duration: 0.5,
+                      delay: 3.5 + (keyIndex * 0.08), // Start after images organize (3.5s)
+                      ease: [0.34, 1.56, 0.64, 1],
+                      times: [0, 0.6, 1],
+                      exit: {
+                        delay: 0.8 + (keyIndex * 0.01),
+                        duration: 2.2,
+                        ease: [0.32, 0.72, 0, 1]
+                      }
+                    }}
+                    style={{
+                      position: 'absolute',
+                      left: `${randomX}%`,
+                      top: `${randomY}%`,
+                      transform: 'translate(-50%, -50%)',
+                      background: `linear-gradient(135deg, ${keywordInfo.colors[0]}40, ${keywordInfo.colors[1]}40)`,
+                      borderColor: `${keywordInfo.colors[0]}80`,
+                      boxShadow: `0 8px 32px ${keywordInfo.colors[0]}60, 0 0 40px ${keywordInfo.colors[1]}40`,
+                      border: `2px solid ${keywordInfo.colors[0]}80`,
+                      borderRadius: '2rem',
+                      padding: '0.75rem 1.5rem',
+                      backdropFilter: 'blur(10px)',
+                      zIndex: 10,
+                      pointerEvents: 'none'
+                    }}
+                  >
+                    <motion.span
+                      animate={{
+                        textShadow: [
+                          `0 0 20px ${keywordInfo.colors[0]}`,
+                          `0 0 40px ${keywordInfo.colors[1]}`,
+                          `0 0 20px ${keywordInfo.colors[0]}`
+                        ]
+                      }}
+                      transition={{
+                        duration: 2,
+                        repeat: Infinity
+                      }}
+                      style={{
+                        color: 'white',
+                        fontSize: '1rem',
+                        fontWeight: 600,
+                        textTransform: 'lowercase'
+                      }}
+                    >
+                      {keywordInfo.text}
+                    </motion.span>
                   </motion.div>
                 );
               })}
