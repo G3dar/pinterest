@@ -15,8 +15,8 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0 4px;
-  box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
+  padding: 0 16px;
+  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.08);
   z-index: 1000;
 }
 
@@ -176,20 +176,19 @@
 /* Masonry Grid */
 .masonry-container {
   margin-top: 80px;
-  padding: 4px;
+  padding: 16px 8px;
   display: flex;
-  gap: 8px;
+  gap: 16px;
   max-width: 100%;
   justify-content: center;
-  align-items: flex-start;
 }
 
 .masonry-column {
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 16px;
   flex: 1;
-  max-width: 236px;
+  max-width: 300px;
 }
 
 .masonry-item {
@@ -197,21 +196,51 @@
   border-radius: 16px;
   overflow: hidden;
   cursor: zoom-in;
-  background: transparent;
+  background: #efefef;
   break-inside: avoid;
-  margin-bottom: 0;
 }
 
 .masonry-item img {
   width: 100%;
-  height: auto;
-  display: block;
-  transition: filter 0.3s ease;
+  height: 100%;
   object-fit: cover;
+  display: block;
+  transition: transform 0.3s ease;
+}
+
+/* Variable heights for authentic Pinterest portrait feel */
+.masonry-item:nth-child(6n+1) img {
+  aspect-ratio: 2/3;
+  min-height: 300px;
+}
+
+.masonry-item:nth-child(6n+2) img {
+  aspect-ratio: 3/4;
+  min-height: 400px;
+}
+
+.masonry-item:nth-child(6n+3) img {
+  aspect-ratio: 9/16;
+  min-height: 350px;
+}
+
+.masonry-item:nth-child(6n+4) img {
+  aspect-ratio: 2/3;
+  min-height: 280px;
+}
+
+.masonry-item:nth-child(6n+5) img {
+  aspect-ratio: 3/5;
+  min-height: 420px;
+}
+
+.masonry-item:nth-child(6n) img {
+  aspect-ratio: 4/5;
+  min-height: 320px;
 }
 
 .masonry-item:hover img {
-  filter: brightness(0.9);
+  transform: scale(1.05);
 }
 
 .item-overlay {
@@ -253,13 +282,13 @@
 /* Responsive */
 @media (max-width: 1200px) {
   .masonry-column {
-    max-width: 236px;
+    max-width: 250px;
   }
 }
 
 @media (max-width: 900px) {
   .masonry-column {
-    max-width: 236px;
+    max-width: 200px;
   }
 
   .header-center {
@@ -269,7 +298,7 @@
 
 @media (max-width: 600px) {
   .masonry-column {
-    max-width: 170px;
+    max-width: 180px;
   }
 
   .wrapped-button {
@@ -279,13 +308,5 @@
 
   .search-container {
     display: none;
-  }
-
-  .masonry-container {
-    gap: 4px;
-  }
-
-  .masonry-column {
-    gap: 4px;
   }
 }
