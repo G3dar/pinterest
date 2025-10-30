@@ -149,3 +149,15 @@
   background: radial-gradient(circle, rgba(255, 255, 255, 0.4), transparent);
   border-radius: 50%;
 }
+
+/* Smooth fade overlay for transition to next page */
+.wrap-fade {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: linear-gradient(135deg, #e60023 0%, #d41633 100%);
+  z-index: 10002;
+  pointer-events: none;
+}
