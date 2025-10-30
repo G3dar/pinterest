@@ -192,7 +192,7 @@ const HomePage = ({ images }) => {
           </motion.button>
 
           <div className="user-avatar">
-            <div className="avatar-circle">A</div>
+            <div className="avatar-circle">1stAve Machine</div>
           </div>
         </div>
       </header>
