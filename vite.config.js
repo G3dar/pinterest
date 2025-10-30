@@ -5,7 +5,7 @@ export default defineConfig({
   plugins: [react()],
   base: './',
   server: {
-    host: '0.0.0.0',
+    host: true,
     port: 3100,
     strictPort: false,
     hmr: {
@@ -13,9 +13,8 @@ export default defineConfig({
     }
   },
   preview: {
-    host: '0.0.0.0',
+    host: true,
     port: 10000,
-    strictPort: false,
-    allowedHosts: 'all'
+    strictPort: false
   }
 })
