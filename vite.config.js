@@ -16,6 +16,6 @@ export default defineConfig({
     host: '0.0.0.0',
     port: 10000,
     strictPort: false,
-    allowedHosts: ['pinterest-dczz.onrender.com', '.onrender.com']
+    allowedHosts: 'all'
   }
 })
