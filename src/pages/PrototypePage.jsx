@@ -20,7 +20,7 @@ const PrototypePage = () => {
     1: 5000,   // Intro (5s)
     2: 15000,  // Montage (15s)
     3: 18000,  // Analysis (18s) - includes constellation phase
-    4: 10000,  // Identity (10s)
+    4: 11000,  // Identity (11s)
     5: Infinity // Share (user controlled)
   };
 
