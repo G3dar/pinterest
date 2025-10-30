@@ -93,6 +93,7 @@ const HomePage = ({ images }) => {
       {/* Header */}
       <header className="home-header">
         <div className="header-left">
+        </div>
 
         <div className="header-center">
           <nav className="nav-links">
