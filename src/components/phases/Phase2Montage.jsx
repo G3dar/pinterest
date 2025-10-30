@@ -124,7 +124,7 @@ const Phase2Montage = ({ images, categories }) => {
       <AnimatePresence mode="wait">
         {subPhase === 'grid' && (
           <>
-            {/* Animated gradient backdrop - stays visible throughout */}
+            {/* Animated gradient backdrop - fades out smoothly */}
             <motion.div
               className="flowing-gradient-bg"
               initial={{ opacity: 0 }}
@@ -133,7 +133,7 @@ const Phase2Montage = ({ images, categories }) => {
                 backgroundPosition: ['0% 50%', '100% 50%', '0% 50%']
               }}
               exit={{
-                opacity: 1
+                opacity: 0
               }}
               transition={{
                 opacity: { duration: 1 },
@@ -142,7 +142,10 @@ const Phase2Montage = ({ images, categories }) => {
                   repeat: Infinity,
                   ease: 'linear'
                 },
-                exit: { duration: 0 }
+                exit: {
+                  duration: 0.5,
+                  ease: 'easeOut'
+                }
               }}
             />
 
@@ -217,6 +220,26 @@ const Phase2Montage = ({ images, categories }) => {
                 const gridColumn = (index % 6) + 1;
                 const gridRow = Math.floor(index / 6) + 1;
 
+                // Organic final rotation for each card - more pronounced
+                const organicRotateZ = (Math.sin(index) * 4) + (Math.cos(index * 1.3) * 3);
+                const organicRotateY = (Math.cos(index) * 3) + (Math.sin(index * 0.8) * 2);
+                const organicRotateX = (Math.sin(index * 0.7) * 2) + (Math.cos(index * 1.1) * 1.5);
+
+                // Organic position offsets - scattered but harmonious
+                const organicOffsetX = (Math.sin(index * 1.7) * 25) + (Math.cos(index * 0.9) * 15);
+                const organicOffsetY = (Math.cos(index * 1.3) * 20) + (Math.sin(index * 1.1) * 12);
+
+                // Calculate center position for portal suction
+                // Grid has 6 columns, approximate cell width
+                const gridCellWidth = window.innerWidth / 6;
+                const gridCellHeight = 200; // approximate
+                const currentX = (gridColumn - 1) * gridCellWidth + organicOffsetX;
+                const currentY = (gridRow - 1) * gridCellHeight + organicOffsetY;
+                const centerX = window.innerWidth / 2;
+                const centerY = window.innerHeight / 2;
+                const exitX = centerX - currentX;
+                const exitY = centerY - currentY;
+
                 return (
                   // Image - starts scattered, flows from right, organizes into grid, gets sucked into portal
                   <motion.div
@@ -237,49 +260,34 @@ const Phase2Montage = ({ images, categories }) => {
                       rotateX: 30
                     }}
                     animate={{
-                      opacity: [0, 0.5, 1, 1, 1, 1],
-                      x: [
-                        scattered.x + window.innerWidth,
-                        scattered.x * 0.3,
-                        0,
-                        (Math.sin(index) * 3),
-                        (-Math.sin(index) * 3),
-                        (Math.sin(index) * 3)
-                      ],
-                      y: [
-                        scattered.y,
-                        scattered.y * 0.5,
-                        0,
-                        (Math.cos(index) * 2),
-                        (-Math.cos(index) * 2),
-                        (Math.cos(index) * 2)
-                      ],
-                      scale: [scattered.scale, 0.8, 1, 1.01, 0.99, 1],
-                      rotateZ: [scattered.rotate, scattered.rotate * 0.5, 0, 1, -1, 0],
-                      rotateY: [90, 45, 0, 2, -2, 0],
-                      rotateX: [30, 15, 0, 1, -1, 0]
+                      opacity: 1,
+                      x: organicOffsetX,
+                      y: organicOffsetY,
+                      scale: 1,
+                      rotateZ: organicRotateZ,
+                      rotateY: organicRotateY,
+                      rotateX: organicRotateX
                     }}
                     exit={{
-                      x: window.innerWidth / 2,
-                      y: window.innerHeight / 2,
+                      x: exitX,
+                      y: exitY,
                       scale: 0,
                       opacity: 0,
-                      rotateZ: 360 * (2 + (index * 0.1)),
+                      rotateZ: organicRotateZ + (720 + (index * 45)), // 2+ spins with variation
                       rotateY: 180,
+                      rotateX: 90,
                       filter: 'blur(10px)'
                     }}
                     whileHover={{
                       scale: 1.08,
-                      rotateZ: 2,
+                      rotateZ: organicRotateZ + 2,
                       zIndex: 20,
                       transition: { duration: 0.3 }
                     }}
                     transition={{
                       delay: index * 0.08,
-                      duration: 7,
-                      ease: 'easeInOut',
-                      times: [0, 0.15, 0.3, 0.5, 0.7, 1],
-                      repeat: 0,
+                      duration: 1.5,
+                      ease: [0.25, 0.46, 0.45, 0.94],
                       exit: {
                         delay: 0.8 + (index * 0.015),
                         duration: 2.5,
@@ -342,13 +350,21 @@ const Phase2Montage = ({ images, categories }) => {
               })}
 
               {/* Keyword Tags - Splash of intelligence AFTER images fill */}
-              {keywordData.map((keywordInfo, keyIndex) => {
-                // Create more keywords by duplicating the array
-                if (keyIndex >= 18) return null; // Limit to 18 keywords
+              {[...keywordData, ...keywordData, ...keywordData].map((keywordInfo, keyIndex) => {
+                // Create more keywords by repeating the array 3 times
+                if (keyIndex >= 35) return null; // Limit to 35 keywords
 
                 // Random organic positioning
                 const randomX = 10 + Math.random() * 80; // 10-90% across width
                 const randomY = 10 + Math.random() * 80; // 10-90% across height
+
+                // Calculate center position for portal suction
+                const keywordCurrentX = (randomX / 100) * window.innerWidth;
+                const keywordCurrentY = (randomY / 100) * window.innerHeight;
+                const keywordCenterX = window.innerWidth / 2;
+                const keywordCenterY = window.innerHeight / 2;
+                const keywordExitX = keywordCenterX - keywordCurrentX;
+                const keywordExitY = keywordCenterY - keywordCurrentY;
 
                 return (
                   <motion.div
@@ -365,11 +381,11 @@ const Phase2Montage = ({ images, categories }) => {
                       rotateZ: [(Math.random() - 0.5) * 180, 0, (Math.random() - 0.5) * 5]
                     }}
                     exit={{
-                      x: window.innerWidth / 2,
-                      y: window.innerHeight / 2,
+                      x: keywordExitX,
+                      y: keywordExitY,
                       scale: 0,
                       opacity: 0,
-                      rotateZ: 360 * 3
+                      rotateZ: 360 * 4 + (keyIndex * 30) // 4+ spins with variation
                     }}
                     transition={{
                       duration: 0.5,
@@ -387,13 +403,13 @@ const Phase2Montage = ({ images, categories }) => {
                       left: `${randomX}%`,
                       top: `${randomY}%`,
                       transform: 'translate(-50%, -50%)',
-                      background: `linear-gradient(135deg, ${keywordInfo.colors[0]}40, ${keywordInfo.colors[1]}40)`,
-                      borderColor: `${keywordInfo.colors[0]}80`,
-                      boxShadow: `0 8px 32px ${keywordInfo.colors[0]}60, 0 0 40px ${keywordInfo.colors[1]}40`,
-                      border: `2px solid ${keywordInfo.colors[0]}80`,
+                      background: `linear-gradient(135deg, ${keywordInfo.colors[0]}90, ${keywordInfo.colors[1]}75)`,
+                      borderColor: `${keywordInfo.colors[0]}`,
+                      boxShadow: `0 8px 32px ${keywordInfo.colors[0]}95, 0 0 60px ${keywordInfo.colors[1]}70, 0 4px 16px rgba(0, 0, 0, 0.5)`,
+                      border: `2px solid ${keywordInfo.colors[0]}`,
                       borderRadius: '2rem',
                       padding: '0.75rem 1.5rem',
-                      backdropFilter: 'blur(10px)',
+                      backdropFilter: 'blur(20px)',
                       zIndex: 10,
                       pointerEvents: 'none'
                     }}
@@ -401,9 +417,9 @@ const Phase2Montage = ({ images, categories }) => {
                     <motion.span
                       animate={{
                         textShadow: [
-                          `0 0 20px ${keywordInfo.colors[0]}`,
-                          `0 0 40px ${keywordInfo.colors[1]}`,
-                          `0 0 20px ${keywordInfo.colors[0]}`
+                          `0 0 25px ${keywordInfo.colors[0]}, 0 2px 8px rgba(0, 0, 0, 0.8)`,
+                          `0 0 45px ${keywordInfo.colors[1]}, 0 2px 8px rgba(0, 0, 0, 0.8)`,
+                          `0 0 25px ${keywordInfo.colors[0]}, 0 2px 8px rgba(0, 0, 0, 0.8)`
                         ]
                       }}
                       transition={{
@@ -413,8 +429,9 @@ const Phase2Montage = ({ images, categories }) => {
                       style={{
                         color: 'white',
                         fontSize: '1rem',
-                        fontWeight: 600,
-                        textTransform: 'lowercase'
+                        fontWeight: 700,
+                        textTransform: 'lowercase',
+                        letterSpacing: '0.02em'
                       }}
                     >
                       {keywordInfo.text}
