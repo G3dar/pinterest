@@ -3,19 +3,16 @@ import { motion, AnimatePresence } from 'framer-motion';
 import './Phase3Analysis.css';
 
 const Phase3Analysis = ({ colorPalette, keywords, categories }) => {
-  const [subPhase, setSubPhase] = useState('colors'); // colors, constellations, keywords, categories
+  const [subPhase, setSubPhase] = useState('colors'); // colors, constellations, categories
 
   useEffect(() => {
     // Switch to constellations after 3 seconds
     const constellationsTimer = setTimeout(() => setSubPhase('constellations'), 3000);
-    // Switch to keywords after 9 seconds
-    const keywordsTimer = setTimeout(() => setSubPhase('keywords'), 9000);
-    // Switch to categories after 12 seconds
+    // Switch to categories after 12 seconds (keywords shown as overlay during constellation)
     const categoriesTimer = setTimeout(() => setSubPhase('categories'), 12000);
 
     return () => {
       clearTimeout(constellationsTimer);
-      clearTimeout(keywordsTimer);
       clearTimeout(categoriesTimer);
     };
   }, []);
@@ -102,8 +99,15 @@ const Phase3Analysis = ({ colorPalette, keywords, categories }) => {
             <motion.h2
               className="subphase-title constellation-title"
               initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
+              animate={{
+                opacity: [0, 1, 1, 0],
+                y: [20, 0, 0, -20]
+              }}
+              transition={{
+                duration: 3,
+                times: [0, 0.2, 0.7, 1],
+                ease: 'easeInOut'
+              }}
             >
               Your Year Unfolding
             </motion.h2>
@@ -111,8 +115,15 @@ const Phase3Analysis = ({ colorPalette, keywords, categories }) => {
             <motion.p
               className="constellation-subtitle"
               initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.3, duration: 0.6 }}
+              animate={{
+                opacity: [0, 1, 1, 0]
+              }}
+              transition={{
+                delay: 0.3,
+                duration: 2.7,
+                times: [0, 0.2, 0.7, 1],
+                ease: 'easeInOut'
+              }}
             >
               A creative journey through the seasons
             </motion.p>
@@ -131,7 +142,7 @@ const Phase3Analysis = ({ colorPalette, keywords, categories }) => {
               {[
                 {
                   season: 'Spring',
-                  images: categories[0]?.images.slice(0, 20) || [],
+                  images: categories[0]?.images.slice(0, 15) || [],
                   position: { x: 15, y: 15 },
                   color: '#90EE90',
                   particles: '🌸',
@@ -139,7 +150,7 @@ const Phase3Analysis = ({ colorPalette, keywords, categories }) => {
                 },
                 {
                   season: 'Summer',
-                  images: categories[1]?.images.slice(0, 20) || [],
+                  images: categories[1]?.images.slice(0, 15) || [],
                   position: { x: 85, y: 15 },
                   color: '#FFD700',
                   particles: '☀️',
@@ -147,7 +158,7 @@ const Phase3Analysis = ({ colorPalette, keywords, categories }) => {
                 },
                 {
                   season: 'Fall',
-                  images: categories[2]?.images.slice(0, 20) || [],
+                  images: categories[2]?.images.slice(0, 15) || [],
                   position: { x: 15, y: 85 },
                   color: '#FF8C42',
                   particles: '🍂',
@@ -155,7 +166,7 @@ const Phase3Analysis = ({ colorPalette, keywords, categories }) => {
                 },
                 {
                   season: 'Winter',
-                  images: categories[3]?.images.slice(0, 20) || [],
+                  images: categories[3]?.images.slice(0, 15) || [],
                   position: { x: 85, y: 85 },
                   color: '#87CEEB',
                   particles: '❄️',
@@ -311,7 +322,7 @@ const Phase3Analysis = ({ colorPalette, keywords, categories }) => {
                   { position: { x: 85, y: 85 }, color: '#87CEEB', groupIndex: 3 }  // Winter
                 ].map((season) => {
                   const nodes = [];
-                  const numNodes = 20;
+                  const numNodes = 15;
                   const radius = 22;
 
                   // Calculate all node positions for this season
@@ -365,8 +376,8 @@ const Phase3Analysis = ({ colorPalette, keywords, categories }) => {
                   ];
 
                   positions.forEach(pos => {
-                    for (let i = 0; i < 20; i++) {
-                      const angle = (i * (360 / 20)) * (Math.PI / 180);
+                    for (let i = 0; i < 15; i++) {
+                      const angle = (i * (360 / 15)) * (Math.PI / 180);
                       const x = pos.x + Math.cos(angle) * 22;
                       const y = pos.y + Math.sin(angle) * 22;
                       pos.nodes.push({ x, y });
@@ -377,8 +388,8 @@ const Phase3Analysis = ({ colorPalette, keywords, categories }) => {
                     <>
                       {/* Spring (rightmost node) to Summer (leftmost node) */}
                       <motion.line
-                        x1={springNodes[5].x} y1={springNodes[5].y}
-                        x2={summerNodes[15].x} y2={summerNodes[15].y}
+                        x1={springNodes[3].x} y1={springNodes[3].y}
+                        x2={summerNodes[11].x} y2={summerNodes[11].y}
                         stroke="rgba(255, 255, 255, 0.2)"
                         strokeWidth="0.3"
                         strokeDasharray="4 3"
@@ -390,7 +401,7 @@ const Phase3Analysis = ({ colorPalette, keywords, categories }) => {
 
                       {/* Summer (bottommost node) to Winter (topmost node) */}
                       <motion.line
-                        x1={summerNodes[10].x} y1={summerNodes[10].y}
+                        x1={summerNodes[7].x} y1={summerNodes[7].y}
                         x2={winterNodes[0].x} y2={winterNodes[0].y}
                         stroke="rgba(255, 255, 255, 0.2)"
                         strokeWidth="0.3"
@@ -403,8 +414,8 @@ const Phase3Analysis = ({ colorPalette, keywords, categories }) => {
 
                       {/* Fall (rightmost node) to Winter (leftmost node) */}
                       <motion.line
-                        x1={fallNodes[5].x} y1={fallNodes[5].y}
-                        x2={winterNodes[15].x} y2={winterNodes[15].y}
+                        x1={fallNodes[3].x} y1={fallNodes[3].y}
+                        x2={winterNodes[11].x} y2={winterNodes[11].y}
                         stroke="rgba(255, 255, 255, 0.2)"
                         strokeWidth="0.3"
                         strokeDasharray="4 3"
@@ -416,7 +427,7 @@ const Phase3Analysis = ({ colorPalette, keywords, categories }) => {
 
                       {/* Spring (bottommost node) to Fall (topmost node) */}
                       <motion.line
-                        x1={springNodes[10].x} y1={springNodes[10].y}
+                        x1={springNodes[7].x} y1={springNodes[7].y}
                         x2={fallNodes[0].x} y2={fallNodes[0].y}
                         stroke="rgba(255, 255, 255, 0.2)"
                         strokeWidth="0.3"
@@ -430,49 +441,6 @@ const Phase3Analysis = ({ colorPalette, keywords, categories }) => {
                   );
                 })()}
               </svg>
-            </div>
-          </motion.div>
-        )}
-
-        {subPhase === 'keywords' && (
-          <motion.div
-            key="keywords"
-            className="keywords-subphase"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.5 }}
-          >
-            <motion.h2
-              className="subphase-title"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5 }}
-            >
-              Your Visual Language
-            </motion.h2>
-
-            <div className="keywords-container">
-              {keywords.map((keyword, index) => {
-                const fontSize = 1 + (keyword.weight * 2);
-                return (
-                  <motion.div
-                    key={index}
-                    className="keyword-pill"
-                    style={{ fontSize: `${fontSize}rem` }}
-                    initial={{ opacity: 0, scale: 0 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    transition={{
-                      delay: index * 0.08,
-                      duration: 0.4,
-                      type: 'spring',
-                      stiffness: 150
-                    }}
-                  >
-                    {keyword.text}
-                  </motion.div>
-                );
-              })}
             </div>
           </motion.div>
         )}
@@ -570,6 +538,90 @@ const Phase3Analysis = ({ colorPalette, keywords, categories }) => {
           </motion.div>
         )}
       </AnimatePresence>
+
+      {/*
+        CENTERING FIX: Keywords overlay positioned OUTSIDE AnimatePresence
+
+        WHY THIS FIX WORKS:
+        1. AnimatePresence and its children create transform contexts
+        2. When a parent has a transform, position: fixed becomes relative to that parent
+        3. By placing this OUTSIDE AnimatePresence, position: fixed works correctly
+        4. The overlay now positions relative to the viewport, not a transformed parent
+
+        RESULT: Perfect centering maintained regardless of constellation animations
+      */}
+      {subPhase === 'constellations' && (
+        <motion.div
+          className="keywords-overlay-centered"
+          initial={{ opacity: 0, scale: 0.9, x: '-50%', y: '-50%' }}
+          animate={{ opacity: 1, scale: 1, x: '-50%', y: '-50%' }}
+          exit={{ opacity: 0, scale: 0.9, x: '-50%', y: '-50%' }}
+          transition={{ delay: 3.2, duration: 0.8, ease: 'easeOut' }}
+          style={{
+            position: 'fixed',
+            top: '50vh',
+            left: '50vw',
+            zIndex: 20,
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+            justifyContent: 'center',
+            width: 'auto',
+            maxWidth: '1100px',
+            padding: '2rem',
+            background: 'rgba(0, 0, 0, 0.4)',
+            borderRadius: '1rem',
+            pointerEvents: 'auto'
+          }}
+        >
+          <motion.h2
+            className="subphase-title"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 3.4, duration: 0.6 }}
+            style={{
+              fontSize: '2.5rem',
+              fontWeight: 800,
+              color: 'white',
+              marginBottom: '2rem',
+              textShadow: '0 4px 20px rgba(0, 0, 0, 0.8)',
+              textAlign: 'center',
+              whiteSpace: 'nowrap'
+            }}
+          >
+            Your Visual Language
+          </motion.h2>
+
+          <div className="keywords-container" style={{
+            display: 'flex',
+            flexWrap: 'wrap',
+            gap: '1rem',
+            justifyContent: 'center',
+            alignItems: 'center'
+          }}>
+            {keywords.map((keyword, index) => {
+              const fontSize = 1 + (keyword.weight * 2);
+              return (
+                <motion.div
+                  key={index}
+                  className="keyword-pill"
+                  style={{ fontSize: `${fontSize}rem` }}
+                  initial={{ opacity: 0, scale: 0 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{
+                    delay: 3.6 + index * 0.08,
+                    duration: 0.4,
+                    type: 'spring',
+                    stiffness: 150
+                  }}
+                >
+                  {keyword.text}
+                </motion.div>
+              );
+            })}
+          </div>
+        </motion.div>
+      )}
     </div>
   );
 };
