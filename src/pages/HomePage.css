@@ -261,8 +261,9 @@
   padding: 16px 8px;
   display: flex;
   gap: 16px;
-  max-width: calc(100% - 80px);
+  width: calc(100% - 80px);
   justify-content: center;
+  box-sizing: border-box;
 }
 
 .masonry-column {
@@ -271,6 +272,7 @@
   gap: 16px;
   flex: 1;
   max-width: 300px;
+  min-width: 0;
 }
 
 .masonry-item {
@@ -290,35 +292,60 @@
   transition: transform 0.3s ease;
 }
 
-/* Variable heights for authentic Pinterest portrait feel */
-.masonry-item:nth-child(6n+1) img {
+/* Variable heights for authentic Pinterest portrait feel - more variety for staggered layout */
+.masonry-item:nth-child(11n+1) img {
   aspect-ratio: 2/3;
-  min-height: 300px;
+  min-height: 320px;
 }
 
-.masonry-item:nth-child(6n+2) img {
+.masonry-item:nth-child(11n+2) img {
   aspect-ratio: 3/4;
-  min-height: 400px;
+  min-height: 450px;
 }
 
-.masonry-item:nth-child(6n+3) img {
+.masonry-item:nth-child(11n+3) img {
   aspect-ratio: 9/16;
-  min-height: 350px;
+  min-height: 380px;
 }
 
-.masonry-item:nth-child(6n+4) img {
+.masonry-item:nth-child(11n+4) img {
   aspect-ratio: 2/3;
   min-height: 280px;
 }
 
-.masonry-item:nth-child(6n+5) img {
+.masonry-item:nth-child(11n+5) img {
   aspect-ratio: 3/5;
+  min-height: 500px;
+}
+
+.masonry-item:nth-child(11n+6) img {
+  aspect-ratio: 4/5;
+  min-height: 340px;
+}
+
+.masonry-item:nth-child(11n+7) img {
+  aspect-ratio: 9/16;
   min-height: 420px;
 }
 
-.masonry-item:nth-child(6n) img {
+.masonry-item:nth-child(11n+8) img {
+  aspect-ratio: 2/3;
+  min-height: 360px;
+}
+
+.masonry-item:nth-child(11n+9) img {
+  aspect-ratio: 3/4;
+  min-height: 300px;
+}
+
+.masonry-item:nth-child(11n+10) img {
+  aspect-ratio: 3/5;
+  min-height: 440px;
+}
+
+.masonry-item:nth-child(11n) img {
   aspect-ratio: 4/5;
-  min-height: 320px;
+  min-height: 390px;
 }
 
 .masonry-item:hover img {
@@ -366,6 +393,19 @@
   .masonry-column {
     max-width: 250px;
   }
+
+  /* Scale down image heights for tablet */
+  .masonry-item:nth-child(11n+1) img { min-height: 280px; }
+  .masonry-item:nth-child(11n+2) img { min-height: 380px; }
+  .masonry-item:nth-child(11n+3) img { min-height: 320px; }
+  .masonry-item:nth-child(11n+4) img { min-height: 240px; }
+  .masonry-item:nth-child(11n+5) img { min-height: 420px; }
+  .masonry-item:nth-child(11n+6) img { min-height: 300px; }
+  .masonry-item:nth-child(11n+7) img { min-height: 360px; }
+  .masonry-item:nth-child(11n+8) img { min-height: 310px; }
+  .masonry-item:nth-child(11n+9) img { min-height: 260px; }
+  .masonry-item:nth-child(11n+10) img { min-height: 380px; }
+  .masonry-item:nth-child(11n) img { min-height: 340px; }
 }
 
 @media (max-width: 900px) {
@@ -387,8 +427,21 @@
 
   .masonry-container {
     margin-left: 0;
-    max-width: 100%;
+    width: 100%;
   }
+
+  /* Scale down image heights for small tablet */
+  .masonry-item:nth-child(11n+1) img { min-height: 240px; }
+  .masonry-item:nth-child(11n+2) img { min-height: 320px; }
+  .masonry-item:nth-child(11n+3) img { min-height: 270px; }
+  .masonry-item:nth-child(11n+4) img { min-height: 200px; }
+  .masonry-item:nth-child(11n+5) img { min-height: 360px; }
+  .masonry-item:nth-child(11n+6) img { min-height: 260px; }
+  .masonry-item:nth-child(11n+7) img { min-height: 300px; }
+  .masonry-item:nth-child(11n+8) img { min-height: 270px; }
+  .masonry-item:nth-child(11n+9) img { min-height: 220px; }
+  .masonry-item:nth-child(11n+10) img { min-height: 320px; }
+  .masonry-item:nth-child(11n) img { min-height: 290px; }
 }
 
 @media (max-width: 600px) {
@@ -404,4 +457,17 @@
   .search-container {
     display: none;
   }
+
+  /* Scale down image heights for mobile */
+  .masonry-item:nth-child(11n+1) img { min-height: 200px; }
+  .masonry-item:nth-child(11n+2) img { min-height: 280px; }
+  .masonry-item:nth-child(11n+3) img { min-height: 230px; }
+  .masonry-item:nth-child(11n+4) img { min-height: 180px; }
+  .masonry-item:nth-child(11n+5) img { min-height: 310px; }
+  .masonry-item:nth-child(11n+6) img { min-height: 220px; }
+  .masonry-item:nth-child(11n+7) img { min-height: 260px; }
+  .masonry-item:nth-child(11n+8) img { min-height: 230px; }
+  .masonry-item:nth-child(11n+9) img { min-height: 190px; }
+  .masonry-item:nth-child(11n+10) img { min-height: 280px; }
+  .masonry-item:nth-child(11n) img { min-height: 250px; }
 }

@@ -130,7 +130,7 @@ const HomePage = ({ images }) => {
                 ease: "easeInOut"
               }}
             />
-            <span className="button-text">Your PinWrap 2024</span>
+            <span className="button-text">Your PinWrap 2025</span>
           </motion.button>
 
           <div className="user-avatar">
