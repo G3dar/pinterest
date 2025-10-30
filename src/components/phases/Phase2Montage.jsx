@@ -403,10 +403,14 @@ const Phase2Montage = ({ images, categories }) => {
                       left: `${randomX}%`,
                       top: `${randomY}%`,
                       transform: 'translate(-50%, -50%)',
-                      background: `linear-gradient(135deg, ${keywordInfo.colors[0]}90, ${keywordInfo.colors[1]}75)`,
+                      background: `linear-gradient(135deg, ${keywordInfo.colors[0]}E6, ${keywordInfo.colors[1]}CC)`,
                       borderColor: `${keywordInfo.colors[0]}`,
-                      boxShadow: `0 8px 32px ${keywordInfo.colors[0]}95, 0 0 60px ${keywordInfo.colors[1]}70, 0 4px 16px rgba(0, 0, 0, 0.5)`,
-                      border: `2px solid ${keywordInfo.colors[0]}`,
+                      boxShadow: `
+                        0 8px 32px ${keywordInfo.colors[0]}CC,
+                        0 4px 16px rgba(0, 0, 0, 0.8),
+                        inset 0 1px 0 rgba(255, 255, 255, 0.3)
+                      `,
+                      border: `3px solid ${keywordInfo.colors[0]}`,
                       borderRadius: '2rem',
                       padding: '0.75rem 1.5rem',
                       backdropFilter: 'blur(20px)',
@@ -415,23 +419,13 @@ const Phase2Montage = ({ images, categories }) => {
                     }}
                   >
                     <motion.span
-                      animate={{
-                        textShadow: [
-                          `0 0 25px ${keywordInfo.colors[0]}, 0 2px 8px rgba(0, 0, 0, 0.8)`,
-                          `0 0 45px ${keywordInfo.colors[1]}, 0 2px 8px rgba(0, 0, 0, 0.8)`,
-                          `0 0 25px ${keywordInfo.colors[0]}, 0 2px 8px rgba(0, 0, 0, 0.8)`
-                        ]
-                      }}
-                      transition={{
-                        duration: 2,
-                        repeat: Infinity
-                      }}
                       style={{
                         color: 'white',
                         fontSize: '1rem',
                         fontWeight: 700,
                         textTransform: 'lowercase',
-                        letterSpacing: '0.02em'
+                        letterSpacing: '0.02em',
+                        textShadow: `0 2px 8px rgba(0, 0, 0, 0.9), 0 1px 0 rgba(0, 0, 0, 0.5)`
                       }}
                     >
                       {keywordInfo.text}
