@@ -136,6 +136,48 @@ const Phase2Montage = ({ images, categories }) => {
               }}
             />
 
+            {/* MOOD MAP - Large background text */}
+            <motion.div
+              className="mood-map-text"
+              initial={{
+                opacity: 0,
+                scale: 0.8,
+                y: 50
+              }}
+              animate={{
+                opacity: [0, 1, 1, 0.3],
+                scale: [0.8, 1.1, 1, 1],
+                y: [50, -20, 0, 0]
+              }}
+              exit={{
+                opacity: 0,
+                scale: 1.2
+              }}
+              transition={{
+                duration: 4,
+                times: [0, 0.3, 0.5, 1],
+                ease: [0.16, 1, 0.3, 1]
+              }}
+              style={{
+                position: 'absolute',
+                top: '50%',
+                left: '50%',
+                transform: 'translate(-50%, -50%)',
+                fontSize: 'clamp(8rem, 20vw, 18rem)',
+                fontWeight: 900,
+                color: 'rgba(255, 255, 255, 0.08)',
+                textTransform: 'uppercase',
+                letterSpacing: '0.1em',
+                zIndex: 2,
+                pointerEvents: 'none',
+                whiteSpace: 'nowrap',
+                textShadow: '0 0 80px rgba(193, 53, 132, 0.3)',
+                WebkitTextStroke: '2px rgba(230, 0, 35, 0.1)'
+              }}
+            >
+              MOOD MAP
+            </motion.div>
+
             {/* Self-organizing images container - stays visible during portal transition */}
             <motion.div
               key="grid"
