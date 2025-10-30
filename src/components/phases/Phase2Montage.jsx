@@ -15,8 +15,8 @@ const Phase2Montage = ({ images, categories, colorPalette }) => {
     };
   }, []);
 
-  const gridImages = images.slice(0, 35);
-  const carouselImages = [...images.slice(0, 15), ...images.slice(0, 15)];
+  const gridImages = images.slice(0, 28);
+  const carouselImages = [...images.slice(0, 12), ...images.slice(0, 12)];
 
   // Keywords with color themes
   const keywordData = [
@@ -427,8 +427,8 @@ const Phase2Montage = ({ images, categories, colorPalette }) => {
                 // Map keywords to images non-uniformly - skip some, double up on others
                 const imageMapping = [
                   0, 2, 2, 5, 7, 9, 9, 12, 14, 17, 19, 20,
-                  22, 25, 25, 28, 30, 31, 33, 34, 34, 1, 4, 16
-                ]; // Some images get 2 tags, some get none
+                  22, 25, 25, 27, 1, 4, 16, 11
+                ]; // Some images get 2 tags, some get none (adjusted for 28 images)
 
                 if (keyIndex >= imageMapping.length) return null;
 

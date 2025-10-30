@@ -142,7 +142,7 @@ const Phase3Analysis = ({ colorPalette, keywords, categories }) => {
               {[
                 {
                   season: 'Spring',
-                  images: categories[0]?.images.slice(0, 15) || [],
+                  images: categories[0]?.images.slice(0, 12) || [],
                   position: { x: 15, y: 15 },
                   color: '#90EE90',
                   particles: '🌸',
@@ -150,7 +150,7 @@ const Phase3Analysis = ({ colorPalette, keywords, categories }) => {
                 },
                 {
                   season: 'Summer',
-                  images: categories[1]?.images.slice(0, 15) || [],
+                  images: categories[1]?.images.slice(0, 12) || [],
                   position: { x: 85, y: 15 },
                   color: '#FFD700',
                   particles: '☀️',
@@ -158,7 +158,7 @@ const Phase3Analysis = ({ colorPalette, keywords, categories }) => {
                 },
                 {
                   season: 'Fall',
-                  images: categories[2]?.images.slice(0, 15) || [],
+                  images: categories[2]?.images.slice(0, 12) || [],
                   position: { x: 15, y: 85 },
                   color: '#FF8C42',
                   particles: '🍂',
@@ -166,7 +166,7 @@ const Phase3Analysis = ({ colorPalette, keywords, categories }) => {
                 },
                 {
                   season: 'Winter',
-                  images: categories[3]?.images.slice(0, 15) || [],
+                  images: categories[3]?.images.slice(0, 12) || [],
                   position: { x: 85, y: 85 },
                   color: '#87CEEB',
                   particles: '❄️',
@@ -187,7 +187,7 @@ const Phase3Analysis = ({ colorPalette, keywords, categories }) => {
                   />
 
                   {/* Seasonal particles */}
-                  {Array.from({ length: 15 }).map((_, pIndex) => (
+                  {Array.from({ length: 12 }).map((_, pIndex) => (
                     <motion.div
                       key={`particle-${pIndex}`}
                       className="seasonal-particle"
@@ -322,7 +322,7 @@ const Phase3Analysis = ({ colorPalette, keywords, categories }) => {
                   { position: { x: 85, y: 85 }, color: '#87CEEB', groupIndex: 3 }  // Winter
                 ].map((season) => {
                   const nodes = [];
-                  const numNodes = 15;
+                  const numNodes = 12;
                   const radius = 22;
 
                   // Calculate all node positions for this season
@@ -376,8 +376,8 @@ const Phase3Analysis = ({ colorPalette, keywords, categories }) => {
                   ];
 
                   positions.forEach(pos => {
-                    for (let i = 0; i < 15; i++) {
-                      const angle = (i * (360 / 15)) * (Math.PI / 180);
+                    for (let i = 0; i < 12; i++) {
+                      const angle = (i * (360 / 12)) * (Math.PI / 180);
                       const x = pos.x + Math.cos(angle) * 22;
                       const y = pos.y + Math.sin(angle) * 22;
                       pos.nodes.push({ x, y });
@@ -389,7 +389,7 @@ const Phase3Analysis = ({ colorPalette, keywords, categories }) => {
                       {/* Spring (rightmost node) to Summer (leftmost node) */}
                       <motion.line
                         x1={springNodes[3].x} y1={springNodes[3].y}
-                        x2={summerNodes[11].x} y2={summerNodes[11].y}
+                        x2={summerNodes[9].x} y2={summerNodes[9].y}
                         stroke="rgba(255, 255, 255, 0.2)"
                         strokeWidth="0.3"
                         strokeDasharray="4 3"
@@ -401,7 +401,7 @@ const Phase3Analysis = ({ colorPalette, keywords, categories }) => {
 
                       {/* Summer (bottommost node) to Winter (topmost node) */}
                       <motion.line
-                        x1={summerNodes[7].x} y1={summerNodes[7].y}
+                        x1={summerNodes[6].x} y1={summerNodes[6].y}
                         x2={winterNodes[0].x} y2={winterNodes[0].y}
                         stroke="rgba(255, 255, 255, 0.2)"
                         strokeWidth="0.3"
@@ -415,7 +415,7 @@ const Phase3Analysis = ({ colorPalette, keywords, categories }) => {
                       {/* Fall (rightmost node) to Winter (leftmost node) */}
                       <motion.line
                         x1={fallNodes[3].x} y1={fallNodes[3].y}
-                        x2={winterNodes[11].x} y2={winterNodes[11].y}
+                        x2={winterNodes[9].x} y2={winterNodes[9].y}
                         stroke="rgba(255, 255, 255, 0.2)"
                         strokeWidth="0.3"
                         strokeDasharray="4 3"
@@ -427,7 +427,7 @@ const Phase3Analysis = ({ colorPalette, keywords, categories }) => {
 
                       {/* Spring (bottommost node) to Fall (topmost node) */}
                       <motion.line
-                        x1={springNodes[7].x} y1={springNodes[7].y}
+                        x1={springNodes[6].x} y1={springNodes[6].y}
                         x2={fallNodes[0].x} y2={fallNodes[0].y}
                         stroke="rgba(255, 255, 255, 0.2)"
                         strokeWidth="0.3"
