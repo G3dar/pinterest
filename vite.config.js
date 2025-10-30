@@ -10,11 +10,13 @@ export default defineConfig({
     strictPort: false,
     hmr: {
       clientPort: 443,
-    }
+    },
+    allowedHosts: ['pinwrap.com', 'www.pinwrap.com', 'pinterest-dczz.onrender.com', '.onrender.com']
   },
   preview: {
     host: true,
     port: 10000,
-    strictPort: false
+    strictPort: false,
+    allowedHosts: ['pinwrap.com', 'www.pinwrap.com', 'pinterest-dczz.onrender.com', '.onrender.com']
   }
 })
