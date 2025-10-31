@@ -41,8 +41,16 @@ const WrapTransition = ({ isActive, onComplete }) => {
           <motion.div
             className="wrap-ribbon wrap-ribbon-vertical"
             initial={{ scaleY: 0, opacity: 0 }}
-            animate={{ scaleY: 1, opacity: 1 }}
-            transition={{ delay: 0.5, duration: 0.3, ease: 'easeOut' }}
+            animate={{
+              scaleY: [0, 1, 1, 0],
+              opacity: [0, 1, 1, 0]
+            }}
+            transition={{
+              delay: 0.5,
+              duration: 0.8,
+              times: [0, 0.3, 0.6, 1],
+              ease: 'easeInOut'
+            }}
           >
             <div className="ribbon-shine"></div>
           </motion.div>
@@ -51,8 +59,16 @@ const WrapTransition = ({ isActive, onComplete }) => {
           <motion.div
             className="wrap-ribbon wrap-ribbon-horizontal"
             initial={{ scaleX: 0, opacity: 0 }}
-            animate={{ scaleX: 1, opacity: 1 }}
-            transition={{ delay: 0.5, duration: 0.3, ease: 'easeOut' }}
+            animate={{
+              scaleX: [0, 1, 1, 0],
+              opacity: [0, 1, 1, 0]
+            }}
+            transition={{
+              delay: 0.5,
+              duration: 0.8,
+              times: [0, 0.3, 0.6, 1],
+              ease: 'easeInOut'
+            }}
           >
             <div className="ribbon-shine ribbon-shine-horizontal"></div>
           </motion.div>
