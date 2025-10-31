@@ -250,25 +250,17 @@
 
 .keyword-pill {
   padding: 0.75rem 1.5rem;
-  background: rgba(230, 0, 35, 0.85);
-  border: 2px solid rgba(255, 255, 255, 0.2);
+  background: rgba(230, 0, 35, 0.1);
+  border: 2px solid rgba(230, 0, 35, 0.3);
   border-radius: 2rem;
   color: white;
   text-transform: lowercase;
   white-space: nowrap;
-  font-weight: 600;
-  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
-  box-shadow:
-    0 4px 12px rgba(230, 0, 35, 0.4),
-    0 0 0 1px rgba(255, 255, 255, 0.1);
-  transition: transform 0.3s, box-shadow 0.3s;
+  transition: transform 0.3s;
 }
 
 .keyword-pill:hover {
   transform: scale(1.05);
-  box-shadow:
-    0 6px 20px rgba(230, 0, 35, 0.6),
-    0 0 0 2px rgba(255, 255, 255, 0.2);
 }
 
 /* Categories Sub-phase */

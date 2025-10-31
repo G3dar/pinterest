@@ -272,13 +272,16 @@
   left: 1.5rem;
   right: 1.5rem;
   padding: 0.75rem 1rem;
-  background: rgba(0, 0, 0, 0.7);
-  backdrop-filter: blur(10px);
+  background: rgba(0, 0, 0, 0.95);
+  backdrop-filter: blur(15px);
   border-radius: 0.75rem;
   color: white;
   font-size: 0.875rem;
-  font-weight: 600;
+  font-weight: 700;
   text-align: center;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.8);
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
 }
 
 /* Enhanced Carousel View */
@@ -350,15 +353,17 @@
   left: 2rem;
   right: 2rem;
   padding: 1rem 1.5rem;
-  background: rgba(0, 0, 0, 0.8);
-  backdrop-filter: blur(20px);
+  background: rgba(0, 0, 0, 0.95);
+  backdrop-filter: blur(25px);
   border-radius: 1rem;
   color: white;
   font-size: 1rem;
-  font-weight: 700;
+  font-weight: 800;
   text-align: center;
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  border: 2px solid rgba(255, 255, 255, 0.35);
   z-index: 3;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.9);
+  text-shadow: 0 2px 6px rgba(0, 0, 0, 0.9);
 }
 
 /* Clusters View */
