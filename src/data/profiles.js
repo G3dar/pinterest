@@ -94,7 +94,7 @@ export const profiles = {
     categories: [
       { key: 'retro-space-lounge', weight: 0.29 },
       { key: 'steampunk-nature', weight: 0.27 },
-      { key: 'animated-characters', weight: 0.23 },
+      { key: 'characters-animated', weight: 0.23 },
       { key: 'home-decor', weight: 0.21 }
     ],
 
@@ -129,8 +129,8 @@ export const profiles = {
 
     categories: [
       { key: 'fashion-style', weight: 0.28 },
-      { key: 'travel-places', weight: 0.26 },
-      { key: 'food-drink', weight: 0.24 },
+      { key: 'nature-travel', weight: 0.26 },
+      { key: 'food-lifestyle', weight: 0.24 },
       { key: 'futuristic-tech', weight: 0.22 }
     ],
 

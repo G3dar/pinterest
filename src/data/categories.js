@@ -1,13 +1,13 @@
 // All 16 Pinterest categories with metadata
 export const allCategories = {
-  // Original 8 categories
+  // Original 8 categories (matching existing folder names)
   'art-design': {
     name: 'Art & Design',
     colors: ['#E8D5C4', '#C4A57B', '#8B7355'],
     keywords: ['minimalist', 'geometric', 'abstract', 'modern'],
     mood: 'sophisticated'
   },
-  'animated-characters': {
+  'characters-animated': {
     name: 'Animated Characters',
     colors: ['#FFB6C1', '#87CEEB', '#98D8C8'],
     keywords: ['playful', 'whimsical', 'colorful', 'imaginative'],
@@ -25,8 +25,8 @@ export const allCategories = {
     keywords: ['elegant', 'chic', 'sophisticated', 'trendy'],
     mood: 'confident'
   },
-  'food-drink': {
-    name: 'Food & Drink',
+  'food-lifestyle': {
+    name: 'Food & Lifestyle',
     colors: ['#F4A460', '#DEB887', '#D2691E'],
     keywords: ['cozy', 'warm', 'inviting', 'organic'],
     mood: 'comforting'
@@ -43,8 +43,8 @@ export const allCategories = {
     keywords: ['serene', 'minimal', 'cozy', 'intentional'],
     mood: 'peaceful'
   },
-  'travel-places': {
-    name: 'Travel & Places',
+  'nature-travel': {
+    name: 'Nature & Travel',
     colors: ['#228B22', '#87CEEB', '#8B4513'],
     keywords: ['natural', 'adventurous', 'scenic', 'wanderlust'],
     mood: 'explorative'
