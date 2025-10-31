@@ -2,12 +2,12 @@
 // Now uses profile system to cycle through 4 different personas
 
 import { allCategories, getCategoryImages } from './categories';
-import { getNextProfile } from './profiles';
+import { getCurrentProfile } from './profiles';
 
 // Generate wrapped data based on current profile
 export const generateWrappedData = () => {
-  // Get the next profile in the cycle
-  const profile = getNextProfile();
+  // Get the CURRENT profile (don't advance the cycle)
+  const profile = getCurrentProfile();
 
   // Generate images for this profile's categories
   const allImages = [];
