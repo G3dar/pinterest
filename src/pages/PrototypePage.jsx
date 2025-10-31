@@ -18,7 +18,7 @@ const PrototypePage = () => {
   const PHASE_TIMINGS = {
     0: 0,      // Loading (variable)
     1: 5000,   // Intro (5s)
-    2: 18000,  // Montage (18s) - extended by 3s to delay Phase 3 start
+    2: 20000,  // Montage (20s) - extended to give more time for category images
     3: 24000,  // Analysis (24s) - color palette + constellations + categories
     4: 11000,  // Identity (11s)
     5: Infinity // Share (user controlled)
