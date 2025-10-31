@@ -4,14 +4,18 @@ import './Phase2Montage.css';
 
 const Phase2Montage = ({ images, categories, colorPalette }) => {
   const [subPhase, setSubPhase] = useState('grid');
+  const [portalSuction, setPortalSuction] = useState(false);
 
   useEffect(() => {
     const carouselTimer = setTimeout(() => setSubPhase('carousel'), 8000);
     const clustersTimer = setTimeout(() => setSubPhase('clusters'), 13000);
+    // Start portal suction 1 second before phase ends (at 19 seconds)
+    const portalTimer = setTimeout(() => setPortalSuction(true), 19000);
 
     return () => {
       clearTimeout(carouselTimer);
       clearTimeout(clustersTimer);
+      clearTimeout(portalTimer);
     };
   }, []);
 
@@ -649,13 +653,34 @@ const Phase2Montage = ({ images, categories, colorPalette }) => {
                   <motion.div
                     className="category-label-enhanced"
                     initial={{ opacity: 0, y: 30, scale: 0.8 }}
-                    animate={{ opacity: 1, y: 0, scale: 1 }}
-                    transition={{
-                      delay: Math.min(index * 0.08 + 0.4, 2),
-                      duration: 0.6,
-                      type: 'spring',
-                      stiffness: 150
-                    }}
+                    animate={
+                      portalSuction
+                        ? {
+                            opacity: 0,
+                            scale: 0,
+                            x: '50vw',
+                            y: '50vh'
+                          }
+                        : {
+                            opacity: 1,
+                            y: 0,
+                            scale: 1
+                          }
+                    }
+                    transition={
+                      portalSuction
+                        ? {
+                            duration: 0.6,
+                            ease: 'easeIn',
+                            delay: index * 0.02
+                          }
+                        : {
+                            delay: Math.min(index * 0.08 + 0.4, 2),
+                            duration: 0.6,
+                            type: 'spring',
+                            stiffness: 150
+                          }
+                    }
                   >
                     <motion.span
                       animate={{
