@@ -785,10 +785,10 @@ const Phase2Montage = ({ images, categories, colorPalette }) => {
                         z: -100
                       }}
                       animate={{
-                        scale: 1,
-                        rotate: 0,
-                        opacity: 1,
-                        z: 0
+                        scale: [0, 1, 1, 0.8],
+                        rotate: [- 20, 0, 0, -10],
+                        opacity: [0, 1, 1, 0],
+                        z: [-100, 0, 0, -50]
                       }}
                       whileHover={{
                         scale: 1.1,
@@ -798,10 +798,9 @@ const Phase2Montage = ({ images, categories, colorPalette }) => {
                       }}
                       transition={{
                         delay: catIndex * 0.15 + imgIndex * 0.08 + 0.3,
-                        duration: 0.5,
-                        type: 'spring',
-                        stiffness: 180,
-                        damping: 12
+                        duration: 4.5,
+                        times: [0, 0.15, 0.75, 1],
+                        ease: "easeInOut"
                       }}
                     >
                       <motion.div
