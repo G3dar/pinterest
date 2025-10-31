@@ -566,4 +566,8 @@
     height: 80px;
     margin: -40px 0 0 -40px;
   }
+
+  .cluster-title {
+    font-size: 1.25rem;
+  }
 }

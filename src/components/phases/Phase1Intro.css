@@ -73,4 +73,8 @@
   .sparkle {
     display: none;
   }
+
+  .dot-pattern {
+    background-size: 35px 35px;
+  }
 }

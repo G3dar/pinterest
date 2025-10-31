@@ -624,6 +624,14 @@
 }
 
 @media (max-width: 480px) {
+  .hero-section {
+    padding: 2rem 1rem;
+  }
+
+  .body-content {
+    padding: 2rem 1rem 4rem;
+  }
+
   .hero-title {
     font-size: 2rem;
   }
@@ -634,6 +642,26 @@
 
   .section-header h2 {
     font-size: 1.5rem;
+  }
+
+  .intro-text {
+    font-size: 1rem;
+  }
+
+  .stat-number {
+    font-size: 1.5rem;
+  }
+
+  .timeline {
+    padding-left: 1.25rem;
+  }
+
+  .timeline::before {
+    width: 2px;
+  }
+
+  .timeline-item::before {
+    left: -1.75rem;
   }
 
   .section-header {

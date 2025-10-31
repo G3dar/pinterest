@@ -59,3 +59,14 @@
 .retry-button:active {
   transform: scale(0.95);
 }
+
+@media (max-width: 640px) {
+  .loading-state h2 {
+    font-size: 1.25rem;
+  }
+
+  .retry-button {
+    padding: 0.6rem 1.5rem;
+    font-size: 0.9rem;
+  }
+}

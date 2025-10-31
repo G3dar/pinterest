@@ -463,3 +463,25 @@
     display: none;
   }
 }
+
+@media (max-width: 480px) {
+  .loader-progress-container {
+    width: min(300px, 85vw);
+  }
+
+  .home-header {
+    height: 70px;
+  }
+
+  .vertical-sidebar {
+    width: 60px;
+  }
+
+  .home-header {
+    left: 60px;
+  }
+
+  .masonry-container {
+    padding-left: 70px;
+  }
+}

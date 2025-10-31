@@ -339,8 +339,16 @@
   }
 
   .keyword-pill {
-    font-size: 0.875rem !important;
+    font-size: 0.875rem;
     padding: 0.5rem 1rem;
+  }
+
+  .color-circles {
+    gap: 0.75rem;
+  }
+
+  .subphase-title {
+    margin-bottom: 1.5rem;
   }
 
   .category-name {
