@@ -3,14 +3,16 @@ import { motion, AnimatePresence } from 'framer-motion';
 import './Phase3Analysis.css';
 
 const Phase3Analysis = ({ colorPalette, keywords, categories }) => {
-  const [subPhase, setSubPhase] = useState('constellations'); // Skip colors, start with constellations
+  const [subPhase, setSubPhase] = useState('colors'); // colors, constellations, categories
 
   useEffect(() => {
-    // Skip constellations timer since we start there
-    // Switch to categories after 11 seconds (keywords shown as overlay during constellation)
-    const categoriesTimer = setTimeout(() => setSubPhase('categories'), 11000);
+    // Switch to constellations after 6 seconds (delayed by 3s)
+    const constellationsTimer = setTimeout(() => setSubPhase('constellations'), 6000);
+    // Switch to categories after 17 seconds (delayed by 3s)
+    const categoriesTimer = setTimeout(() => setSubPhase('categories'), 17000);
 
     return () => {
+      clearTimeout(constellationsTimer);
       clearTimeout(categoriesTimer);
     };
   }, []);

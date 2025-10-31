@@ -19,7 +19,7 @@ const PrototypePage = () => {
     0: 0,      // Loading (variable)
     1: 5000,   // Intro (5s)
     2: 15000,  // Montage (15s)
-    3: 21000,  // Analysis (21s) - constellations + categories (no color palette)
+    3: 27000,  // Analysis (27s) - color palette + constellations + categories (delayed by 3s)
     4: 11000,  // Identity (11s)
     5: Infinity // Share (user controlled)
   };
