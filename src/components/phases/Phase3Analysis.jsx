@@ -6,10 +6,10 @@ const Phase3Analysis = ({ colorPalette, keywords, categories }) => {
   const [subPhase, setSubPhase] = useState('colors'); // colors, constellations, categories
 
   useEffect(() => {
-    // Switch to constellations after 6 seconds (delayed by 3s)
-    const constellationsTimer = setTimeout(() => setSubPhase('constellations'), 6000);
-    // Switch to categories after 17 seconds (delayed by 3s)
-    const categoriesTimer = setTimeout(() => setSubPhase('categories'), 17000);
+    // Switch to constellations after 3 seconds
+    const constellationsTimer = setTimeout(() => setSubPhase('constellations'), 3000);
+    // Switch to categories after 14 seconds
+    const categoriesTimer = setTimeout(() => setSubPhase('categories'), 14000);
 
     return () => {
       clearTimeout(constellationsTimer);
