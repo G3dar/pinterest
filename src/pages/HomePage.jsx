@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
 import WrapTransition from '../components/WrapTransition';
 import './HomePage.css';
@@ -9,6 +9,8 @@ const HomePage = ({ images }) => {
   const [columns, setColumns] = useState(5);
   const [selectedImages, setSelectedImages] = useState([]);
   const [showTransition, setShowTransition] = useState(false);
+  const [imagesLoaded, setImagesLoaded] = useState(false);
+  const [loadingProgress, setLoadingProgress] = useState(0);
 
   useEffect(() => {
     const handleResize = () => {
@@ -24,7 +26,7 @@ const HomePage = ({ images }) => {
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
-  // Select unique images on mount - limit to 60 for variety
+  // Select unique images on mount and preload them - limit to 60 for variety
   useEffect(() => {
     if (images && Array.isArray(images)) {
       // Shuffle and take unique subset
@@ -57,6 +59,30 @@ const HomePage = ({ images }) => {
       }
 
       setSelectedImages(unique);
+
+      // Preload images
+      let loadedCount = 0;
+      const totalImages = unique.length;
+
+      unique.forEach((img) => {
+        const imageObj = new Image();
+        imageObj.onload = () => {
+          loadedCount++;
+          setLoadingProgress(Math.round((loadedCount / totalImages) * 100));
+          if (loadedCount === totalImages) {
+            // Add a small delay to show 100% before fading in
+            setTimeout(() => setImagesLoaded(true), 500);
+          }
+        };
+        imageObj.onerror = () => {
+          loadedCount++;
+          setLoadingProgress(Math.round((loadedCount / totalImages) * 100));
+          if (loadedCount === totalImages) {
+            setTimeout(() => setImagesLoaded(true), 500);
+          }
+        };
+        imageObj.src = img.url;
+      });
     }
   }, [images]);
 
@@ -84,9 +110,97 @@ const HomePage = ({ images }) => {
 
   return (
     <div className="home-page">
+      <AnimatePresence>
+        {!imagesLoaded && (
+          <motion.div
+            key="loader"
+            className="page-loader"
+            initial={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.5 }}
+          >
+            <div className="loader-content">
+              {/* Pinterest Logo Animation */}
+              <motion.div
+                className="loader-logo"
+                animate={{
+                  scale: [1, 1.1, 1],
+                  rotate: [0, 5, -5, 0]
+                }}
+                transition={{
+                  duration: 2,
+                  repeat: Infinity,
+                  ease: "easeInOut"
+                }}
+              >
+                <svg height="80" width="80" viewBox="0 0 24 24">
+                  <path d="M0 12c0 5.123 3.211 9.497 7.73 11.218-.11-.937-.227-2.482.025-3.566.217-.932 1.401-5.938 1.401-5.938s-.357-.715-.357-1.774c0-1.66.962-2.9 2.161-2.9 1.02 0 1.512.765 1.512 1.682 0 1.025-.653 2.557-.99 3.978-.281 1.189.597 2.159 1.769 2.159 2.123 0 3.756-2.239 3.756-5.471 0-2.861-2.056-4.86-4.991-4.86-3.398 0-5.393 2.549-5.393 5.184 0 1.027.395 2.127.889 2.726a.36.36 0 0 1 .083.343c-.091.378-.293 1.189-.332 1.355-.053.218-.173.265-.4.159-1.492-.694-2.424-2.875-2.424-4.627 0-3.769 2.737-7.229 7.892-7.229 4.144 0 7.365 2.953 7.365 6.899 0 4.117-2.595 7.431-6.199 7.431-1.211 0-2.348-.63-2.738-1.373 0 0-.599 2.282-.744 2.84-.282 1.084-1.064 2.456-1.549 3.235C9.584 23.815 10.77 24 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0 0 5.373 0 12" fill="#e60023"/>
+                </svg>
+              </motion.div>
+
+              {/* Loading Text */}
+              <motion.h2
+                className="loader-text"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.2 }}
+              >
+                Preparing your feed
+              </motion.h2>
+
+              {/* Progress Bar */}
+              <div className="loader-progress-container">
+                <motion.div
+                  className="loader-progress-bar"
+                  initial={{ width: 0 }}
+                  animate={{ width: `${loadingProgress}%` }}
+                  transition={{ duration: 0.3 }}
+                />
+              </div>
+
+              {/* Progress Percentage */}
+              <motion.div
+                className="loader-percentage"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 0.4 }}
+              >
+                {loadingProgress}%
+              </motion.div>
+
+              {/* Animated Dots */}
+              <div className="loader-dots">
+                {[0, 1, 2].map((i) => (
+                  <motion.div
+                    key={i}
+                    className="loader-dot"
+                    animate={{
+                      scale: [1, 1.5, 1],
+                      opacity: [0.3, 1, 0.3]
+                    }}
+                    transition={{
+                      duration: 1.5,
+                      repeat: Infinity,
+                      delay: i * 0.2
+                    }}
+                  />
+                ))}
+              </div>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
       <WrapTransition isActive={showTransition} onComplete={handleTransitionComplete} />
-      {/* Vertical Sidebar */}
-      <aside className="vertical-sidebar">
+      {/* Main Content - Hidden until images loaded */}
+      <motion.div
+        className="home-content"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: imagesLoaded ? 1 : 0 }}
+        transition={{ duration: 0.6 }}
+      >
+        {/* Vertical Sidebar */}
+        <aside className="vertical-sidebar">
         <div className="sidebar-content">
           {/* Logo at top */}
           <div className="sidebar-logo">
@@ -224,6 +338,7 @@ const HomePage = ({ images }) => {
           </div>
         ))}
       </div>
+      </motion.div>
     </div>
   );
 };
