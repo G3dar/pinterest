@@ -62,17 +62,15 @@
 
 .wrap-ribbon-vertical {
   top: 0;
-  left: 50%;
-  transform: translateX(-50%);
+  left: calc(50% - 60px);
   width: 120px;
   height: 100vh;
   transform-origin: center center;
 }
 
 .wrap-ribbon-horizontal {
-  top: 50%;
+  top: calc(50% - 60px);
   left: 0;
-  transform: translateY(-50%);
   width: 100vw;
   height: 120px;
   transform-origin: center center;
