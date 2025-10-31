@@ -1,0 +1,438 @@
+{
+  "consoleMessages": [
+    {
+      "time": "0.40",
+      "type": "debug",
+      "text": "[vite] connecting..."
+    },
+    {
+      "time": "0.70",
+      "type": "info",
+      "text": "%cDownload the React DevTools for a better development experience: https://reactjs.org/link/react-devtools font-weight:bold"
+    },
+    {
+      "time": "0.73",
+      "type": "warn",
+      "text": "⚠️ React Router Future Flag Warning: React Router will begin wrapping state updates in `React.startTransition` in v7. You can use the `v7_startTransition` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_starttransition."
+    },
+    {
+      "time": "0.73",
+      "type": "warn",
+      "text": "⚠️ React Router Future Flag Warning: Relative route resolution within Splat routes is changing in v7. You can use the `v7_relativeSplatPath` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_relativesplatpath."
+    },
+    {
+      "time": "0.74",
+      "type": "error",
+      "text": "Failed to load resource: the server responded with a status of 404 (Not Found)"
+    },
+    {
+      "time": "2.75",
+      "type": "error",
+      "text": "WebSocket connection to 'ws://localhost:443/?token=LIz_6ceF3e_f' failed: Error in connection establishment: net::ERR_CONNECTION_REFUSED"
+    },
+    {
+      "time": "2.75",
+      "type": "log",
+      "text": "[vite] server connection lost. Polling for restart..."
+    },
+    {
+      "time": "5.05",
+      "type": "error",
+      "text": "Failed to load resource: net::ERR_CONNECTION_REFUSED"
+    },
+    {
+      "time": "8.37",
+      "type": "error",
+      "text": "Failed to load resource: net::ERR_CONNECTION_REFUSED"
+    },
+    {
+      "time": "11.69",
+      "type": "error",
+      "text": "Failed to load resource: net::ERR_CONNECTION_REFUSED"
+    },
+    {
+      "time": "15.02",
+      "type": "error",
+      "text": "Failed to load resource: net::ERR_CONNECTION_REFUSED"
+    },
+    {
+      "time": "18.33",
+      "type": "error",
+      "text": "Failed to load resource: net::ERR_CONNECTION_REFUSED"
+    },
+    {
+      "time": "21.64",
+      "type": "error",
+      "text": "Failed to load resource: net::ERR_CONNECTION_REFUSED"
+    },
+    {
+      "time": "24.95",
+      "type": "error",
+      "text": "Failed to load resource: net::ERR_CONNECTION_REFUSED"
+    },
+    {
+      "time": "28.31",
+      "type": "error",
+      "text": "Failed to load resource: net::ERR_CONNECTION_REFUSED"
+    },
+    {
+      "time": "31.66",
+      "type": "error",
+      "text": "Failed to load resource: net::ERR_CONNECTION_REFUSED"
+    }
+  ],
+  "observations": [
+    {
+      "time": 1,
+      "colorPalette": false,
+      "constellations": false,
+      "categories": false,
+      "visibleElements": [],
+      "bodyText": "Analyzing Your Year\n\nGathering your Pinterest aesthetics..."
+    },
+    {
+      "time": 2,
+      "colorPalette": false,
+      "constellations": false,
+      "categories": false,
+      "visibleElements": [],
+      "bodyText": "Your Year in Pinterest\n2025"
+    },
+    {
+      "time": 3,
+      "colorPalette": false,
+      "constellations": false,
+      "categories": false,
+      "visibleElements": [],
+      "bodyText": "Your Year in Pinterest\n2025"
+    },
+    {
+      "time": 4,
+      "colorPalette": false,
+      "constellations": false,
+      "categories": false,
+      "visibleElements": [],
+      "bodyText": "Your Year in Pinterest\n2025"
+    },
+    {
+      "time": 5,
+      "colorPalette": false,
+      "constellations": false,
+      "categories": false,
+      "visibleElements": [],
+      "bodyText": "Your Year in Pinterest\n2025"
+    },
+    {
+      "time": 6,
+      "colorPalette": false,
+      "constellations": false,
+      "categories": false,
+      "visibleElements": [],
+      "bodyText": "MOOD MAP\nminimalist\ndreamy\nelegant\ncolorful\norganic\nmodern\ncozy\nethereal\nvibrant\nserene\nbold\nsoft\nminimalist\ndreamy\nelegant\ncolorful\norganic\nmodern\ncozy\nethereal"
+    },
+    {
+      "time": 7,
+      "colorPalette": true,
+      "constellations": false,
+      "categories": false,
+      "visibleElements": [
+        "ColorPalette (1 circles)"
+      ],
+      "bodyText": "MOOD MAP\nminimalist\ndreamy\nelegant\ncolorful\norganic\nmodern\ncozy\nethereal\nvibrant\nserene\nbold\nsoft\nminimalist\ndreamy\nelegant\ncolorful\norganic\nmodern\ncozy\nethereal"
+    },
+    {
+      "time": 8,
+      "colorPalette": true,
+      "constellations": false,
+      "categories": false,
+      "visibleElements": [
+        "ColorPalette (14 circles)"
+      ],
+      "bodyText": "MOOD MAP\nminimalist\ndreamy\nelegant\ncolorful\norganic\nmodern\ncozy\nethereal\nvibrant\nserene\nbold\nsoft\nminimalist\ndreamy\nelegant\ncolorful\norganic\nmodern\ncozy\nethereal"
+    },
+    {
+      "time": 9,
+      "colorPalette": true,
+      "constellations": false,
+      "categories": false,
+      "visibleElements": [
+        "ColorPalette (27 circles)"
+      ],
+      "bodyText": "MOOD MAP\nminimalist\ndreamy\nelegant\ncolorful\norganic\nmodern\ncozy\nethereal\nvibrant\nserene\nbold\nsoft\nminimalist\ndreamy\nelegant\ncolorful\norganic\nmodern\ncozy\nethereal"
+    },
+    {
+      "time": 10,
+      "colorPalette": true,
+      "constellations": true,
+      "categories": false,
+      "visibleElements": [
+        "ColorPalette (28 circles)",
+        "Constellations (11 elements)"
+      ],
+      "bodyText": "MOOD MAP\nminimalist\ndreamy\nelegant\ncolorful\norganic\nmodern\ncozy\nethereal\nvibrant\nserene\nbold\nsoft\nminimalist\ndreamy\nelegant\ncolorful\norganic\nmodern\ncozy\nethereal"
+    },
+    {
+      "time": 11,
+      "colorPalette": true,
+      "constellations": true,
+      "categories": false,
+      "visibleElements": [
+        "ColorPalette (28 circles)",
+        "Constellations (20 elements)"
+      ],
+      "bodyText": "MOOD MAP\nminimalist\ndreamy\nelegant\ncolorful\norganic\nmodern\ncozy\nethereal\nvibrant\nserene\nbold\nsoft\nminimalist\ndreamy\nelegant\ncolorful\norganic\nmodern\ncozy\nethereal"
+    },
+    {
+      "time": 12,
+      "colorPalette": true,
+      "constellations": true,
+      "categories": false,
+      "visibleElements": [
+        "ColorPalette (28 circles)",
+        "Constellations (20 elements)"
+      ],
+      "bodyText": "MOOD MAP\nminimalist\ndreamy\nelegant\ncolorful\norganic\nmodern\ncozy\nethereal\nvibrant\nserene\nbold\nsoft\nminimalist\ndreamy\nelegant\ncolorful\norganic\nmodern\ncozy\nethereal"
+    },
+    {
+      "time": 13,
+      "colorPalette": true,
+      "constellations": true,
+      "categories": false,
+      "visibleElements": [
+        "ColorPalette (28 circles)",
+        "Constellations (20 elements)"
+      ],
+      "bodyText": "MOOD MAP\nminimalist\ndreamy\nelegant\ncolorful\norganic\nmodern\ncozy\nethereal\nvibrant\nserene\nbold\nsoft\nminimalist\ndreamy\nelegant\ncolorful\norganic\nmodern\ncozy\nethereal"
+    },
+    {
+      "time": 14,
+      "colorPalette": true,
+      "constellations": true,
+      "categories": false,
+      "visibleElements": [
+        "ColorPalette (28 circles)",
+        "Constellations (20 elements)"
+      ],
+      "bodyText": "MOOD MAP\nminimalist\ndreamy\nelegant\ncolorful\norganic\nmodern\ncozy\nethereal\nvibrant\nserene\nbold\nsoft\nminimalist\ndreamy\nelegant\ncolorful\norganic\nmodern\ncozy\nethereal"
+    },
+    {
+      "time": 15,
+      "colorPalette": true,
+      "constellations": true,
+      "categories": false,
+      "visibleElements": [
+        "ColorPalette (22 circles)",
+        "Constellations (20 elements)"
+      ],
+      "bodyText": "MOOD MAP\nminimalist\ndreamy\nelegant\ncolorful\norganic\nmodern\ncozy\nethereal\nvibrant\nserene\nbold\nsoft\nminimalist\ndreamy\nelegant\ncolorful\norganic\nmodern\ncozy\nethereal"
+    },
+    {
+      "time": 16,
+      "colorPalette": true,
+      "constellations": true,
+      "categories": false,
+      "visibleElements": [
+        "ColorPalette (6 circles)",
+        "Constellations (20 elements)"
+      ],
+      "bodyText": "MOOD MAP\nminimalist\ndreamy\nelegant\ncolorful\norganic\nmodern\ncozy\nethereal\nvibrant\nserene\nbold\nsoft\nminimalist\ndreamy\nelegant\ncolorful\norganic\nmodern\ncozy\nethereal"
+    },
+    {
+      "time": 17,
+      "colorPalette": false,
+      "constellations": true,
+      "categories": false,
+      "visibleElements": [
+        "Constellations (17 elements)"
+      ],
+      "bodyText": "MOOD MAP\nminimalist\ndreamy\nelegant\ncolorful\norganic\nmodern\ncozy\nethereal\nvibrant\nserene\nbold\nsoft\nminimalist\ndreamy\nelegant\ncolorful\norganic\nmodern\ncozy\nethereal"
+    },
+    {
+      "time": 18,
+      "colorPalette": false,
+      "constellations": true,
+      "categories": false,
+      "visibleElements": [
+        "Constellations (4 elements)"
+      ],
+      "bodyText": "MOOD MAP\nminimalist\ndreamy\nelegant\ncolorful\norganic\nmodern\ncozy\nethereal\nvibrant\nserene\nbold\nsoft\nminimalist\ndreamy\nelegant\ncolorful\norganic\nmodern\ncozy\nethereal"
+    },
+    {
+      "time": 19,
+      "colorPalette": false,
+      "constellations": false,
+      "categories": true,
+      "visibleElements": [
+        "Categories (3 columns: Art & Design, Animated Characters, Fantasy & Play)"
+      ],
+      "bodyText": "Art & Design\n22% of your year\nAnimated Characters\n18% of your year\nFantasy & Play\n16% of your year\nFashion & Style\n14% of your year"
+    },
+    {
+      "time": 20,
+      "colorPalette": true,
+      "constellations": false,
+      "categories": false,
+      "visibleElements": [
+        "ColorPalette (8 circles)"
+      ],
+      "bodyText": "ANALYZING YOUR AESTHETIC\nYour Color Palette\n22%\n18%\n15%\n12%\n11%\n9%\n8%\n5%"
+    },
+    {
+      "time": 21,
+      "colorPalette": true,
+      "constellations": false,
+      "categories": false,
+      "visibleElements": [
+        "ColorPalette (26 circles)"
+      ],
+      "bodyText": "ANALYZING YOUR AESTHETIC\nYour Color Palette\n22%\n18%\n15%\n12%\n11%\n9%\n8%\n5%"
+    },
+    {
+      "time": 22,
+      "colorPalette": true,
+      "constellations": false,
+      "categories": false,
+      "visibleElements": [
+        "ColorPalette (26 circles)"
+      ],
+      "bodyText": "ANALYZING YOUR AESTHETIC\nYour Color Palette\n22%\n18%\n15%\n12%\n11%\n9%\n8%\n5%"
+    },
+    {
+      "time": 23,
+      "colorPalette": true,
+      "constellations": true,
+      "categories": false,
+      "visibleElements": [
+        "ColorPalette (26 circles)",
+        "Constellations (1 elements)"
+      ],
+      "bodyText": "ANALYZING YOUR AESTHETIC\nYour Color Palette\n22%\n18%\n15%\n12%\n11%\n9%\n8%\n5%\nYour Visual Language\nminimalist\ngeometric\ndreamy\nelegant\ncolorful\nwhimsical\ncozy\nmodern\nethereal\norganic\nserene\nsophisticated"
+    },
+    {
+      "time": 24,
+      "colorPalette": false,
+      "constellations": true,
+      "categories": false,
+      "visibleElements": [
+        "Constellations (22 elements)"
+      ],
+      "bodyText": "ANALYZING YOUR AESTHETIC\nYour Year Unfolding\n\nA creative journey through the seasons\n\n🌸\n🌸\n🌸\n🌸\n🌸\n🌸\n🌸\n🌸\n🌸\n🌸\n🌸\n🌸\nSPRING\n☀️\n☀️\n☀️\n☀️\n☀️\n☀️\n☀️\n☀️\n☀️\n☀️\n☀️\n☀️\nSUMMER\n🍂\n🍂\n🍂\n🍂\n🍂\n🍂\n🍂\n🍂\n🍂\n🍂\n🍂\n🍂\nFALL\n❄️\n❄️\n❄️\n❄️\n❄️\n❄️\n❄️\n❄️\n❄️\n❄️\n❄️\n❄️\nWINTER\nYour Visual Language\nminimalist\ngeometric\ndreamy\nelegant\ncolorful\nwhimsical\ncozy\nmodern\nethereal\norganic\nserene\nsophisticated"
+    },
+    {
+      "time": 25,
+      "colorPalette": false,
+      "constellations": true,
+      "categories": false,
+      "visibleElements": [
+        "Constellations (58 elements)"
+      ],
+      "bodyText": "ANALYZING YOUR AESTHETIC\nYour Year Unfolding\n\nA creative journey through the seasons\n\n🌸\n🌸\n🌸\n🌸\n🌸\n🌸\n🌸\n🌸\n🌸\n🌸\n🌸\n🌸\nSPRING\n☀️\n☀️\n☀️\n☀️\n☀️\n☀️\n☀️\n☀️\n☀️\n☀️\n☀️\n☀️\nSUMMER\n🍂\n🍂\n🍂\n🍂\n🍂\n🍂\n🍂\n🍂\n🍂\n🍂\n🍂\n🍂\nFALL\n❄️\n❄️\n❄️\n❄️\n❄️\n❄️\n❄️\n❄️\n❄️\n❄️\n❄️\n❄️\nWINTER\nYour Visual Language\nminimalist\ngeometric\ndreamy\nelegant\ncolorful\nwhimsical\ncozy\nmodern\nethereal\norganic\nserene\nsophisticated"
+    },
+    {
+      "time": 26,
+      "colorPalette": false,
+      "constellations": true,
+      "categories": false,
+      "visibleElements": [
+        "Constellations (60 elements)"
+      ],
+      "bodyText": "ANALYZING YOUR AESTHETIC\nYour Year Unfolding\n\nA creative journey through the seasons\n\n🌸\n🌸\n🌸\n🌸\n🌸\n🌸\n🌸\n🌸\n🌸\n🌸\n🌸\n🌸\nSPRING\n☀️\n☀️\n☀️\n☀️\n☀️\n☀️\n☀️\n☀️\n☀️\n☀️\n☀️\n☀️\nSUMMER\n🍂\n🍂\n🍂\n🍂\n🍂\n🍂\n🍂\n🍂\n🍂\n🍂\n🍂\n🍂\nFALL\n❄️\n❄️\n❄️\n❄️\n❄️\n❄️\n❄️\n❄️\n❄️\n❄️\n❄️\n❄️\nWINTER\nYour Visual Language\nminimalist\ngeometric\ndreamy\nelegant\ncolorful\nwhimsical\ncozy\nmodern\nethereal\norganic\nserene\nsophisticated"
+    },
+    {
+      "time": 27,
+      "colorPalette": false,
+      "constellations": true,
+      "categories": false,
+      "visibleElements": [
+        "Constellations (69 elements)"
+      ],
+      "bodyText": "ANALYZING YOUR AESTHETIC\nYour Year Unfolding\n\nA creative journey through the seasons\n\n🌸\n🌸\n🌸\n🌸\n🌸\n🌸\n🌸\n🌸\n🌸\n🌸\n🌸\n🌸\nSPRING\n☀️\n☀️\n☀️\n☀️\n☀️\n☀️\n☀️\n☀️\n☀️\n☀️\n☀️\n☀️\nSUMMER\n🍂\n🍂\n🍂\n🍂\n🍂\n🍂\n🍂\n🍂\n🍂\n🍂\n🍂\n🍂\nFALL\n❄️\n❄️\n❄️\n❄️\n❄️\n❄️\n❄️\n❄️\n❄️\n❄️\n❄️\n❄️\nWINTER\nYour Visual Language\nminimalist\ngeometric\ndreamy\nelegant\ncolorful\nwhimsical\ncozy\nmodern\nethereal\norganic\nserene\nsophisticated"
+    },
+    {
+      "time": 28,
+      "colorPalette": false,
+      "constellations": true,
+      "categories": false,
+      "visibleElements": [
+        "Constellations (69 elements)"
+      ],
+      "bodyText": "ANALYZING YOUR AESTHETIC\nYour Year Unfolding\n\nA creative journey through the seasons\n\n🌸\n🌸\n🌸\n🌸\n🌸\n🌸\n🌸\n🌸\n🌸\n🌸\n🌸\n🌸\nSPRING\n☀️\n☀️\n☀️\n☀️\n☀️\n☀️\n☀️\n☀️\n☀️\n☀️\n☀️\n☀️\nSUMMER\n🍂\n🍂\n🍂\n🍂\n🍂\n🍂\n🍂\n🍂\n🍂\n🍂\n🍂\n🍂\nFALL\n❄️\n❄️\n❄️\n❄️\n❄️\n❄️\n❄️\n❄️\n❄️\n❄️\n❄️\n❄️\nWINTER\nYour Visual Language\nminimalist\ngeometric\ndreamy\nelegant\ncolorful\nwhimsical\ncozy\nmodern\nethereal\norganic\nserene\nsophisticated"
+    },
+    {
+      "time": 29,
+      "colorPalette": false,
+      "constellations": true,
+      "categories": false,
+      "visibleElements": [
+        "Constellations (69 elements)"
+      ],
+      "bodyText": "ANALYZING YOUR AESTHETIC\nYour Year Unfolding\n\nA creative journey through the seasons\n\n🌸\n🌸\n🌸\n🌸\n🌸\n🌸\n🌸\n🌸\n🌸\n🌸\n🌸\n🌸\nSPRING\n☀️\n☀️\n☀️\n☀️\n☀️\n☀️\n☀️\n☀️\n☀️\n☀️\n☀️\n☀️\nSUMMER\n🍂\n🍂\n🍂\n🍂\n🍂\n🍂\n🍂\n🍂\n🍂\n🍂\n🍂\n🍂\nFALL\n❄️\n❄️\n❄️\n❄️\n❄️\n❄️\n❄️\n❄️\n❄️\n❄️\n❄️\n❄️\nWINTER\nYour Visual Language\nminimalist\ngeometric\ndreamy\nelegant\ncolorful\nwhimsical\ncozy\nmodern\nethereal\norganic\nserene\nsophisticated"
+    },
+    {
+      "time": 30,
+      "colorPalette": false,
+      "constellations": true,
+      "categories": false,
+      "visibleElements": [
+        "Constellations (69 elements)"
+      ],
+      "bodyText": "ANALYZING YOUR AESTHETIC\nYour Year Unfolding\n\nA creative journey through the seasons\n\n🌸\n🌸\n🌸\n🌸\n🌸\n🌸\n🌸\n🌸\n🌸\n🌸\n🌸\n🌸\nSPRING\n☀️\n☀️\n☀️\n☀️\n☀️\n☀️\n☀️\n☀️\n☀️\n☀️\n☀️\n☀️\nSUMMER\n🍂\n🍂\n🍂\n🍂\n🍂\n🍂\n🍂\n🍂\n🍂\n🍂\n🍂\n🍂\nFALL\n❄️\n❄️\n❄️\n❄️\n❄️\n❄️\n❄️\n❄️\n❄️\n❄️\n❄️\n❄️\nWINTER\nYour Visual Language\nminimalist\ngeometric\ndreamy\nelegant\ncolorful\nwhimsical\ncozy\nmodern\nethereal\norganic\nserene\nsophisticated"
+    },
+    {
+      "time": 31,
+      "colorPalette": false,
+      "constellations": true,
+      "categories": false,
+      "visibleElements": [
+        "Constellations (69 elements)"
+      ],
+      "bodyText": "ANALYZING YOUR AESTHETIC\nYour Year Unfolding\n\nA creative journey through the seasons\n\n🌸\n🌸\n🌸\n🌸\n🌸\n🌸\n🌸\n🌸\n🌸\n🌸\n🌸\n🌸\nSPRING\n☀️\n☀️\n☀️\n☀️\n☀️\n☀️\n☀️\n☀️\n☀️\n☀️\n☀️\n☀️\nSUMMER\n🍂\n🍂\n🍂\n🍂\n🍂\n🍂\n🍂\n🍂\n🍂\n🍂\n🍂\n🍂\nFALL\n❄️\n❄️\n❄️\n❄️\n❄️\n❄️\n❄️\n❄️\n❄️\n❄️\n❄️\n❄️\nWINTER\nYour Visual Language\nminimalist\ngeometric\ndreamy\nelegant\ncolorful\nwhimsical\ncozy\nmodern\nethereal\norganic\nserene\nsophisticated"
+    }
+  ],
+  "summary": {
+    "colorPaletteAppeared": true,
+    "constellationsAppeared": true,
+    "categoriesAppeared": true,
+    "timings": {
+      "colorPalette": [
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        20,
+        21,
+        22,
+        23
+      ],
+      "constellations": [
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        23,
+        24,
+        25,
+        26,
+        27,
+        28,
+        29,
+        30,
+        31
+      ],
+      "categories": [
+        19
+      ]
+    }
+  }
+}
