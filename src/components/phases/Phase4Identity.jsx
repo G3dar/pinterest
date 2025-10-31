@@ -5,12 +5,13 @@ import './Phase4Identity.css';
 const Phase4Identity = ({ identityCard }) => {
   const rarityColors = {
     Common: '#9CA3AF',
-    Rare: '#3B82F6',
-    Epic: '#A855F7',
-    Legendary: '#F59E0B'
+    Rare: '#4ECDC4',
+    Epic: '#FFB84D',
+    Legendary: '#FF6B35',
+    Mythic: '#B794F6'
   };
 
-  const rarityColor = rarityColors[identityCard.rarity] || rarityColors.Epic;
+  const rarityColor = identityCard.rarityColor || rarityColors[identityCard.rarity] || rarityColors.Epic;
 
   // Generate floating sparkles (increased count for more magic)
   const sparkles = Array.from({ length: 20 }, (_, i) => ({
@@ -219,6 +220,18 @@ const Phase4Identity = ({ identityCard }) => {
           <img src={identityCard.avatar} alt="Avatar" />
         </motion.div>
 
+        {/* Profile Name */}
+        {identityCard.profileName && (
+          <motion.div
+            className="card-profile-name"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 1.5, duration: 0.6 }}
+          >
+            {identityCard.profileName}
+          </motion.div>
+        )}
+
         {/* Title */}
         <motion.h1
           className="card-title"
@@ -229,12 +242,24 @@ const Phase4Identity = ({ identityCard }) => {
           {identityCard.title}
         </motion.h1>
 
+        {/* Personality */}
+        {identityCard.personality && (
+          <motion.div
+            className="card-personality"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 2.3, duration: 0.6 }}
+          >
+            {identityCard.personality}
+          </motion.div>
+        )}
+
         {/* Description */}
         <motion.p
           className="card-description"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ delay: 2.5, duration: 0.6 }}
+          transition={{ delay: 2.8, duration: 0.6 }}
         >
           {identityCard.description}
         </motion.p>

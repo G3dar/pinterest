@@ -1,143 +1,136 @@
 // Mock data generator for Pinterest Wrapped experience
+// Now uses profile system to cycle through 4 different personas
 
-const categories = {
-  'art-design': {
-    name: 'Art & Design',
-    colors: ['#E8D5C4', '#C4A57B', '#8B7355'],
-    keywords: ['minimalist', 'geometric', 'abstract', 'modern'],
-    weight: 0.22
-  },
-  'characters-animated': {
-    name: 'Animated Characters',
-    colors: ['#FFB6C1', '#87CEEB', '#98D8C8'],
-    keywords: ['playful', 'whimsical', 'colorful', 'imaginative'],
-    weight: 0.18
-  },
-  'fantasy-play': {
-    name: 'Fantasy & Play',
-    colors: ['#D8BFD8', '#DDA0DD', '#BA55D3'],
-    keywords: ['magical', 'dreamy', 'ethereal', 'mystical'],
-    weight: 0.16
-  },
-  'fashion-style': {
-    name: 'Fashion & Style',
-    colors: ['#2C3E50', '#E8D5C4', '#BFA696'],
-    keywords: ['elegant', 'chic', 'sophisticated', 'trendy'],
-    weight: 0.14
-  },
-  'food-lifestyle': {
-    name: 'Food & Lifestyle',
-    colors: ['#F4A460', '#DEB887', '#D2691E'],
-    keywords: ['cozy', 'warm', 'inviting', 'organic'],
-    weight: 0.12
-  },
-  'futuristic-tech': {
-    name: 'Futuristic & Tech',
-    colors: ['#00D9FF', '#7B68EE', '#4B0082'],
-    keywords: ['futuristic', 'sleek', 'innovative', 'tech'],
-    weight: 0.10
-  },
-  'home-decor': {
-    name: 'Home Decor',
-    colors: ['#F5F5DC', '#D3D3D3', '#A9A9A9'],
-    keywords: ['serene', 'minimal', 'cozy', 'intentional'],
-    weight: 0.05
-  },
-  'nature-travel': {
-    name: 'Nature & Travel',
-    colors: ['#228B22', '#87CEEB', '#8B4513'],
-    keywords: ['natural', 'adventurous', 'scenic', 'wanderlust'],
-    weight: 0.03
-  }
-};
+import { allCategories, getCategoryImages } from './categories';
+import { getNextProfile } from './profiles';
 
-// Generate image paths for each category
-const generateImagePaths = () => {
-  const images = [];
+// Generate wrapped data based on current profile
+export const generateWrappedData = () => {
+  // Get the next profile in the cycle
+  const profile = getNextProfile();
 
-  Object.keys(categories).forEach(categoryKey => {
-    const categoryImages = [];
-    // Each category has 24 images
-    for (let i = 1; i <= 24; i++) {
-      const paddedNum = i.toString().padStart(2, '0');
-      categoryImages.push({
-        url: `/imgs/${categoryKey}/${categoryKey}-${paddedNum}.jpg`,
-        category: categoryKey,
-        categoryName: categories[categoryKey].name,
-        colors: categories[categoryKey].colors
-      });
-    }
-    images.push(...categoryImages);
+  // Generate images for this profile's categories
+  const allImages = [];
+  const topCategories = [];
+
+  profile.categories.forEach((cat, index) => {
+    const categoryData = allCategories[cat.key];
+    const images = getCategoryImages(cat.key, 24);
+
+    allImages.push(...images);
+
+    topCategories.push({
+      id: cat.key,
+      name: categoryData.name,
+      percentage: Math.round(cat.weight * 100),
+      weight: cat.weight,
+      colors: categoryData.colors,
+      images: images
+    });
   });
 
-  return images;
-};
+  // Generate color palette from profile's categories
+  const colorPalette = [];
+  profile.categories.forEach((cat, index) => {
+    const categoryData = allCategories[cat.key];
+    categoryData.colors.forEach((color, colorIndex) => {
+      // Calculate weight based on category weight and color position
+      const weight = cat.weight * (1 - colorIndex * 0.2);
+      colorPalette.push({
+        hex: color,
+        weight: weight,
+        name: getColorName(color)
+      });
+    });
+  });
 
-// Generate user wrapped data
-export const generateWrappedData = () => {
-  const allImages = generateImagePaths();
+  // Sort by weight and take top 8 colors
+  colorPalette.sort((a, b) => b.weight - a.weight);
+  const topColors = colorPalette.slice(0, 8);
 
-  // Extract dominant colors with weights
-  const colorPalette = [
-    { hex: '#E8D5C4', weight: 0.22, name: 'Warm Beige' },
-    { hex: '#8B7355', weight: 0.18, name: 'Earthy Brown' },
-    { hex: '#FFB6C1', weight: 0.15, name: 'Soft Pink' },
-    { hex: '#87CEEB', weight: 0.12, name: 'Sky Blue' },
-    { hex: '#D8BFD8', weight: 0.11, name: 'Lavender' },
-    { hex: '#F4A460', weight: 0.09, name: 'Sandy Brown' },
-    { hex: '#2C3E50', weight: 0.08, name: 'Midnight Blue' },
-    { hex: '#98D8C8', weight: 0.05, name: 'Mint Green' }
-  ];
+  // Normalize weights to sum to 1
+  const totalWeight = topColors.reduce((sum, c) => sum + c.weight, 0);
+  topColors.forEach(c => {
+    c.weight = c.weight / totalWeight;
+  });
 
-  // Top keywords with weights
-  const keywords = [
-    { text: 'minimalist', weight: 0.30 },
-    { text: 'geometric', weight: 0.25 },
-    { text: 'dreamy', weight: 0.22 },
-    { text: 'elegant', weight: 0.20 },
-    { text: 'colorful', weight: 0.18 },
-    { text: 'whimsical', weight: 0.16 },
-    { text: 'cozy', weight: 0.15 },
-    { text: 'modern', weight: 0.14 },
-    { text: 'ethereal', weight: 0.12 },
-    { text: 'organic', weight: 0.10 },
-    { text: 'serene', weight: 0.09 },
-    { text: 'sophisticated', weight: 0.08 }
-  ];
+  // Use profile's keywords
+  const keywords = profile.keywords;
 
-  // Top categories
-  const topCategories = Object.entries(categories)
-    .sort((a, b) => b[1].weight - a[1].weight)
-    .slice(0, 5)
-    .map(([key, data]) => ({
-      id: key,
-      name: data.name,
-      percentage: Math.round(data.weight * 100),
-      weight: data.weight,
-      colors: data.colors,
-      images: allImages.filter(img => img.category === key)
-    }));
+  // Get avatar image from first category
+  const avatarImage = allImages[profile.avatarImageIndex] || allImages[0];
 
-  // Identity card data
+  // Build identity card with profile data
   const identityCard = {
-    title: 'The Minimalist Curator',
-    description: 'Your aesthetic blends minimalist spaces with organic textures, creating a serene and intentional visual world.',
-    rarity: 'Epic',
-    rarityColor: '#A855F7',
+    ...profile.identityCard,
     topCategories: topCategories.slice(0, 3).map(c => c.name),
-    colorPalette: colorPalette.slice(0, 5),
-    avatar: allImages[0].url,
-    year: 2025
+    colorPalette: topColors.slice(0, 5),
+    avatar: avatarImage.url,
+    profileName: profile.name
   };
 
   return {
     allImages,
-    colorPalette,
+    colorPalette: topColors,
     keywords,
     topCategories,
     identityCard,
-    year: 2025
+    year: 2025,
+    profileId: profile.id,
+    profileName: profile.name
   };
+};
+
+// Helper function to name colors
+const getColorName = (hex) => {
+  const colorNames = {
+    '#E8D5C4': 'Warm Beige',
+    '#C4A57B': 'Sand',
+    '#8B7355': 'Earthy Brown',
+    '#FFB6C1': 'Soft Pink',
+    '#87CEEB': 'Sky Blue',
+    '#98D8C8': 'Mint Green',
+    '#D8BFD8': 'Lavender',
+    '#DDA0DD': 'Plum',
+    '#BA55D3': 'Orchid',
+    '#2C3E50': 'Midnight Blue',
+    '#BFA696': 'Taupe',
+    '#F4A460': 'Sandy Brown',
+    '#DEB887': 'Burlywood',
+    '#D2691E': 'Cinnamon',
+    '#00D9FF': 'Electric Cyan',
+    '#7B68EE': 'Medium Slate Blue',
+    '#4B0082': 'Indigo',
+    '#F5F5DC': 'Beige',
+    '#D3D3D3': 'Light Gray',
+    '#A9A9A9': 'Dark Gray',
+    '#228B22': 'Forest Green',
+    '#8B4513': 'Saddle Brown',
+    '#00CED1': 'Dark Turquoise',
+    '#FF1493': 'Deep Pink',
+    '#2C1810': 'Dark Chocolate',
+    '#8B0000': 'Dark Red',
+    '#4A0E0E': 'Deep Maroon',
+    '#E6F3FF': 'Alice Blue',
+    '#B8E6F0': 'Powder Blue',
+    '#98D8E8': 'Light Sky Blue',
+    '#FF8C00': 'Dark Orange',
+    '#FFD700': 'Gold',
+    '#C0C0C0': 'Silver',
+    '#FF6B6B': 'Coral Red',
+    '#4ECDC4': 'Turquoise',
+    '#CD7F32': 'Bronze',
+    '#2F4F4F': 'Dark Slate Gray',
+    '#00FF00': 'Lime',
+    '#FF0080': 'Hot Pink',
+    '#8000FF': 'Electric Purple',
+    '#9370DB': 'Medium Purple',
+    '#B794F6': 'Lavender Purple',
+    '#FF6B35': 'Orange Red',
+    '#FFB84D': 'Mellow Yellow'
+  };
+
+  return colorNames[hex] || hex;
 };
 
 export default generateWrappedData;
