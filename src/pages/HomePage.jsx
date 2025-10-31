@@ -2,7 +2,6 @@ import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
 import WrapTransition from '../components/WrapTransition';
-import { getNextProfile } from '../data/profiles';
 import './HomePage.css';
 
 const HomePage = ({ images }) => {
@@ -102,8 +101,6 @@ const HomePage = ({ images }) => {
   const imageColumns = distributeImages();
 
   const handleWrapClick = () => {
-    // Advance to the next profile in the cycle
-    getNextProfile();
     setShowTransition(true);
   };
 
