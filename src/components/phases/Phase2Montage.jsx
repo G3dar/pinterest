@@ -616,6 +616,13 @@ const Phase2Montage = ({ images, categories, colorPalette }) => {
                     z: 0,
                     y: [0, -15, 0]
                   }}
+                  exit={{
+                    opacity: 0,
+                    scale: 0,
+                    x: window.innerWidth / 2 - 190,
+                    y: window.innerHeight / 2 - 260,
+                    rotateZ: 360
+                  }}
                   transition={{
                     delay: Math.min(index * 0.08, 1.5),
                     duration: 0.8,
@@ -626,6 +633,11 @@ const Phase2Montage = ({ images, categories, colorPalette }) => {
                       repeat: Infinity,
                       delay: index * 0.2,
                       ease: 'easeInOut'
+                    },
+                    exit: {
+                      delay: index * 0.015,
+                      duration: 1.5,
+                      ease: [0.32, 0.72, 0, 1]
                     }
                   }}
                   style={{
