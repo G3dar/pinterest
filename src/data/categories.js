@@ -102,7 +102,7 @@ export const allCategories = {
 };
 
 // Helper to get image paths for a category
-export const getCategoryImages = (categoryKey, count = 24) => {
+export const getCategoryImages = (categoryKey, count = 36) => {
   const images = [];
   for (let i = 1; i <= count; i++) {
     const paddedNum = i.toString().padStart(2, '0');
