@@ -40,15 +40,12 @@ const WrapTransition = ({ isActive, onComplete }) => {
           {/* Vertical ribbon */}
           <motion.div
             className="wrap-ribbon wrap-ribbon-vertical"
-            initial={{ scaleY: 0, opacity: 0 }}
-            animate={{
-              scaleY: [0, 1, 1, 0],
-              opacity: [0, 1, 1, 0]
-            }}
+            initial={{ y: '-100vh', opacity: 0 }}
+            animate={{ y: '100vh', opacity: [0, 1, 1, 0] }}
             transition={{
               delay: 0.5,
               duration: 0.8,
-              times: [0, 0.3, 0.6, 1],
+              opacity: { times: [0, 0.1, 0.8, 1] },
               ease: 'easeInOut'
             }}
           >
@@ -58,15 +55,12 @@ const WrapTransition = ({ isActive, onComplete }) => {
           {/* Horizontal ribbon */}
           <motion.div
             className="wrap-ribbon wrap-ribbon-horizontal"
-            initial={{ scaleX: 0, opacity: 0 }}
-            animate={{
-              scaleX: [0, 1, 1, 0],
-              opacity: [0, 1, 1, 0]
-            }}
+            initial={{ x: '-100vw', opacity: 0 }}
+            animate={{ x: '100vw', opacity: [0, 1, 1, 0] }}
             transition={{
               delay: 0.5,
               duration: 0.8,
-              times: [0, 0.3, 0.6, 1],
+              opacity: { times: [0, 0.1, 0.8, 1] },
               ease: 'easeInOut'
             }}
           >
