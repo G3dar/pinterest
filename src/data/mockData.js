@@ -1,5 +1,5 @@
 // Mock data generator for Pinterest Wrapped experience
-// Now uses profile system to cycle through 4 different personas
+// Now uses profile system to randomly select from 16 different personas
 
 import { allCategories, getCategoryImages } from './categories';
 import { getNextProfile } from './profiles';
