@@ -1,0 +1,276 @@
+.mobile-warning-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.9);
+  backdrop-filter: blur(10px);
+  z-index: 10001;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  overflow-y: auto;
+}
+
+.mobile-warning-content {
+  background: white;
+  border-radius: 24px;
+  padding: 40px 32px;
+  max-width: 500px;
+  width: 100%;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 24px;
+}
+
+.warning-icon {
+  filter: drop-shadow(0 4px 12px rgba(255, 140, 0, 0.3));
+}
+
+.warning-logo {
+  margin-top: -12px;
+  filter: drop-shadow(0 2px 8px rgba(230, 0, 35, 0.2));
+}
+
+.warning-title {
+  font-size: 28px;
+  font-weight: 800;
+  color: #111111;
+  margin: 0;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+}
+
+.warning-message {
+  font-size: 16px;
+  line-height: 1.6;
+  color: #333333;
+  margin: 0;
+  font-weight: 500;
+}
+
+.warning-submessage {
+  font-size: 14px;
+  line-height: 1.6;
+  color: #666666;
+  margin: -12px 0 0 0;
+}
+
+.device-icons {
+  display: flex;
+  gap: 24px;
+  margin: 12px 0;
+  width: 100%;
+  justify-content: center;
+}
+
+.device-icon {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  padding: 20px;
+  border-radius: 16px;
+  flex: 1;
+  max-width: 160px;
+  transition: all 0.3s ease;
+}
+
+.device-icon.recommended {
+  background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%);
+  border: 2px solid #4caf50;
+  color: #2e7d32;
+}
+
+.device-icon.not-recommended {
+  background: linear-gradient(135deg, #fff3e0 0%, #ffe0b2 100%);
+  border: 2px solid #ff9800;
+  color: #e65100;
+}
+
+.device-icon span:first-of-type {
+  font-size: 14px;
+  font-weight: 700;
+  margin-top: 4px;
+}
+
+.device-icon .status {
+  font-size: 12px;
+  font-weight: 600;
+  padding: 4px 12px;
+  border-radius: 12px;
+}
+
+.device-icon.recommended .status {
+  background: #4caf50;
+  color: white;
+}
+
+.device-icon.not-recommended .status {
+  background: #ff9800;
+  color: white;
+}
+
+.warning-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  width: 100%;
+  margin-top: 8px;
+}
+
+.warning-button {
+  padding: 16px 32px;
+  border: none;
+  border-radius: 24px;
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  width: 100%;
+}
+
+.warning-button.primary {
+  background: linear-gradient(135deg, #e60023 0%, #ff6b6b 100%);
+  color: white;
+  box-shadow:
+    0 4px 12px rgba(230, 0, 35, 0.3),
+    0 0 20px rgba(230, 0, 35, 0.2);
+}
+
+.warning-button.primary:hover {
+  box-shadow:
+    0 6px 20px rgba(230, 0, 35, 0.4),
+    0 0 30px rgba(230, 0, 35, 0.3);
+  transform: translateY(-2px);
+}
+
+.warning-button.primary:active {
+  transform: translateY(0);
+}
+
+.warning-button.secondary {
+  background: transparent;
+  color: #666666;
+  border: 2px solid #e0e0e0;
+}
+
+.warning-button.secondary:hover {
+  background: #f5f5f5;
+  border-color: #d0d0d0;
+}
+
+.warning-footer {
+  font-size: 12px;
+  color: #999999;
+  margin: 0;
+  margin-top: -8px;
+  line-height: 1.4;
+}
+
+/* Mobile adjustments */
+@media (max-width: 480px) {
+  .mobile-warning-content {
+    padding: 32px 24px;
+    border-radius: 20px;
+    gap: 20px;
+  }
+
+  .warning-title {
+    font-size: 24px;
+  }
+
+  .warning-message {
+    font-size: 15px;
+  }
+
+  .warning-submessage {
+    font-size: 13px;
+  }
+
+  .device-icons {
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .device-icon {
+    max-width: 100%;
+  }
+
+  .warning-button {
+    padding: 14px 24px;
+    font-size: 15px;
+  }
+
+  .warning-icon svg {
+    width: 60px;
+    height: 60px;
+  }
+
+  .warning-logo svg {
+    width: 32px;
+    height: 32px;
+  }
+}
+
+/* Landscape mobile */
+@media (max-height: 600px) and (orientation: landscape) {
+  .mobile-warning-overlay {
+    padding: 10px;
+  }
+
+  .mobile-warning-content {
+    padding: 24px 20px;
+    gap: 12px;
+    max-height: 90vh;
+    overflow-y: auto;
+  }
+
+  .warning-title {
+    font-size: 20px;
+  }
+
+  .warning-message,
+  .warning-submessage {
+    font-size: 13px;
+  }
+
+  .device-icons {
+    flex-direction: row;
+    gap: 12px;
+    margin: 0;
+  }
+
+  .device-icon {
+    padding: 12px;
+  }
+
+  .device-icon svg {
+    width: 32px;
+    height: 32px;
+  }
+
+  .warning-icon svg {
+    width: 48px;
+    height: 48px;
+  }
+
+  .warning-logo svg {
+    width: 28px;
+    height: 28px;
+  }
+
+  .warning-actions {
+    margin-top: 0;
+  }
+
+  .warning-button {
+    padding: 10px 20px;
+    font-size: 14px;
+  }
+}

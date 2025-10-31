@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react';
 import HomePage from './pages/HomePage';
 import ConceptPage from './pages/ConceptPage';
 import PrototypePage from './pages/PrototypePage';
+import MobileWarning from './components/MobileWarning';
 import generateWrappedData from './data/mockData';
 
 function App() {
@@ -19,6 +20,7 @@ function App() {
 
   return (
     <BrowserRouter>
+      <MobileWarning />
       <Routes>
         <Route path="/" element={<HomePage images={wrappedData.allImages} />} />
         <Route path="/wrapped/concept" element={<ConceptPage />} />
