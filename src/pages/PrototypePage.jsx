@@ -108,8 +108,65 @@ const PrototypePage = () => {
     return () => clearTimeout(timer);
   }, [currentPhase]);
 
-  const handleRestart = () => {
-    setCurrentPhase(1);
+  const handleRestart = async () => {
+    setIsLoading(true);
+    setCurrentPhase(0);
+    setLoadingProgress(0);
+
+    // Generate new wrapped data with next profile
+    try {
+      const data = generateWrappedData();
+
+      // Extract all unique image URLs from the data
+      const imageUrls = new Set();
+
+      if (data.allImages) {
+        data.allImages.forEach(img => imageUrls.add(img.url));
+      }
+
+      if (data.topCategories) {
+        data.topCategories.forEach(category => {
+          if (category.images) {
+            category.images.forEach(img => imageUrls.add(img.url));
+          }
+        });
+      }
+
+      if (data.identityCard?.avatar) {
+        imageUrls.add(data.identityCard.avatar);
+      }
+
+      const imagesToLoad = Array.from(imageUrls);
+      let loadedCount = 0;
+
+      // Preload all images
+      const preloadPromises = imagesToLoad.map(url => {
+        return new Promise((resolve) => {
+          const img = new Image();
+          img.onload = () => {
+            loadedCount++;
+            setLoadingProgress(Math.round((loadedCount / imagesToLoad.length) * 100));
+            resolve();
+          };
+          img.onerror = () => {
+            loadedCount++;
+            setLoadingProgress(Math.round((loadedCount / imagesToLoad.length) * 100));
+            resolve();
+          };
+          img.src = url;
+        });
+      });
+
+      await Promise.all(preloadPromises);
+      await new Promise(resolve => setTimeout(resolve, 300));
+
+      setWrappedData(data);
+      setIsLoading(false);
+      setTimeout(() => setCurrentPhase(1), 500);
+    } catch (err) {
+      setError('Failed to load your wrapped data. Please try again.');
+      setIsLoading(false);
+    }
   };
 
   const handleRetry = async () => {
