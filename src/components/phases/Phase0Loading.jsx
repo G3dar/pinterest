@@ -2,7 +2,7 @@ import { motion } from 'framer-motion';
 import { Loader2 } from 'lucide-react';
 import './Phase0Loading.css';
 
-const Phase0Loading = ({ isLoading, error, onRetry }) => {
+const Phase0Loading = ({ isLoading, error, onRetry, loadingProgress = 0 }) => {
   if (!isLoading && !error) return null;
 
   return (
@@ -40,6 +40,26 @@ const Phase0Loading = ({ isLoading, error, onRetry }) => {
           </motion.div>
           <h2>Analyzing Your Year</h2>
           <p>Gathering your Pinterest aesthetics...</p>
+
+          {/* Progress Bar */}
+          <div className="loading-progress-container">
+            <motion.div
+              className="loading-progress-bar"
+              initial={{ width: 0 }}
+              animate={{ width: `${loadingProgress}%` }}
+              transition={{ duration: 0.3 }}
+            />
+          </div>
+
+          {/* Progress Percentage */}
+          <motion.div
+            className="loading-percentage"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.2 }}
+          >
+            {loadingProgress}%
+          </motion.div>
         </motion.div>
       )}
     </motion.div>

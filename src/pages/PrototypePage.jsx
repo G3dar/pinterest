@@ -13,6 +13,7 @@ const PrototypePage = () => {
   const [error, setError] = useState(null);
   const [wrappedData, setWrappedData] = useState(null);
   const [currentPhase, setCurrentPhase] = useState(0);
+  const [loadingProgress, setLoadingProgress] = useState(0);
 
   // Phase timing in milliseconds
   const PHASE_TIMINGS = {
@@ -24,13 +25,63 @@ const PrototypePage = () => {
     5: Infinity // Share (user controlled)
   };
 
-  // Load data on mount
+  // Load data on mount and preload all images
   useEffect(() => {
     const loadData = async () => {
       try {
-        // Simulate loading time
-        await new Promise(resolve => setTimeout(resolve, 1000));
+        // Generate wrapped data
         const data = generateWrappedData();
+
+        // Extract all unique image URLs from the data
+        const imageUrls = new Set();
+
+        // Add all images from allImages array
+        if (data.allImages) {
+          data.allImages.forEach(img => imageUrls.add(img.url));
+        }
+
+        // Add images from top categories
+        if (data.topCategories) {
+          data.topCategories.forEach(category => {
+            if (category.images) {
+              category.images.forEach(img => imageUrls.add(img.url));
+            }
+          });
+        }
+
+        // Add avatar image
+        if (data.identityCard?.avatar) {
+          imageUrls.add(data.identityCard.avatar);
+        }
+
+        const imagesToLoad = Array.from(imageUrls);
+        let loadedCount = 0;
+
+        // Preload all images
+        const preloadPromises = imagesToLoad.map(url => {
+          return new Promise((resolve) => {
+            const img = new Image();
+            img.onload = () => {
+              loadedCount++;
+              setLoadingProgress(Math.round((loadedCount / imagesToLoad.length) * 100));
+              resolve();
+            };
+            img.onerror = () => {
+              // Still count as loaded to prevent blocking
+              loadedCount++;
+              setLoadingProgress(Math.round((loadedCount / imagesToLoad.length) * 100));
+              resolve();
+            };
+            img.src = url;
+          });
+        });
+
+        // Wait for all images to load
+        await Promise.all(preloadPromises);
+
+        // Add small delay to show 100%
+        await new Promise(resolve => setTimeout(resolve, 300));
+
         setWrappedData(data);
         setIsLoading(false);
 
@@ -61,23 +112,67 @@ const PrototypePage = () => {
     setCurrentPhase(1);
   };
 
-  const handleRetry = () => {
+  const handleRetry = async () => {
     setError(null);
     setIsLoading(true);
     setCurrentPhase(0);
+    setLoadingProgress(0);
 
-    // Retry loading
-    setTimeout(() => {
-      try {
-        const data = generateWrappedData();
-        setWrappedData(data);
-        setIsLoading(false);
-        setTimeout(() => setCurrentPhase(1), 500);
-      } catch (err) {
-        setError('Failed to load your wrapped data. Please try again.');
-        setIsLoading(false);
+    // Retry loading with preloading
+    try {
+      // Generate wrapped data
+      const data = generateWrappedData();
+
+      // Extract all unique image URLs from the data
+      const imageUrls = new Set();
+
+      if (data.allImages) {
+        data.allImages.forEach(img => imageUrls.add(img.url));
       }
-    }, 1000);
+
+      if (data.topCategories) {
+        data.topCategories.forEach(category => {
+          if (category.images) {
+            category.images.forEach(img => imageUrls.add(img.url));
+          }
+        });
+      }
+
+      if (data.identityCard?.avatar) {
+        imageUrls.add(data.identityCard.avatar);
+      }
+
+      const imagesToLoad = Array.from(imageUrls);
+      let loadedCount = 0;
+
+      // Preload all images
+      const preloadPromises = imagesToLoad.map(url => {
+        return new Promise((resolve) => {
+          const img = new Image();
+          img.onload = () => {
+            loadedCount++;
+            setLoadingProgress(Math.round((loadedCount / imagesToLoad.length) * 100));
+            resolve();
+          };
+          img.onerror = () => {
+            loadedCount++;
+            setLoadingProgress(Math.round((loadedCount / imagesToLoad.length) * 100));
+            resolve();
+          };
+          img.src = url;
+        });
+      });
+
+      await Promise.all(preloadPromises);
+      await new Promise(resolve => setTimeout(resolve, 300));
+
+      setWrappedData(data);
+      setIsLoading(false);
+      setTimeout(() => setCurrentPhase(1), 500);
+    } catch (err) {
+      setError('Failed to load your wrapped data. Please try again.');
+      setIsLoading(false);
+    }
   };
 
   if (!wrappedData && !isLoading && !error) {
@@ -93,6 +188,7 @@ const PrototypePage = () => {
             isLoading={isLoading}
             error={error}
             onRetry={handleRetry}
+            loadingProgress={loadingProgress}
           />
         )}
 

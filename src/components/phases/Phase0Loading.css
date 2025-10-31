@@ -60,6 +60,32 @@
   transform: scale(0.95);
 }
 
+/* Progress Bar */
+.loading-progress-container {
+  width: 300px;
+  height: 8px;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 4px;
+  overflow: hidden;
+  margin: 1.5rem auto 0.5rem;
+  position: relative;
+}
+
+.loading-progress-bar {
+  height: 100%;
+  background: white;
+  border-radius: 4px;
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
+  transition: width 0.3s ease-out;
+}
+
+.loading-percentage {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: white;
+  margin-top: 0.5rem;
+}
+
 @media (max-width: 640px) {
   .loading-state h2 {
     font-size: 1.25rem;
@@ -68,5 +94,9 @@
   .retry-button {
     padding: 0.6rem 1.5rem;
     font-size: 0.9rem;
+  }
+
+  .loading-progress-container {
+    width: min(300px, 85vw);
   }
 }
