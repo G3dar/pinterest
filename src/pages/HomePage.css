@@ -462,6 +462,19 @@
   .search-container {
     display: none;
   }
+
+  .user-avatar {
+    display: none;
+  }
+
+  .home-header {
+    justify-content: center;
+  }
+
+  .header-right {
+    justify-content: center;
+    flex: 1;
+  }
 }
 
 @media (max-width: 480px) {
