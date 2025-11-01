@@ -38,11 +38,11 @@ const puppeteer = require('puppeteer');
       return document.body.innerHTML.substring(0, 5000);
     });
 
-    // Click button that contains "Your PinWrap 2025"
-    console.log('Clicking "Your PinWrap 2025" button...');
+    // Click button that contains "Your Pinterest Pulse 2025"
+    console.log('Clicking "Your Pinterest Pulse 2025" button...');
     const clicked = await page.evaluate(() => {
       const buttons = Array.from(document.querySelectorAll('button'));
-      const target = buttons.find(b => b.textContent.includes('Your PinWrap 2025'));
+      const target = buttons.find(b => b.textContent.includes('Your Pinterest Pulse 2025'));
       if (target) {
         console.log('Found and clicking button');
         target.click();

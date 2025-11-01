@@ -34,11 +34,11 @@ const fs = require('fs');
     console.log('\nTaking screenshot before button click...');
     await page.screenshot({ path: '/tmp/homepage_before.png', fullPage: true });
 
-    // Look for the "Your PinWrap 2025" button
-    console.log('Looking for "Your PinWrap 2025" button...');
+    // Look for the "Your Pinterest Pulse 2025" button
+    console.log('Looking for "Your Pinterest Pulse 2025" button...');
     const buttonFound = await page.evaluate(() => {
       const buttons = Array.from(document.querySelectorAll('button'));
-      const target = buttons.find(b => b.textContent.includes('Your PinWrap 2025'));
+      const target = buttons.find(b => b.textContent.includes('Your Pinterest Pulse 2025'));
       if (target) {
         console.log('Button found! Text:', target.textContent);
         console.log('Button classes:', target.className);
@@ -50,14 +50,14 @@ const fs = require('fs');
     });
 
     if (!buttonFound) {
-      console.log('ERROR: "Your PinWrap 2025" button not found!');
+      console.log('ERROR: "Your Pinterest Pulse 2025" button not found!');
       process.exit(1);
     }
 
-    console.log('Clicking the "Your PinWrap 2025" button...');
+    console.log('Clicking the "Your Pinterest Pulse 2025" button...');
     await page.evaluate(() => {
       const buttons = Array.from(document.querySelectorAll('button'));
-      const target = buttons.find(b => b.textContent.includes('Your PinWrap 2025'));
+      const target = buttons.find(b => b.textContent.includes('Your Pinterest Pulse 2025'));
       if (target) {
         target.click();
         console.log('Button clicked in page context');

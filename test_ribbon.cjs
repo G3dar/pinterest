@@ -30,7 +30,7 @@ const puppeteer = require('puppeteer');
     await new Promise(r => setTimeout(r, 3000));
 
     // Look for the button and click it
-    console.log('Looking for "Your PinWrap 2025" button...');
+    console.log('Looking for "Your Pinterest Pulse 2025" button...');
     const buttons = await page.evaluate(() => {
       return Array.from(document.querySelectorAll('button')).map(b => ({
         text: b.textContent.trim(),
@@ -41,10 +41,10 @@ const puppeteer = require('puppeteer');
     console.log('Buttons found on page:');
     buttons.forEach(b => console.log('  - ' + JSON.stringify(b)));
 
-    // Click button that contains "Your PinWrap 2025"
+    // Click button that contains "Your Pinterest Pulse 2025"
     const clicked = await page.evaluate(() => {
       const buttons = Array.from(document.querySelectorAll('button'));
-      const target = buttons.find(b => b.textContent.includes('Your PinWrap 2025'));
+      const target = buttons.find(b => b.textContent.includes('Your Pinterest Pulse 2025'));
       if (target) {
         target.click();
         return true;

@@ -43,7 +43,7 @@ const Phase5Share = ({ identityCard, onRestart }) => {
 
   const handleSocialShare = (platform) => {
     const url = window.location.href;
-    const text = `I'm a ${identityCard.title}! Check out my PinWrap ${identityCard.year} 📌`;
+    const text = `I'm a ${identityCard.title}! Check out my Pinterest Pulse ${identityCard.year} 📌`;
 
     let shareUrl = '';
     if (platform === 'twitter') {
@@ -183,8 +183,8 @@ const Phase5Share = ({ identityCard, onRestart }) => {
               onClick={() => {
                 if (navigator.share) {
                   navigator.share({
-                    title: 'PinWrap 2024',
-                    text: `I'm a ${identityCard.title}! Check out my PinWrap 2024 📌`,
+                    title: 'Pinterest Pulse 2024',
+                    text: `I'm a ${identityCard.title}! Check out my Pinterest Pulse 2024 📌`,
                     url: window.location.href
                   });
                 }
@@ -202,7 +202,7 @@ const Phase5Share = ({ identityCard, onRestart }) => {
           </div>
         </motion.div>
 
-        {/* PinWrap Proposal Button */}
+        {/* Pinterest Pulse Proposal Button */}
         <motion.div
           className="proposal-section"
           initial={{ opacity: 0, y: 20 }}
@@ -211,7 +211,7 @@ const Phase5Share = ({ identityCard, onRestart }) => {
         >
           <Link to="/wrapped/concept" className="proposal-button">
             <FileText size={20} />
-            <span>Read the PinWrap Proposal</span>
+            <span>Read the Pinterest Pulse Proposal</span>
           </Link>
         </motion.div>
 

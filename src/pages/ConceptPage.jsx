@@ -15,13 +15,13 @@ const ConceptPage = () => {
         transition={{ duration: 1 }}
       >
         <Sparkles className="hero-icon" size={48} />
-        <h1 className="hero-title">PinWrap: A Year in Aesthetics</h1>
+        <h1 className="hero-title">Pinterest Pulse: A Year in Aesthetics</h1>
         <p className="hero-subtitle">Prototype Concept Document</p>
         <p className="hero-date">1stAve Machine | 2025</p>
       </motion.div>
 
       <div className="body-content">
-        {/* What is PinWrap */}
+        {/* What is Pinterest Pulse */}
         <motion.section
           className="proposal-section"
           initial={{ opacity: 0, y: 20 }}
@@ -30,11 +30,11 @@ const ConceptPage = () => {
         >
           <div className="section-header">
             <Sparkles size={32} className="section-icon" />
-            <h2>What is PinWrap?</h2>
+            <h2>What is Pinterest Pulse?</h2>
           </div>
           <div className="section-content">
             <p className="intro-text">
-              PinWrap is a year-end feature concept that transforms a user's Pinterest activity into a shareable visual experience. Similar to how Spotify Wrapped summarizes listening habits, PinWrap reflects users' aesthetic preferences through their saved pins.
+              Pinterest Pulse is a year-end feature concept that transforms a user's Pinterest activity into a shareable visual experience. Similar to how Spotify Wrapped summarizes listening habits, Pinterest Pulse reflects users' aesthetic preferences through their saved pins.
             </p>
             <p className="intro-text">
               This prototype demonstrates how Pinterest could help users visualize their year in pins through a 50-second animated sequence, revealing patterns in their color preferences, seasonal interests, and visual themes—ultimately creating a personalized "identity card" they can share.
@@ -55,7 +55,7 @@ const ConceptPage = () => {
           </div>
           <div className="section-content">
             <p className="intro-text">
-              PinWrap is designed for active Pinterest users who regularly save pins and might enjoy seeing their year's activity summarized in a fun, visual way. It's particularly relevant for users who:
+              Pinterest Pulse is designed for active Pinterest users who regularly save pins and might enjoy seeing their year's activity summarized in a fun, visual way. It's particularly relevant for users who:
             </p>
             <ul className="features-list">
               <li>Have saved a meaningful number of pins throughout the year</li>

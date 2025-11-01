@@ -2,7 +2,7 @@
 
 ## How the System Works
 
-The PinWrap app **programmatically constructs** image paths using this pattern:
+The Pinterest Pulse app **programmatically constructs** image paths using this pattern:
 
 ```
 /imgs/{category-key}/{category-key}-{number}.jpg
