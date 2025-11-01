@@ -557,7 +557,7 @@ const Phase3Analysis = ({ colorPalette, keywords, categories }) => {
                   </div>
 
                   <div className="category-thumbnails">
-                    {category.images.map((img, imgIndex) => (
+                    {category.images.slice(0, Math.ceil(category.percentage / 100 * 24)).map((img, imgIndex) => (
                       <motion.div
                         key={imgIndex}
                         className="thumbnail"
@@ -610,8 +610,6 @@ const Phase3Analysis = ({ colorPalette, keywords, categories }) => {
             width: 'auto',
             maxWidth: '1100px',
             padding: '2rem',
-            background: 'rgba(0, 0, 0, 0.4)',
-            borderRadius: '1rem',
             pointerEvents: 'auto'
           }}
         >
