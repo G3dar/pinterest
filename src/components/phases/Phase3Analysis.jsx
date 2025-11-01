@@ -130,12 +130,53 @@ const Phase3Analysis = ({ colorPalette, keywords, categories }) => {
 
             {/* Constellation Map - Full Screen */}
             <div className="constellation-map-fullscreen">
-              {/* Progressing seasonal gradient background */}
+              {/* Seasonal gradient overlays - crossfade effect (GPU accelerated) */}
+              {/* Spring gradient */}
               <motion.div
-                className="seasonal-gradient-bg"
+                className="seasonal-overlay spring-gradient"
+                initial={{ opacity: 1 }}
+                animate={{ opacity: [1, 0.7, 0.3, 0] }}
+                transition={{
+                  duration: 12,
+                  times: [0, 0.25, 0.5, 1],
+                  ease: 'easeInOut'
+                }}
+              />
+
+              {/* Summer gradient */}
+              <motion.div
+                className="seasonal-overlay summer-gradient"
                 initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ duration: 2 }}
+                animate={{ opacity: [0, 0.3, 0.7, 0.3, 0] }}
+                transition={{
+                  duration: 12,
+                  times: [0, 0.25, 0.5, 0.75, 1],
+                  ease: 'easeInOut'
+                }}
+              />
+
+              {/* Fall gradient */}
+              <motion.div
+                className="seasonal-overlay fall-gradient"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: [0, 0, 0.3, 0.7, 0.3] }}
+                transition={{
+                  duration: 12,
+                  times: [0, 0.25, 0.5, 0.75, 1],
+                  ease: 'easeInOut'
+                }}
+              />
+
+              {/* Winter gradient */}
+              <motion.div
+                className="seasonal-overlay winter-gradient"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: [0, 0, 0, 0.3, 1] }}
+                transition={{
+                  duration: 12,
+                  times: [0, 0.25, 0.5, 0.75, 1],
+                  ease: 'easeInOut'
+                }}
               />
 
               {/* Season groups - 4 quadrants with environmental effects */}
