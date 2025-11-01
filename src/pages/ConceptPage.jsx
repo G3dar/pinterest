@@ -17,7 +17,7 @@ const ConceptPage = () => {
         <Sparkles className="hero-icon" size={48} />
         <h1 className="hero-title">Pinterest Pulse: A Year in Aesthetics</h1>
         <p className="hero-subtitle">Prototype Concept Document</p>
-        <p className="hero-date">1stAve Machine | 2025</p>
+        <p className="hero-date">SpecialGuest | 2025</p>
       </motion.div>
 
       <div className="body-content">
