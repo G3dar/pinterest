@@ -211,7 +211,7 @@
   pointer-events: none;
 }
 
-/* Portal Transition Effect */
+/* Portal Transition Effect - No gradients, pure glow */
 .portal-transition {
   position: fixed;
   top: 50%;
@@ -219,21 +219,57 @@
   width: 100px;
   height: 100px;
   margin: -50px 0 0 -50px;
-  background: radial-gradient(
-    circle,
-    rgba(230, 0, 35, 0.9),
-    rgba(193, 53, 132, 0.7),
-    rgba(138, 43, 226, 0.5),
-    transparent 70%
-  );
-  border-radius: 50%;
   pointer-events: none;
   z-index: 100;
-  box-shadow: 0 0 100px rgba(230, 0, 35, 1),
-              0 0 200px rgba(193, 53, 132, 0.8),
-              0 0 300px rgba(138, 43, 226, 0.6),
-              inset 0 0 50px rgba(255, 255, 255, 0.4);
-  filter: blur(3px);
+}
+
+/* Create portal effect with layered elements */
+.portal-transition::before,
+.portal-transition::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+/* Inner core - bright white/red */
+.portal-transition::before {
+  width: 30px;
+  height: 30px;
+  background: rgba(255, 255, 255, 0.9);
+  box-shadow:
+    0 0 20px rgba(255, 255, 255, 1),
+    0 0 40px rgba(230, 0, 35, 1),
+    0 0 60px rgba(230, 0, 35, 0.8),
+    0 0 80px rgba(230, 0, 35, 0.6);
+  animation: portalPulse 2s ease-in-out infinite;
+}
+
+/* Outer glow - pink/purple layers */
+.portal-transition::after {
+  width: 100px;
+  height: 100px;
+  background: rgba(230, 0, 35, 0.3);
+  filter: blur(25px);
+  box-shadow:
+    0 0 100px rgba(230, 0, 35, 0.9),
+    0 0 150px rgba(193, 53, 132, 0.7),
+    0 0 200px rgba(138, 43, 226, 0.5),
+    0 0 250px rgba(138, 43, 226, 0.3);
+}
+
+@keyframes portalPulse {
+  0%, 100% {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: translate(-50%, -50%) scale(1.2);
+    opacity: 0.8;
+  }
 }
 
 /* Carousel View */

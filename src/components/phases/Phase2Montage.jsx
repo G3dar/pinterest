@@ -551,17 +551,19 @@ const Phase2Montage = ({ images, categories, colorPalette }) => {
               initial={{ opacity: 0, scale: 0 }}
               animate={{ opacity: 0, scale: 0 }}
               exit={{
-                opacity: 1,
-                scale: 20,
+                opacity: [0, 1, 1, 0],
+                scale: [0, 20, 20, 0],
                 rotateZ: 540
               }}
               transition={{
                 opacity: {
                   duration: 4.5,
+                  times: [0, 0.3, 0.7, 1],
                   ease: [0.19, 1, 0.22, 1]
                 },
                 scale: {
                   duration: 4.5,
+                  times: [0, 0.3, 0.7, 1],
                   ease: [0.19, 1, 0.22, 1]
                 },
                 rotateZ: {

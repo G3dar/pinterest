@@ -130,54 +130,6 @@ const Phase3Analysis = ({ colorPalette, keywords, categories }) => {
 
             {/* Constellation Map - Full Screen */}
             <div className="constellation-map-fullscreen">
-              {/* Seasonal gradient overlays - crossfade effect (GPU accelerated) */}
-              {/* Spring gradient */}
-              <motion.div
-                className="seasonal-overlay spring-gradient"
-                initial={{ opacity: 1 }}
-                animate={{ opacity: [1, 0.7, 0.3, 0] }}
-                transition={{
-                  duration: 12,
-                  times: [0, 0.25, 0.5, 1],
-                  ease: 'easeInOut'
-                }}
-              />
-
-              {/* Summer gradient */}
-              <motion.div
-                className="seasonal-overlay summer-gradient"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: [0, 0.3, 0.7, 0.3, 0] }}
-                transition={{
-                  duration: 12,
-                  times: [0, 0.25, 0.5, 0.75, 1],
-                  ease: 'easeInOut'
-                }}
-              />
-
-              {/* Fall gradient */}
-              <motion.div
-                className="seasonal-overlay fall-gradient"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: [0, 0, 0.3, 0.7, 0.3] }}
-                transition={{
-                  duration: 12,
-                  times: [0, 0.25, 0.5, 0.75, 1],
-                  ease: 'easeInOut'
-                }}
-              />
-
-              {/* Winter gradient */}
-              <motion.div
-                className="seasonal-overlay winter-gradient"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: [0, 0, 0, 0.3, 1] }}
-                transition={{
-                  duration: 12,
-                  times: [0, 0.25, 0.5, 0.75, 1],
-                  ease: 'easeInOut'
-                }}
-              />
 
               {/* Season groups - 4 quadrants with environmental effects */}
               {[
@@ -186,47 +138,31 @@ const Phase3Analysis = ({ colorPalette, keywords, categories }) => {
                   images: categories[0]?.images.slice(0, 12) || [],
                   position: { x: 15, y: 15 },
                   color: '#90EE90',
-                  particles: '🌸',
-                  bgGradient: 'radial-gradient(circle at 15% 15%, rgba(144, 238, 144, 0.2), transparent 60%)'
+                  particles: '🌸'
                 },
                 {
                   season: 'Summer',
                   images: categories[1]?.images.slice(0, 12) || [],
                   position: { x: 85, y: 15 },
                   color: '#FFD700',
-                  particles: '☀️',
-                  bgGradient: 'radial-gradient(circle at 85% 15%, rgba(255, 215, 0, 0.2), transparent 60%)'
+                  particles: '☀️'
                 },
                 {
                   season: 'Fall',
                   images: categories[2]?.images.slice(0, 12) || [],
                   position: { x: 15, y: 85 },
                   color: '#FF8C42',
-                  particles: '🍂',
-                  bgGradient: 'radial-gradient(circle at 15% 85%, rgba(255, 140, 66, 0.2), transparent 60%)'
+                  particles: '🍂'
                 },
                 {
                   season: 'Winter',
                   images: categories[3]?.images.slice(0, 12) || [],
                   position: { x: 85, y: 85 },
                   color: '#87CEEB',
-                  particles: '❄️',
-                  bgGradient: 'radial-gradient(circle at 85% 85%, rgba(135, 206, 235, 0.2), transparent 60%)'
+                  particles: '❄️'
                 }
               ].map((seasonGroup, groupIndex) => (
                 <div key={seasonGroup.season} className="season-constellation">
-                  {/* Seasonal background glow */}
-                  <motion.div
-                    className="season-bg-glow"
-                    style={{ background: seasonGroup.bgGradient }}
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    transition={{
-                      delay: groupIndex * 0.2,
-                      duration: 0.8
-                    }}
-                  />
-
                   {/* Seasonal particles */}
                   {Array.from({ length: 12 }).map((_, pIndex) => (
                     <motion.div
