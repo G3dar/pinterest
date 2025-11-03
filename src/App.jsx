@@ -1,10 +1,22 @@
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import HomePage from './pages/HomePage';
 import ConceptPage from './pages/ConceptPage';
 import PrototypePage from './pages/PrototypePage';
 import MobileWarning from './components/MobileWarning';
 import generateWrappedData from './data/mockData';
+import { trackPageView } from './utils/analytics';
+
+// Component to track page views on route changes
+function PageViewTracker() {
+  const location = useLocation();
+
+  useEffect(() => {
+    trackPageView(location.pathname, document.title);
+  }, [location]);
+
+  return null;
+}
 
 function App() {
   const [wrappedData, setWrappedData] = useState(null);
@@ -20,6 +32,7 @@ function App() {
 
   return (
     <BrowserRouter>
+      <PageViewTracker />
       <MobileWarning />
       <Routes>
         <Route path="/" element={<HomePage images={wrappedData.allImages} />} />
