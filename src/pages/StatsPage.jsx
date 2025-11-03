@@ -1,6 +1,15 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
+// ============================================
+// CONFIGURATION: Add your Looker Studio URL here
+// ============================================
+// After creating your Looker Studio dashboard, paste the embed URL below.
+// See LOOKER_STUDIO_SETUP.md for instructions.
+// Example: 'https://lookerstudio.google.com/embed/reporting/YOUR-REPORT-ID/page/YOUR-PAGE-ID?rm=minimal'
+const LOOKER_STUDIO_URL = import.meta.env.VITE_LOOKER_STUDIO_URL || '';
+// ============================================
+
 function StatsPage() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [password, setPassword] = useState('');
@@ -103,31 +112,51 @@ function StatsPage() {
         <div style={styles.section}>
           <h2 style={styles.sectionTitle}>Google Analytics Dashboard</h2>
           <div style={styles.gaEmbed}>
-            <div style={styles.placeholder}>
-              <h3 style={styles.placeholderTitle}>📊 Connect Google Analytics</h3>
-              <p style={styles.placeholderText}>
-                To view live analytics data, you have two options:
-              </p>
-              <ol style={styles.placeholderList}>
-                <li>
-                  <strong>View in GA4:</strong> Visit{' '}
-                  <a
-                    href="https://analytics.google.com/analytics/web/#/p418517405/reports/intelligenthome"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    style={styles.link}
-                  >
-                    Google Analytics Dashboard
-                  </a>
-                </li>
-                <li>
-                  <strong>Embed Dashboard:</strong> Set up GA4 Looker Studio for embedded reports
-                </li>
-              </ol>
-              <p style={styles.placeholderNote}>
-                Property ID: G-PB7TMM99WV
-              </p>
-            </div>
+            {LOOKER_STUDIO_URL ? (
+              // Show embedded Looker Studio dashboard if configured
+              <iframe
+                src={LOOKER_STUDIO_URL}
+                style={styles.iframe}
+                frameBorder="0"
+                allowFullScreen
+                title="Analytics Dashboard"
+              />
+            ) : (
+              // Show setup instructions if not configured
+              <div style={styles.placeholder}>
+                <h3 style={styles.placeholderTitle}>📊 Connect Google Analytics</h3>
+                <p style={styles.placeholderText}>
+                  To view live analytics data, you have two options:
+                </p>
+                <ol style={styles.placeholderList}>
+                  <li>
+                    <strong>View in GA4:</strong> Visit{' '}
+                    <a
+                      href="https://analytics.google.com/analytics/web/#/p418517405/reports/intelligenthome"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      style={styles.link}
+                    >
+                      Google Analytics Dashboard
+                    </a>
+                  </li>
+                  <li>
+                    <strong>Embed Dashboard:</strong> Follow the{' '}
+                    <a
+                      href="https://github.com/G3dar/pinterest/blob/main/LOOKER_STUDIO_SETUP.md"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      style={styles.link}
+                    >
+                      Looker Studio Setup Guide
+                    </a>
+                  </li>
+                </ol>
+                <p style={styles.placeholderNote}>
+                  Property ID: G-PB7TMM99WV
+                </p>
+              </div>
+            )}
           </div>
         </div>
 
@@ -366,6 +395,14 @@ const styles = {
     background: '#f7f8fa',
     borderRadius: '8px',
     border: '2px dashed #e0e0e0',
+    overflow: 'hidden',
+  },
+  iframe: {
+    width: '100%',
+    minHeight: '800px',
+    height: '100%',
+    border: 'none',
+    borderRadius: '8px',
   },
   placeholder: {
     padding: '3rem',
